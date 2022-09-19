@@ -1,8 +1,10 @@
-package t2010a.cookpad_clone;
+package t2010a.cookpad_clone.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import t2010a.cookpad_clone.R;
 
 public class MainActivity extends AppCompatActivity {
 

@@ -12,5 +12,5 @@ public interface ApiService {
     Call<User> registerUser(@Body User user);
 
     @POST("/api/v1/users/login")
-    Call<User> loginUser();
+    Call<User> loginUser(@Body User user);
 }

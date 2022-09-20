@@ -52,18 +52,12 @@
         android:gravity="center">
 
         <TextView
+            android:id="@+id/tvToResetPassword"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Already have account?"/>
+            android:text="Reset password"
+            android:clickable="true"/>
 
-        <TextView
-            android:id="@+id/tvToRegister"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="To register"
-            android:clickable="true"
-            android:layout_marginLeft="5dp"
-            android:textColor="@color/purple_700"/>
     </LinearLayout>
 
 </LinearLayout>

@@ -93,8 +93,6 @@ public class RegisterActivity extends AppCompatActivity{
                     } else Toast.makeText(RegisterActivity.this,
                             "Username invalid.", Toast.LENGTH_SHORT).show();
                 }
-
-
             }
         });
     }

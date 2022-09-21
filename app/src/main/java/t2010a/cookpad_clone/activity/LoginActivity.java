@@ -20,7 +20,7 @@ import t2010a.cookpad_clone.repository.UserRepository;
 public class LoginActivity extends AppCompatActivity {
     EditText etUsername, etPassword;
     Button btnLogin;
-    TextView tvToResetPassword;
+    TextView tvToResetPassword, tvToRegister;
     User user = new User();
     UserRepository userRepository;
 
@@ -39,10 +39,11 @@ public class LoginActivity extends AppCompatActivity {
         etPassword = findViewById(R.id.etPassword);
         btnLogin = findViewById(R.id.btnLogin);
         tvToResetPassword = findViewById(R.id.tvToResetPassword);
+        tvToRegister = findViewById(R.id.tvToRegister);
     }
 
     private void setTvToRegister() {
-        tvToResetPassword.setOnClickListener(new View.OnClickListener() {
+        tvToRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
@@ -69,15 +70,15 @@ public class LoginActivity extends AppCompatActivity {
                         @Override
                         public void onResponse(Call<User> call, Response<User> response) {
                             if (response.code() == 200) {
-                                Toast.makeText(LoginActivity.this, "Welcome back!", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(LoginActivity.this, "Login success. Http code " + response.code(), Toast.LENGTH_SHORT).show();
                             } else {
-                                Toast.makeText(LoginActivity.this, "Login failed.", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(LoginActivity.this, "Login failed. Http code " + response.code(), Toast.LENGTH_SHORT).show();
                             }
                         }
 
                         @Override
                         public void onFailure(Call<User> call, Throwable t) {
-                            Toast.makeText(LoginActivity.this, "Username or password is NOT correct.", Toast.LENGTH_SHORT).show();
+
                         }
                     });
                 }

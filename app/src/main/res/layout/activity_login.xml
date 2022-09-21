@@ -1,63 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activity.LoginActivity"
-    android:orientation="vertical"
     android:layout_marginVertical="10dp"
     android:layout_marginHorizontal="10dp">
-
-    <ImageView
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:src="@drawable/logo_white"
-        android:layout_gravity="center"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Login"
-        android:layout_gravity="center"
-        android:textAllCaps="true"
-        android:textStyle="bold"
-        android:textSize="30sp" />
-
-    <EditText
-        android:id="@+id/etUsername"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Username"
-        android:layout_marginVertical="10dp"/>
-
-    <EditText
-        android:id="@+id/etPassword"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Password"
-        android:layout_marginVertical="10dp"/>
-
-    <Button
-        android:id="@+id/btnLogin"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Login"
-        android:layout_marginTop="10dp"/>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center">
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:src="@drawable/logo_white"
+            android:layout_gravity="center"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Login"
+            android:layout_gravity="center"
+            android:textAllCaps="true"
+            android:textStyle="bold"
+            android:textSize="30sp" />
+
+        <EditText
+            android:id="@+id/etUsername"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Username"
+            android:layout_marginVertical="10dp"/>
+
+        <EditText
+            android:id="@+id/etPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Password"
+            android:layout_marginVertical="10dp"/>
+
+        <Button
+            android:id="@+id/btnLogin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Login"
+            android:layout_marginTop="10dp"/>
 
         <TextView
             android:id="@+id/tvToResetPassword"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Reset password"
-            android:clickable="true"/>
+            android:layout_gravity="center"
+            android:layout_marginVertical="5dp"/>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="New user?"/>
+
+            <TextView
+                android:id="@+id/tvToRegister"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="To register"
+                android:clickable="true"
+                android:layout_marginLeft="5dp"
+                android:textColor="@color/purple_700"
+                android:layout_gravity="center"
+                android:focusable="true" />
+
+        </LinearLayout>
     </LinearLayout>
-
-</LinearLayout>
+</ScrollView>

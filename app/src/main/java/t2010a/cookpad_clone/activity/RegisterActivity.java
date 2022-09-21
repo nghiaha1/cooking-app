@@ -60,8 +60,8 @@ public class RegisterActivity extends AppCompatActivity{
             @Override
             public void onClick(View view) {
                 String username = etUsername.getText().toString().trim();
-                String password = etPassword.getText().toString().trim();
-                String rePassword = etRePassword.getText().toString().trim();
+                String password = etPassword.getText().toString();
+                String rePassword = etRePassword.getText().toString();
                 String address = etAddress.getText().toString().trim();
                 String phone = etPhone.getText().toString().trim();
                 
@@ -69,27 +69,37 @@ public class RegisterActivity extends AppCompatActivity{
                     Toast.makeText(RegisterActivity.this, "Fill all the information above!", Toast.LENGTH_SHORT).show();
                 } else {
                     if (EditTextValidation.isValidUsername(username)) {
-                        if (password.equals(rePassword)) {
-                           user.setUsername(username);
-                           user.setPassword(password);
-                           user.setRePassword(rePassword);
-                           user.setAddress(address);
-                           user.setPhone(phone);
+                        if (password.length() < 8) {
+                            if (password.equals(rePassword)) {
+                                user.setUsername(username);
+                                user.setPassword(password);
+                                user.setRePassword(rePassword);
+                                user.setAddress(address);
+                                user.setPhone(phone);
 
-                            userRepository.getService().registerUser(user).enqueue(new Callback<User>() {
-                                @Override
-                                public void onResponse(Call<User> call, Response<User> response) {
-                                    Toast.makeText(RegisterActivity.this, "Register success.", Toast.LENGTH_SHORT).show();
-                                }
 
-                                @Override
-                                public void onFailure(Call<User> call, Throwable t) {
-                                    Toast.makeText(RegisterActivity.this, "ERROR.", Toast.LENGTH_SHORT).show();
-                                }
-                            });
+                                userRepository.getService().registerUser(user).enqueue(new Callback<User>() {
+                                    @Override
+                                    public void onResponse(Call<User> call, Response<User> response) {
+                                        if (response.code() == 200) {
+                                            Toast.makeText(RegisterActivity.this, "Register success. Http code " + response.code(), Toast.LENGTH_SHORT).show();
+                                        } else {
+                                            Toast.makeText(RegisterActivity.this, "Register failed. Http code" + response.code(), Toast.LENGTH_SHORT).show();
+                                        }
+                                    }
 
-                        } else Toast.makeText(RegisterActivity.this,
-                                "Password is NOT match.", Toast.LENGTH_SHORT).show();
+                                    @Override
+                                    public void onFailure(Call<User> call, Throwable t) {
+
+                                    }
+                                });
+
+                            } else Toast.makeText(RegisterActivity.this,
+                                    "Password is NOT match.", Toast.LENGTH_SHORT).show();
+                        } else
+                            Toast.makeText(RegisterActivity.this, "Password required at least 8 characters.", Toast.LENGTH_SHORT).show();
+                        
+                        
                     } else Toast.makeText(RegisterActivity.this,
                             "Username invalid.", Toast.LENGTH_SHORT).show();
                 }

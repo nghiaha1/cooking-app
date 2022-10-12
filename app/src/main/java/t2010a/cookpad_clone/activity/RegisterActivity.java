@@ -35,11 +35,9 @@ public class RegisterActivity extends AppCompatActivity{
     }
 
     private void initView() {
-        etUsername = findViewById(R.id.etUsername);
-        etPassword = findViewById(R.id.etPassword);
-        etRePassword = findViewById(R.id.etRePassword);
-        etAddress = findViewById(R.id.etAddress);
-        etPhone = findViewById(R.id.etPhone);
+        etUsername = findViewById(R.id.et_username);
+        etPassword = findViewById(R.id.et_password);
+        etRePassword = findViewById(R.id.et_re_password);
         tvToLogin = findViewById(R.id.tvToLogin);
         btnRegister = findViewById(R.id.btnRegister);
     }
@@ -62,10 +60,8 @@ public class RegisterActivity extends AppCompatActivity{
                 String username = etUsername.getText().toString().trim();
                 String password = etPassword.getText().toString();
                 String rePassword = etRePassword.getText().toString();
-                String address = etAddress.getText().toString().trim();
-                String phone = etPhone.getText().toString().trim();
                 
-                if (username.isEmpty() || password.isEmpty() || rePassword.isEmpty() || address.isEmpty() || phone.isEmpty()) {
+                if (username.isEmpty() || password.isEmpty() || rePassword.isEmpty()) {
                     Toast.makeText(RegisterActivity.this, "Fill all the information above!", Toast.LENGTH_SHORT).show();
                 } else {
                     if (EditTextValidation.isValidUsername(username)) {
@@ -74,9 +70,6 @@ public class RegisterActivity extends AppCompatActivity{
                                 user.setUsername(username);
                                 user.setPassword(password);
                                 user.setRePassword(rePassword);
-                                user.setAddress(address);
-                                user.setPhone(phone);
-
 
                                 userRepository.getService().registerUser(user).enqueue(new Callback<User>() {
                                     @Override

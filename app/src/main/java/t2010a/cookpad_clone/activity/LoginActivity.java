@@ -2,7 +2,6 @@ package t2010a.cookpad_clone.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -20,7 +19,7 @@ import t2010a.cookpad_clone.repository.UserRepository;
 public class LoginActivity extends AppCompatActivity {
     EditText etUsername, etPassword;
     Button btnLogin;
-    TextView tvToResetPassword, tvToRegister;
+    TextView tvToResetPassword;
     User user = new User();
     UserRepository userRepository;
 
@@ -30,26 +29,14 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         initView();
-        setTvToRegister();
         setBtnLogin();
     }
 
     private void initView() {
-        etUsername = findViewById(R.id.etUsername);
-        etPassword = findViewById(R.id.etPassword);
+        etUsername = findViewById(R.id.et_username);
+        etPassword = findViewById(R.id.et_password);
         btnLogin = findViewById(R.id.btnLogin);
-        tvToResetPassword = findViewById(R.id.tvToResetPassword);
-        tvToRegister = findViewById(R.id.tvToRegister);
-    }
-
-    private void setTvToRegister() {
-        tvToRegister.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
-                startActivity(intent);
-            }
-        });
+        tvToResetPassword = findViewById(R.id.tv_to_reset_password);
     }
 
     private void setBtnLogin() {

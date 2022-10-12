@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:padding="8dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/tv_section_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Bạn đang thèm món gì?"
+            android:textSize="18sp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/tv_section_note"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Không chắc? Tiếp tục tạo bất ngờ"
+            android:textSize="10sp"
+            android:layout_marginTop="10dp"
+            android:layout_below="@+id/tv_section_title"/>
+
+        <LinearLayout
+            android:id="@+id/ll1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_below="@id/tv_section_note"
+            android:weightSum="2">
+
+            <ImageView
+                android:id="@+id/iv_post_thumbnail1"
+                android:layout_width="190dp"
+                android:layout_height="120dp"
+                android:scaleType="centerCrop"
+                android:src="@mipmap/ic_launcher"
+                android:layout_marginVertical="5dp"
+                android:layout_weight="1"/>
+
+            <ImageView
+                android:id="@+id/iv_post_thumbnail2"
+                android:layout_width="190dp"
+                android:layout_height="120dp"
+                android:scaleType="centerCrop"
+                android:src="@mipmap/ic_launcher"
+                android:layout_marginVertical="5dp"
+                android:layout_marginHorizontal="5dp"
+                android:layout_weight="1"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_below="@+id/ll1"
+            android:weightSum="2">
+
+            <ImageView
+                android:id="@+id/iv_post_thumbnail3"
+                android:layout_width="190dp"
+                android:layout_height="120dp"
+                android:scaleType="centerCrop"
+                android:src="@mipmap/ic_launcher"
+                android:layout_marginVertical="5dp"
+                android:layout_weight="1"/>
+
+            <ImageView
+                android:id="@+id/iv_post_thumbnail4"
+                android:layout_width="190dp"
+                android:layout_height="120dp"
+                android:scaleType="centerCrop"
+                android:src="@mipmap/ic_launcher"
+                android:layout_marginVertical="5dp"
+                android:layout_marginHorizontal="5dp"
+                android:layout_weight="1"/>
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_marginTop="20dp"
+            android:id="@+id/rv_home"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/ll2"/>
+    </RelativeLayout>
+
+</androidx.core.widget.NestedScrollView>

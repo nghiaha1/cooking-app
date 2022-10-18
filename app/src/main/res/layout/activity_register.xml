@@ -5,76 +5,76 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activity.RegisterActivity"
-    android:layout_marginHorizontal="10dp"
-    android:layout_marginVertical="10dp">
+    android:paddingHorizontal="16dp"
+    android:background="@drawable/gradient_background">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <ImageView
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_gravity="center"
-            android:src="@drawable/logo_white" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Create"
+            android:textStyle="bold"
+            android:layout_marginTop="100dp"
+            android:textSize="35sp"
+            android:textColor="@color/black"
+            android:paddingHorizontal="16dp"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Register"
-            android:layout_gravity="center"
-            android:textAllCaps="true"
+            android:text="Account :)"
             android:textStyle="bold"
-            android:textSize="30sp"/>
+            android:textSize="35sp"
+            android:textColor="@color/black"
+            android:paddingHorizontal="16dp"/>
+
 
         <EditText
             android:id="@+id/et_username"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Username"
-            android:layout_marginVertical="10dp"/>
+            android:layout_height="70dp"
+            android:hint="Enter Username"
+            android:textSize="20sp"
+            android:background="@drawable/custom_edittext"
+            android:layout_marginTop="100dp"
+            android:layout_marginBottom="10dp"
+            android:paddingHorizontal="16dp"/>
 
         <EditText
             android:id="@+id/et_password"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="70dp"
             android:hint="Password"
-            android:layout_marginVertical="10dp"/>
+            android:textSize="20sp"
+            android:background="@drawable/custom_edittext"
+            android:layout_marginVertical="10dp"
+            android:paddingHorizontal="16dp"/>
 
         <EditText
             android:id="@+id/et_re_password"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="70dp"
             android:hint="Re-enter password"
-            android:layout_marginVertical="10dp"/>
+            android:textSize="20sp"
+            android:background="@drawable/custom_edittext"
+            android:layout_marginVertical="10dp"
+            android:paddingHorizontal="16dp"/>
 
         <Button
             android:id="@+id/btnRegister"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Register"
-            android:layout_marginTop="10dp"/>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Already have account?"/>
-
-            <TextView
-                android:id="@+id/tvToLogin"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="To login"
-                android:clickable="true"
-                android:layout_marginLeft="5dp"
-                android:textColor="@color/purple_700"/>
-        </LinearLayout>
+            android:layout_width="140dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/custom_login_logout_button"
+            android:fontFamily="@font/ubuntu_medium"
+            android:text="Sign Up"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="25sp" />
     </LinearLayout>
 </ScrollView>

@@ -5,18 +5,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
-import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
 import t2010a.cookpad_clone.R;
 import t2010a.cookpad_clone.fragment.HomeFragment;
-import t2010a.cookpad_clone.fragment.NewRecipeFragment;
+import t2010a.cookpad_clone.fragment.NewPostFragment;
 import t2010a.cookpad_clone.fragment.ProfileFragment;
 import t2010a.cookpad_clone.fragment.SearchFragment;
 import t2010a.cookpad_clone.fragment.ShoppingFragment;
@@ -25,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
     BottomNavigationView navigationView;
     HomeFragment homeFragment;
     SearchFragment searchFragment;
-    NewRecipeFragment newRecipeFragment;
+    NewPostFragment newPostFragment;
     ShoppingFragment shoppingFragment;
     ProfileFragment profileFragment;
 
@@ -36,10 +33,6 @@ public class MainActivity extends AppCompatActivity {
         initView();
         initListener();
 
-        addFragments(searchFragment);
-        addFragments(newRecipeFragment);
-        addFragments(shoppingFragment);
-        addFragments(profileFragment);
         addFragments(homeFragment);
     }
 
@@ -47,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
         navigationView = findViewById(R.id.bottom_nav);
 
         searchFragment = new SearchFragment();
-        newRecipeFragment = new NewRecipeFragment();
+        newPostFragment = new NewPostFragment();
         shoppingFragment = new ShoppingFragment();
         profileFragment = new ProfileFragment();
         homeFragment = new HomeFragment();
@@ -70,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.show(homeFragment);
         transaction.hide(searchFragment);
-        transaction.hide(newRecipeFragment);
+        transaction.hide(newPostFragment);
         transaction.hide(shoppingFragment);
         transaction.hide(profileFragment);
         transaction.commit();
@@ -78,9 +71,11 @@ public class MainActivity extends AppCompatActivity {
 
     private void onActionSearch() {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        if (!searchFragment.isAdded()) addFragments(searchFragment);
+
         transaction.show(searchFragment);
         transaction.hide(homeFragment);
-        transaction.hide(newRecipeFragment);
+        transaction.hide(newPostFragment);
         transaction.hide(shoppingFragment);
         transaction.hide(profileFragment);
         transaction.commit();
@@ -88,7 +83,9 @@ public class MainActivity extends AppCompatActivity {
 
     private void onActionNewRecipe() {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.show(newRecipeFragment);
+        if (!newPostFragment.isAdded()) addFragments(newPostFragment);
+
+        transaction.show(newPostFragment);
         transaction.hide(homeFragment);
         transaction.hide(searchFragment);
         transaction.hide(shoppingFragment);
@@ -98,9 +95,11 @@ public class MainActivity extends AppCompatActivity {
 
     private void onActionShopping() {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        if (!shoppingFragment.isAdded()) addFragments(shoppingFragment);
+
         transaction.show(shoppingFragment);
         transaction.hide(homeFragment);
-        transaction.hide(newRecipeFragment);
+        transaction.hide(newPostFragment);
         transaction.hide(searchFragment);
         transaction.hide(profileFragment);
         transaction.commit();
@@ -108,9 +107,11 @@ public class MainActivity extends AppCompatActivity {
 
     private void onActionProfile() {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        if (!profileFragment.isAdded()) addFragments(profileFragment);
+
         transaction.show(profileFragment);
         transaction.hide(homeFragment);
-        transaction.hide(newRecipeFragment);
+        transaction.hide(newPostFragment);
         transaction.hide(searchFragment);
         transaction.hide(shoppingFragment);
         transaction.commit();

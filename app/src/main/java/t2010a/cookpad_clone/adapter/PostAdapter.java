@@ -1,19 +1,22 @@
 package t2010a.cookpad_clone.adapter;
 
 import android.app.Activity;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 
+import org.greenrobot.eventbus.EventBus;
+
 import java.util.List;
 
 import t2010a.cookpad_clone.R;
+import t2010a.cookpad_clone.event.MessageEvent;
 import t2010a.cookpad_clone.model.home_client.Post;
 
 public class PostAdapter extends RecyclerView.Adapter {
@@ -58,6 +61,14 @@ public class PostAdapter extends RecyclerView.Adapter {
             iv_post_thumbnail_1 = itemView.findViewById(R.id.iv_post_thumbnail_1);
             iv_post_thumbnail_2 = itemView.findViewById(R.id.iv_post_thumbnail_2);
 
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Log.d("TAG", "onClick: "+ getAdapterPosition());
+                    Post post = postList.get(getAdapterPosition());
+                    EventBus.getDefault().post(new MessageEvent.MovieEvent(post));
+                }
+            });
         }
     }
 }

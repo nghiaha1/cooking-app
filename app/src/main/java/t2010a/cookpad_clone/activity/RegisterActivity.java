@@ -19,8 +19,7 @@ import t2010a.cookpad_clone.repository.UserRepository;
 import t2010a.cookpad_clone.util.EditTextValidation;
 
 public class RegisterActivity extends AppCompatActivity{
-    EditText etUsername, etPassword, etRePassword, etAddress, etPhone;
-    TextView tvToLogin;
+    EditText etUsername, etPassword, etRePassword;
     Button btnRegister;
     UserRepository userRepository;
     User user = new User();
@@ -30,7 +29,6 @@ public class RegisterActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
         initView();
-        setTvToLogin();
         setBtnRegister();
     }
 
@@ -38,19 +36,9 @@ public class RegisterActivity extends AppCompatActivity{
         etUsername = findViewById(R.id.et_username);
         etPassword = findViewById(R.id.et_password);
         etRePassword = findViewById(R.id.et_re_password);
-        tvToLogin = findViewById(R.id.tvToLogin);
         btnRegister = findViewById(R.id.btnRegister);
     }
 
-    private void setTvToLogin() {
-        tvToLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
-                startActivity(intent);
-            }
-        });
-    }
 
     private void setBtnRegister() {
         userRepository = UserRepository.getInstance();

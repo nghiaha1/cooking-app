@@ -1,23 +1,30 @@
 package t2010a.cookpad_clone.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.bumptech.glide.Glide;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import t2010a.cookpad_clone.R;
+import t2010a.cookpad_clone.activity.PostDetailActivity;
 import t2010a.cookpad_clone.adapter.SectionAdapter;
+import t2010a.cookpad_clone.event.MessageEvent;
 import t2010a.cookpad_clone.model.home_client.Post;
 import t2010a.cookpad_clone.model.home_client.Section;
 
@@ -90,4 +97,29 @@ public class HomeFragment extends Fragment {
         Section section = new Section(title,note, posts);
         sectionList.add(section);
     }
+
+    private void toPostDetail(Post post) {
+        Intent intent = new Intent(getActivity(), PostDetailActivity.class);
+        intent.putExtra("POST", post);
+        startActivity(intent);
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onMessageEvent(MessageEvent.MovieEvent movieEvent) {
+        Post post = movieEvent.getMovie();
+        toPostDetail(post);
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        EventBus.getDefault().register(this);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        EventBus.getDefault().unregister(this);
+    }
+
 }

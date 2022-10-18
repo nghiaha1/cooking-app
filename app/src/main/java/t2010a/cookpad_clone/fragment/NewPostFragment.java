@@ -10,12 +10,12 @@ import android.view.ViewGroup;
 
 import t2010a.cookpad_clone.R;
 
-public class NewRecipeFragment extends Fragment {
+public class NewPostFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_new_recipe, container, false);
+        return inflater.inflate(R.layout.fragment_new_post, container, false);
     }
 }

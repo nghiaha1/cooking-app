@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,6 +24,7 @@ public class RegisterActivity extends AppCompatActivity{
     Button btnRegister;
     UserRepository userRepository;
     User user = new User();
+    ScrollView mScrollView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +32,9 @@ public class RegisterActivity extends AppCompatActivity{
         setContentView(R.layout.activity_register);
         initView();
         setBtnRegister();
+
+        mScrollView.setVerticalScrollBarEnabled(false);
+        mScrollView.setHorizontalScrollBarEnabled(false);
     }
 
     private void initView() {
@@ -37,6 +42,7 @@ public class RegisterActivity extends AppCompatActivity{
         etPassword = findViewById(R.id.et_password);
         etRePassword = findViewById(R.id.et_re_password);
         btnRegister = findViewById(R.id.btnRegister);
+        mScrollView = findViewById(R.id.mScrollView);
     }
 
 

@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,7 +24,7 @@ public class LoginActivity extends AppCompatActivity {
     TextView tvToResetPassword;
     User user = new User();
     UserRepository userRepository;
-
+    ScrollView mScrollView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +32,9 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         initView();
         setBtnLogin();
+
+        mScrollView.setVerticalScrollBarEnabled(false);
+        mScrollView.setHorizontalScrollBarEnabled(false);
     }
 
     private void initView() {
@@ -38,6 +42,7 @@ public class LoginActivity extends AppCompatActivity {
         etPassword = findViewById(R.id.et_password);
         btnLogin = findViewById(R.id.btnLogin);
         tvToResetPassword = findViewById(R.id.tv_to_reset_password);
+        mScrollView = findViewById(R.id.mScrollView);
     }
 
     private void setBtnLogin() {

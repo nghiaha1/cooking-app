@@ -17,8 +17,6 @@ public class NewRecipeActivity extends AppCompatActivity {
     }
 
     private void initView() {
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setActionBar(toolbar);
     }
 
     @Override

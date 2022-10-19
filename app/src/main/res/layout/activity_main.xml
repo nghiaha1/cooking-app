@@ -7,14 +7,6 @@
     tools:context=".activity.MainActivity"
     android:orientation="vertical">
 
-    <SearchView
-        android:id="@+id/searchView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:iconifiedByDefault="false"
-        android:queryHint="Search Here"
-        android:nestedScrollingEnabled="true"/>
-
     <FrameLayout
         android:id="@+id/container"
         android:layout_width="match_parent"

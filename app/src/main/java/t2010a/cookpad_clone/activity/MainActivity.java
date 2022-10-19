@@ -27,6 +27,7 @@ public class MainActivity extends AppCompatActivity{
     ShoppingFragment shoppingFragment;
     ProfileFragment profileFragment;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

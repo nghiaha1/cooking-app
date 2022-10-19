@@ -12,14 +12,15 @@
         android:textStyle="bold" />
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginVertical="15dp">
+        android:layout_marginVertical="15dp"
+        android:gravity="center">
 
         <ImageView
             android:layout_width="16dp"
             android:layout_height="16dp"
-            android:src="@drawable/human"/>
+            android:src="@drawable/ic_human_light_gray"/>
 
         <TextView
             android:id="@+id/tv_post_eater_number"
@@ -45,13 +46,9 @@
             android:id="@+id/tv_post_ingredient_1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="ingredient 1"/>
+            android:text="Ingredient 1"
+            android:textSize="16sp"/>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/dash"
-            android:layout_marginVertical="5dp"/>
     </LinearLayout>
 
     <LinearLayout
@@ -60,17 +57,19 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/dash_item_separate"
+            android:layout_marginVertical="5dp"/>
+
         <TextView
             android:id="@+id/tv_post_ingredient_2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="ingredient 2"/>
+            android:text="Ingredient 2"
+            android:textSize="16sp"/>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/dash"
-            android:layout_marginVertical="5dp"/>
     </LinearLayout>
 
     <LinearLayout
@@ -79,17 +78,20 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/dash_item_separate"
+            android:layout_marginVertical="5dp"
+            android:textSize="16sp"/>
+
         <TextView
             android:id="@+id/tv_post_ingredient_3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="ingredient 3"/>
+            android:text="Ingredient 3"
+            android:textSize="16sp"/>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/dash"
-            android:layout_marginVertical="5dp"/>
     </LinearLayout>
 
     <LinearLayout
@@ -98,17 +100,19 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/dash_item_separate"
+            android:layout_marginVertical="5dp"/>
+
         <TextView
             android:id="@+id/tv_post_ingredient_4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="ingredient 4"/>
+            android:text="Ingredient 4"
+            android:textSize="16sp"/>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/dash"
-            android:layout_marginVertical="5dp"/>
     </LinearLayout>
 
     <LinearLayout
@@ -117,17 +121,18 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/dash_item_separate"
+            android:layout_marginVertical="5dp"/>
+
         <TextView
             android:id="@+id/tv_post_ingredient_5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="ingredient 5"/>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/dash"
-            android:layout_marginVertical="5dp"/>
+            android:text="Ingredient 5"
+            android:textSize="16sp"/>
 
     </LinearLayout>
 
@@ -137,17 +142,19 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/dash_item_separate"
+            android:layout_marginVertical="5dp"/>
+
         <TextView
             android:id="@+id/tv_post_ingredient_6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="ingredient 6"/>
+            android:text="Ingredient 6"
+            android:textSize="16sp"/>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/dash"
-            android:layout_marginVertical="5dp"/>
     </LinearLayout>
 
     <LinearLayout
@@ -156,17 +163,19 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/dash_item_separate"
+            android:layout_marginVertical="5dp"/>
+
         <TextView
             android:id="@+id/tv_post_ingredient_7"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="ingredient 7"/>
+            android:text="Ingredient 7"
+            android:textSize="16sp"/>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/dash"
-            android:layout_marginVertical="5dp"/>
     </LinearLayout>
 
     <LinearLayout
@@ -175,17 +184,19 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/dash_item_separate"
+            android:layout_marginVertical="5dp"/>
+
         <TextView
             android:id="@+id/tv_post_ingredient_8"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="ingredient 8"/>
+            android:text="Ingredient 8"
+            android:textSize="16sp"/>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/dash"
-            android:layout_marginVertical="5dp"/>
     </LinearLayout>
 
     <LinearLayout
@@ -194,17 +205,19 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/dash_item_separate"
+            android:layout_marginVertical="5dp"/>
+
         <TextView
             android:id="@+id/tv_post_ingredient_9"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="ingredient 9"/>
+            android:text="Ingredient 9"
+            android:textSize="16sp"/>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/dash"
-            android:layout_marginVertical="5dp"/>
     </LinearLayout>
 
     <LinearLayout
@@ -213,17 +226,24 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/dash_item_separate"
+            android:layout_marginVertical="5dp"/>
+
         <TextView
             android:id="@+id/tv_post_ingredient_10"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="ingredient 10"/>
+            android:text="Ingredient 10"
+            android:textSize="16sp"/>
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/line"
+        android:background="@drawable/line_section_separate"
         android:layout_marginVertical="15dp"/>
 
 </LinearLayout>

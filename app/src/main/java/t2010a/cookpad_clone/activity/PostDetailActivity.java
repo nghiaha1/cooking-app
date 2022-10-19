@@ -2,6 +2,7 @@ package t2010a.cookpad_clone.activity;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -17,7 +18,7 @@ import t2010a.cookpad_clone.R;
 import t2010a.cookpad_clone.model.home_client.Post;
 
 public class PostDetailActivity extends AppCompatActivity {
-    TextView tv_user_name, tv_user_username, tv_user_address, tv_post_timer;
+    TextView tv_user_name, tv_user_username, tv_user_address, tv_post_timer, tv_post_title;
     TextView tv_post_ingredient_1, tv_post_ingredient_2, tv_post_ingredient_3,
             tv_post_ingredient_4, tv_post_ingredient_5, tv_post_ingredient_6,
             tv_post_ingredient_7, tv_post_ingredient_8, tv_post_ingredient_9,
@@ -48,8 +49,10 @@ public class PostDetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_post_detail);
         initBanner();
         initView();
+        showHideLayout();
 
-        Post movie = (Post) getIntent().getSerializableExtra("post");
+        Post post = (Post) getIntent().getSerializableExtra("POST");
+        tv_post_title.setText(post.getTitle());
     }
 
     private void initBanner() {
@@ -75,6 +78,7 @@ public class PostDetailActivity extends AppCompatActivity {
         tv_user_username = findViewById(R.id.tv_user_username);
         tv_user_address = findViewById(R.id.tv_user_address);
         tv_post_timer = findViewById(R.id.tv_post_timer);
+        tv_post_title = findViewById(R.id.tv_post_title);
 
         tv_post_ingredient_1 = findViewById(R.id.tv_post_ingredient_1);
         tv_post_ingredient_2 = findViewById(R.id.tv_post_ingredient_2);
@@ -122,5 +126,18 @@ public class PostDetailActivity extends AppCompatActivity {
     }
 
     private void showHideLayout() {
+        layout_post_ingredient_5.setVisibility(View.GONE);
+        layout_post_ingredient_6.setVisibility(View.GONE);
+        layout_post_ingredient_7.setVisibility(View.GONE);
+        layout_post_ingredient_8.setVisibility(View.GONE);
+        layout_post_ingredient_9.setVisibility(View.GONE);
+        layout_post_ingredient_10.setVisibility(View.GONE);
+
+        layout_post_step_5.setVisibility(View.GONE);
+        layout_post_step_6.setVisibility(View.GONE);
+        layout_post_step_7.setVisibility(View.GONE);
+        layout_post_step_8.setVisibility(View.GONE);
+        layout_post_step_9.setVisibility(View.GONE);
+        layout_post_step_10.setVisibility(View.GONE);
     }
 }

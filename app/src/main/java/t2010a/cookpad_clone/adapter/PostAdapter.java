@@ -46,7 +46,6 @@ public class PostAdapter extends RecyclerView.Adapter {
         PostViewHolder viewHolder = (PostViewHolder) holder;
         Post model = postList.get(position);
         Glide.with(activity).load(model.getThumbnail()).into(viewHolder.iv_post_thumbnail_1);
-        Glide.with(activity).load(model.getThumbnail()).into(viewHolder.iv_post_thumbnail_2);
     }
 
     @Override
@@ -55,11 +54,10 @@ public class PostAdapter extends RecyclerView.Adapter {
     }
 
     public class PostViewHolder extends RecyclerView.ViewHolder {
-        ImageView iv_post_thumbnail_1, iv_post_thumbnail_2;
+        ImageView iv_post_thumbnail_1;
         public PostViewHolder(@NonNull View itemView) {
             super(itemView);
             iv_post_thumbnail_1 = itemView.findViewById(R.id.iv_post_thumbnail_1);
-            iv_post_thumbnail_2 = itemView.findViewById(R.id.iv_post_thumbnail_2);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

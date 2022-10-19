@@ -126,18 +126,18 @@ public class PostDetailActivity extends AppCompatActivity {
     }
 
     private void showHideLayout() {
-        layout_post_ingredient_5.setVisibility(View.GONE);
-        layout_post_ingredient_6.setVisibility(View.GONE);
-        layout_post_ingredient_7.setVisibility(View.GONE);
-        layout_post_ingredient_8.setVisibility(View.GONE);
-        layout_post_ingredient_9.setVisibility(View.GONE);
-        layout_post_ingredient_10.setVisibility(View.GONE);
-
-        layout_post_step_5.setVisibility(View.GONE);
-        layout_post_step_6.setVisibility(View.GONE);
-        layout_post_step_7.setVisibility(View.GONE);
-        layout_post_step_8.setVisibility(View.GONE);
-        layout_post_step_9.setVisibility(View.GONE);
-        layout_post_step_10.setVisibility(View.GONE);
+//        layout_post_ingredient_5.setVisibility(View.GONE);
+//        layout_post_ingredient_6.setVisibility(View.GONE);
+//        layout_post_ingredient_7.setVisibility(View.GONE);
+//        layout_post_ingredient_8.setVisibility(View.GONE);
+//        layout_post_ingredient_9.setVisibility(View.GONE);
+//        layout_post_ingredient_10.setVisibility(View.GONE);
+//
+//        layout_post_step_5.setVisibility(View.GONE);
+//        layout_post_step_6.setVisibility(View.GONE);
+//        layout_post_step_7.setVisibility(View.GONE);
+//        layout_post_step_8.setVisibility(View.GONE);
+//        layout_post_step_9.setVisibility(View.GONE);
+//        layout_post_step_10.setVisibility(View.GONE);
     }
 }

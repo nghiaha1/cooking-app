@@ -2,7 +2,9 @@ package t2010a.cookpad_clone.network;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.GET;
 import retrofit2.http.POST;
+import t2010a.cookpad_clone.model.home_client.Post;
 import t2010a.cookpad_clone.model.user.User;
 
 public interface ApiService {
@@ -13,4 +15,7 @@ public interface ApiService {
 
     @POST("/api/v1/users/login")
     Call<User> loginUser(@Body User user);
+
+//    @GET("/api/v1/post")
+//    Call<Post>
 }

@@ -16,14 +16,14 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import t2010a.cookpad_clone.R;
 import t2010a.cookpad_clone.model.user.User;
-import t2010a.cookpad_clone.repository.UserRepository;
+import t2010a.cookpad_clone.repository.Repository;
 
 public class LoginActivity extends AppCompatActivity {
     EditText etUsername, etPassword;
     Button btnLogin;
     TextView tvToResetPassword;
     User user = new User();
-    UserRepository userRepository;
+    Repository repository;
     ScrollView mScrollView;
 
     @Override
@@ -46,7 +46,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void setBtnLogin() {
-        userRepository = UserRepository.getInstance();
+        repository = Repository.getInstance();
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -59,7 +59,7 @@ public class LoginActivity extends AppCompatActivity {
                     user.setUsername(username);
                     user.setPassword(password);
 
-                    userRepository.getService().loginUser(user).enqueue(new Callback<User>() {
+                    repository.getService().loginUser(user).enqueue(new Callback<User>() {
                         @Override
                         public void onResponse(Call<User> call, Response<User> response) {
                             if (response.code() == 200) {

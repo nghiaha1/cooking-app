@@ -1,12 +1,10 @@
 package t2010a.cookpad_clone.activity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ScrollView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,13 +14,13 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import t2010a.cookpad_clone.R;
 import t2010a.cookpad_clone.model.user.User;
-import t2010a.cookpad_clone.repository.UserRepository;
+import t2010a.cookpad_clone.repository.Repository;
 import t2010a.cookpad_clone.util.EditTextValidation;
 
 public class RegisterActivity extends AppCompatActivity{
     EditText etUsername, etPassword, etRePassword;
     Button btnRegister;
-    UserRepository userRepository;
+    Repository repository;
     User user = new User();
     ScrollView mScrollView;
 
@@ -47,7 +45,7 @@ public class RegisterActivity extends AppCompatActivity{
 
 
     private void setBtnRegister() {
-        userRepository = UserRepository.getInstance();
+        repository = Repository.getInstance();
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -65,7 +63,7 @@ public class RegisterActivity extends AppCompatActivity{
                                 user.setPassword(password);
                                 user.setRePassword(rePassword);
 
-                                userRepository.getService().registerUser(user).enqueue(new Callback<User>() {
+                                repository.getService().registerUser(user).enqueue(new Callback<User>() {
                                     @Override
                                     public void onResponse(Call<User> call, Response<User> response) {
                                         if (response.code() == 200) {

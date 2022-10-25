@@ -59,6 +59,8 @@ public class HomeFragment extends Fragment {
 
         rv_home_tab1.setLayoutManager(layoutManager);
         rv_home_tab1.setAdapter(adapter);
+
+
     }
 
     private void initData() {

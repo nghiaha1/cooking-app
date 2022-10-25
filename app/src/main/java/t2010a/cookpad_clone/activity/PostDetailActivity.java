@@ -8,33 +8,34 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.imageview.ShapeableImageView;
 import com.synnapps.carouselview.CarouselView;
 import com.synnapps.carouselview.ImageClickListener;
 import com.synnapps.carouselview.ImageListener;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import io.bloco.faker.Faker;
 import t2010a.cookpad_clone.R;
+import t2010a.cookpad_clone.adapter.PostGradientAdapter;
+import t2010a.cookpad_clone.adapter.PostStepAdapter;
+import t2010a.cookpad_clone.adapter.SectionAdapter;
 import t2010a.cookpad_clone.model.home_client.Post;
+import t2010a.cookpad_clone.model.home_client.PostGradient;
+import t2010a.cookpad_clone.model.home_client.PostStep;
+import t2010a.cookpad_clone.repository.Repository;
 
 public class PostDetailActivity extends AppCompatActivity {
     TextView tv_user_name, tv_user_username, tv_user_address, tv_post_timer, tv_post_title;
-    TextView tv_post_ingredient_1, tv_post_ingredient_2, tv_post_ingredient_3,
-            tv_post_ingredient_4, tv_post_ingredient_5, tv_post_ingredient_6,
-            tv_post_ingredient_7, tv_post_ingredient_8, tv_post_ingredient_9,
-            tv_post_ingredient_10;
-    TextView tv_post_step_1_context, tv_post_step_2_context, tv_post_step_3_context,
-            tv_post_step_4_context, tv_post_step_5_context, tv_post_step_6_context,
-            tv_post_step_7_context, tv_post_step_8_context, tv_post_step_9_context,
-            tv_post_step_10_context;
-    LinearLayout layout_post_ingredient_1, layout_post_ingredient_2, layout_post_ingredient_3,
-            layout_post_ingredient_4, layout_post_ingredient_5, layout_post_ingredient_6,
-            layout_post_ingredient_7, layout_post_ingredient_8, layout_post_ingredient_9,
-            layout_post_ingredient_10;
-    LinearLayout layout_post_step_1, layout_post_step_2, layout_post_step_3,
-            layout_post_step_4, layout_post_step_5, layout_post_step_6,
-            layout_post_step_7, layout_post_step_8, layout_post_step_9,
-            layout_post_step_10;
+    RecyclerView rv_post_gradient, rv_post_step;
+
+    List<PostGradient> postGradientList = new ArrayList<>();
+    List<PostStep> postStepList = new ArrayList<>();
+    Faker faker = new Faker();
 
     CarouselView carouselView;
     int[] sampleImages = {R.drawable.banner1,
@@ -42,6 +43,7 @@ public class PostDetailActivity extends AppCompatActivity {
             R.drawable.banner3};
     ShapeableImageView iv_user_avatar;
 
+    Repository postRepository;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +51,6 @@ public class PostDetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_post_detail);
         initBanner();
         initView();
-        showHideLayout();
 
         Post post = (Post) getIntent().getSerializableExtra("POST");
         tv_post_title.setText(post.getTitle());
@@ -80,64 +81,34 @@ public class PostDetailActivity extends AppCompatActivity {
         tv_post_timer = findViewById(R.id.tv_post_timer);
         tv_post_title = findViewById(R.id.tv_post_title);
 
-        tv_post_ingredient_1 = findViewById(R.id.tv_post_ingredient_1);
-        tv_post_ingredient_2 = findViewById(R.id.tv_post_ingredient_2);
-        tv_post_ingredient_3 = findViewById(R.id.tv_post_ingredient_3);
-        tv_post_ingredient_4 = findViewById(R.id.tv_post_ingredient_4);
-        tv_post_ingredient_5 = findViewById(R.id.tv_post_ingredient_5);
-        tv_post_ingredient_6 = findViewById(R.id.tv_post_ingredient_6);
-        tv_post_ingredient_7 = findViewById(R.id.tv_post_ingredient_7);
-        tv_post_ingredient_8 = findViewById(R.id.tv_post_ingredient_8);
-        tv_post_ingredient_9 = findViewById(R.id.tv_post_ingredient_9);
-        tv_post_ingredient_10 = findViewById(R.id.tv_post_ingredient_10);
+        rv_post_gradient = findViewById(R.id.rv_post_gradient);
+        rv_post_step = findViewById(R.id.rv_post_step);
 
-        layout_post_ingredient_1 = findViewById(R.id.layout_post_ingredient_1);
-        layout_post_ingredient_2 = findViewById(R.id.layout_post_ingredient_2);
-        layout_post_ingredient_3 = findViewById(R.id.layout_post_ingredient_3);
-        layout_post_ingredient_4 = findViewById(R.id.layout_post_ingredient_4);
-        layout_post_ingredient_5 = findViewById(R.id.layout_post_ingredient_5);
-        layout_post_ingredient_6 = findViewById(R.id.layout_post_ingredient_6);
-        layout_post_ingredient_7 = findViewById(R.id.layout_post_ingredient_7);
-        layout_post_ingredient_8 = findViewById(R.id.layout_post_ingredient_8);
-        layout_post_ingredient_9 = findViewById(R.id.layout_post_ingredient_9);
-        layout_post_ingredient_10 = findViewById(R.id.layout_post_ingredient_10);
+        initData();
 
-        tv_post_step_1_context = findViewById(R.id.tv_post_step_1_context);
-        tv_post_step_2_context = findViewById(R.id.tv_post_step_2_context);
-        tv_post_step_3_context = findViewById(R.id.tv_post_step_3_context);
-        tv_post_step_4_context = findViewById(R.id.tv_post_step_4_context);
-        tv_post_step_5_context = findViewById(R.id.tv_post_step_5_context);
-        tv_post_step_6_context = findViewById(R.id.tv_post_step_6_context);
-        tv_post_step_7_context = findViewById(R.id.tv_post_step_7_context);
-        tv_post_step_8_context = findViewById(R.id.tv_post_step_8_context);
-        tv_post_step_9_context = findViewById(R.id.tv_post_step_9_context);
-        tv_post_step_10_context = findViewById(R.id.tv_post_step_10_context);
+        RecyclerView.LayoutManager layoutManager1 = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+        RecyclerView.LayoutManager layoutManager2 = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
 
-        layout_post_step_1 = findViewById(R.id.layout_post_step_1);
-        layout_post_step_2 = findViewById(R.id.layout_post_step_2);
-        layout_post_step_3 = findViewById(R.id.layout_post_step_3);
-        layout_post_step_4 = findViewById(R.id.layout_post_step_4);
-        layout_post_step_5 = findViewById(R.id.layout_post_step_5);
-        layout_post_step_6 = findViewById(R.id.layout_post_step_6);
-        layout_post_step_7 = findViewById(R.id.layout_post_step_7);
-        layout_post_step_8 = findViewById(R.id.layout_post_step_8);
-        layout_post_step_9 = findViewById(R.id.layout_post_step_9);
-        layout_post_step_10 = findViewById(R.id.layout_post_step_10);
+        PostGradientAdapter adapter1 = new PostGradientAdapter(this, postGradientList);
+        PostStepAdapter adapter2 = new PostStepAdapter(this, postStepList);
+
+        rv_post_gradient.setLayoutManager(layoutManager1);
+        rv_post_gradient.setAdapter(adapter1);
+
+        rv_post_step.setLayoutManager(layoutManager2);
+        rv_post_step.setAdapter(adapter2);
     }
 
-    private void showHideLayout() {
-        layout_post_ingredient_5.setVisibility(View.GONE);
-        layout_post_ingredient_6.setVisibility(View.GONE);
-        layout_post_ingredient_7.setVisibility(View.GONE);
-        layout_post_ingredient_8.setVisibility(View.GONE);
-        layout_post_ingredient_9.setVisibility(View.GONE);
-        layout_post_ingredient_10.setVisibility(View.GONE);
+    private void initData() {
+        for (int i = 0; i < 10; i++) {
+            postGradientList.add(new PostGradient(i + 1,
+                    faker.food.spice()));
+        }
 
-        layout_post_step_5.setVisibility(View.GONE);
-        layout_post_step_6.setVisibility(View.GONE);
-        layout_post_step_7.setVisibility(View.GONE);
-        layout_post_step_8.setVisibility(View.GONE);
-        layout_post_step_9.setVisibility(View.GONE);
-        layout_post_step_10.setVisibility(View.GONE);
+        for (int i = 0; i < 10; i++) {
+            postStepList.add(new PostStep(i + 1,
+                    faker.lorem.paragraph(3)));
+        }
     }
+
 }

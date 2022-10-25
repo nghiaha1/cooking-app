@@ -25,7 +25,7 @@ import t2010a.cookpad_clone.model.home_client.PostStep;
 public class NewRecipeActivity extends AppCompatActivity implements View.OnClickListener {
     LinearLayout addGradient, addStep;
     RecyclerView rv_new_recipe_gradient, rv_new_recipe_step;
-    NewRecipeGradientAdapter adapter;
+    NewRecipeGradientAdapter adapter = new NewRecipeGradientAdapter();
 
     List<PostGradient> postGradientList = new ArrayList<>();
     List<PostStep> postStepList = new ArrayList<>();
@@ -91,7 +91,8 @@ public class NewRecipeActivity extends AppCompatActivity implements View.OnClick
             case R.id.addGradient:
                 postGradientList.add(new PostGradient());
                 Toast.makeText(this, "aaaaaa", Toast.LENGTH_SHORT).show();
-                Log.d("TAG", "onClick: " + postGradientList.size());
+                Log.d("TAG", "size: " + postGradientList.size());
+                adapter.notifyItemInserted(postGradientList.size());
                 adapter.notifyDataSetChanged();
                 break;
             case R.id.addStep:

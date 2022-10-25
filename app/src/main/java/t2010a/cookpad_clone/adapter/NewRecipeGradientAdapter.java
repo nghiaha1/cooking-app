@@ -19,14 +19,12 @@ public class NewRecipeGradientAdapter extends RecyclerView.Adapter {
     private Activity activity;
     private List<PostGradient> postGradientList;
 
+    public NewRecipeGradientAdapter() {
+    }
+
     public NewRecipeGradientAdapter(Activity activity, List<PostGradient> postGradientList) {
         this.activity = activity;
         this.postGradientList = postGradientList;
-    }
-
-    public void reloadData(List<PostGradient> postGradientList) {
-        this.postGradientList = postGradientList;
-        notifyDataSetChanged();
     }
 
 

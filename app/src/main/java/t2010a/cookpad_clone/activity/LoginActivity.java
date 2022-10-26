@@ -70,7 +70,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     if (response.code() == 200) {
                         LoginResponse loginResponse = new LoginResponse();
 
-                        Log.d("TAG", "" + response.body().);
+                        Log.d("TAG", "" + response.body());
 
                         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                         startActivity(intent);

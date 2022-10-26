@@ -10,10 +10,10 @@ import t2010a.cookpad_clone.model.user.User;
 public interface ApiService {
     String SERVER = "http://10.0.2.2:8066";
 
-    @POST("/api/v1/users/register")
+    @POST("/api/v1/register")
     Call<User> registerUser(@Body User user);
 
-    @POST("/api/v1/users/login")
+    @POST("/api/v1/login")
     Call<User> loginUser(@Body User user);
 
 //    @GET("/api/v1/post")

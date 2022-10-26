@@ -35,9 +35,10 @@ public class MySharePreference {
         editor.apply();
     }
 
-    public boolean getStringValue(String key) {
+    public String getStringValue(String key) {
         SharedPreferences sharedPreferences = mContext.getSharedPreferences(MY_SHARE_PREFERENCE, Context.MODE_PRIVATE);
-
-        return sharedPreferences.getBoolean(key, false);
+        return sharedPreferences.getString(key, "");
     }
+
+
 }

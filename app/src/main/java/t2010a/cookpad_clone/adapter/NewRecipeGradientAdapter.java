@@ -1,8 +1,10 @@
 package t2010a.cookpad_clone.adapter;
 
 import android.app.Activity;
+import android.content.Context;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
@@ -19,14 +21,15 @@ public class NewRecipeGradientAdapter extends RecyclerView.Adapter {
     private Activity activity;
     private List<PostGradient> postGradientList;
 
-    public NewRecipeGradientAdapter() {
-    }
-
     public NewRecipeGradientAdapter(Activity activity, List<PostGradient> postGradientList) {
         this.activity = activity;
         this.postGradientList = postGradientList;
     }
 
+    public void reloadData(List<PostGradient> postGradientList) {
+        this.postGradientList = postGradientList;
+        notifyDataSetChanged();
+    }
 
     @NonNull
     @Override

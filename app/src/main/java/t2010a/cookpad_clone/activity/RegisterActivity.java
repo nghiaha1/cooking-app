@@ -57,7 +57,7 @@ public class RegisterActivity extends AppCompatActivity{
                     Toast.makeText(RegisterActivity.this, "Fill all the information above!", Toast.LENGTH_SHORT).show();
                 } else {
                     if (EditTextValidation.isValidUsername(username)) {
-                        if (password.length() < 8) {
+                        if (password.length() > 8) {
                             if (password.equals(rePassword)) {
                                 user.setUsername(username);
                                 user.setPassword(password);

@@ -20,7 +20,7 @@ import t2010a.cookpad_clone.repository.Repository;
 import t2010a.cookpad_clone.util.EditTextValidation;
 
 public class RegisterActivity extends AppCompatActivity{
-    EditText etUsername, etPassword, etRePassword;
+    EditText etUsername, etPassword, etRePass;
     Button btnRegister;
     Repository repository;
     User user = new User();
@@ -38,9 +38,9 @@ public class RegisterActivity extends AppCompatActivity{
     }
 
     private void initView() {
-        etUsername = findViewById(R.id.et_username);
-        etPassword = findViewById(R.id.et_password);
-        etRePassword = findViewById(R.id.et_re_password);
+        etUsername = findViewById(R.id.etUsername);
+        etPassword = findViewById(R.id.etPassword);
+        etRePass = findViewById(R.id.etRePass);
         btnRegister = findViewById(R.id.btnRegister);
         mScrollView = findViewById(R.id.mScrollView);
     }
@@ -52,7 +52,7 @@ public class RegisterActivity extends AppCompatActivity{
             public void onClick(View view) {
                 String username = etUsername.getText().toString().trim();
                 String password = etPassword.getText().toString();
-                String rePassword = etRePassword.getText().toString();
+                String rePassword = etRePass.getText().toString();
                 
                 if (username.isEmpty() || password.isEmpty() || rePassword.isEmpty()) {
                     Toast.makeText(RegisterActivity.this, "Fill all the information above!", Toast.LENGTH_SHORT).show();

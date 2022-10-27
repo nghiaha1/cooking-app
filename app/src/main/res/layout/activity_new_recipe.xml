@@ -136,7 +136,7 @@
                 android:layout_marginBottom="15dp"/>
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_new_recipe_gradient"
+                android:id="@+id/rvNewRecipeGradient"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
 
@@ -190,7 +190,7 @@
                 android:layout_marginBottom="15dp"/>
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_new_recipe_step"
+                android:id="@+id/rvNewRecipeStep"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
 

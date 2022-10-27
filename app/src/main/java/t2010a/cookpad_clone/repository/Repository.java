@@ -6,19 +6,19 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import t2010a.cookpad_clone.network.ApiService;
 
-public final class UserRepository {
-    private static UserRepository instance;
+public final class Repository {
+    private static Repository instance;
 
     private ApiService service;
 
-    public static UserRepository getInstance() {
+    public static Repository getInstance() {
         if (instance == null) {
-            instance = new UserRepository();
+            instance = new Repository();
         }
         return instance;
     }
 
-    public UserRepository() {
+    public Repository() {
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
         OkHttpClient client = new OkHttpClient.Builder().addInterceptor(interceptor).build();

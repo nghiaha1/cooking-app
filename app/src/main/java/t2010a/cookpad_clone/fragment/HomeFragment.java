@@ -8,6 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -44,6 +46,10 @@ public class HomeFragment extends Fragment {
     }
 
     private void initView(View itemView) {
+        Toolbar toolbar = itemView.findViewById(R.id.toolbar_home_fragment);
+        AppCompatActivity activity = (AppCompatActivity) getActivity();
+        activity.setSupportActionBar(toolbar);
+
         initData();
 
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
@@ -53,6 +59,8 @@ public class HomeFragment extends Fragment {
 
         rv_home_tab1.setLayoutManager(layoutManager);
         rv_home_tab1.setAdapter(adapter);
+
+
     }
 
     private void initData() {

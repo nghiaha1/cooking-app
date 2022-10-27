@@ -4,12 +4,12 @@ plugins {
 
 android {
     namespace 't2010a.cookpad_clone'
-    compileSdk 32
+    compileSdk 33
 
     defaultConfig {
         applicationId "t2010a.cookpad_clone"
         minSdk 21
-        targetSdk 32
+        targetSdk 33
         versionCode 1
         versionName "1.0"
 
@@ -54,5 +54,8 @@ dependencies {
     implementation 'com.google.android.material:material:1.6.1'
     implementation 'com.github.bumptech.glide:glide:4.14.2'
     implementation 'com.github.sayyam:carouselview:a13d338086'
+    implementation 'com.github.blocoio:faker:1.2.8'
+
+    
 
 }

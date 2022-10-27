@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <EditText
+        android:id="@+id/et_new_recipe_gradient_detail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="250g bột"
+        android:padding="10dp"
+        android:background="@drawable/custom_edit_text_new_recipe"
+        android:layout_marginBottom="20dp"/>
+
+</LinearLayout>

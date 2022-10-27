@@ -3,6 +3,7 @@ package t2010a.cookpad_clone.activity;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
@@ -18,13 +19,14 @@ import t2010a.cookpad_clone.fragment.ProfileFragment;
 import t2010a.cookpad_clone.fragment.SearchFragment;
 import t2010a.cookpad_clone.fragment.ShoppingFragment;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity{
     BottomNavigationView navigationView;
     HomeFragment homeFragment;
     SearchFragment searchFragment;
     NewPostFragment newPostFragment;
     ShoppingFragment shoppingFragment;
     ProfileFragment profileFragment;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

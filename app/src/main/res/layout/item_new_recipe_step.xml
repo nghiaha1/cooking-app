@@ -2,24 +2,25 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal">
+    android:orientation="horizontal"
+    android:weightSum="100"
+    android:layout_marginBottom="20dp">
 
-    <TextView
-        android:id="@+id/tv_new_recipe_step_id"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="1"
-        android:textColor="@color/white"
-        android:background="@drawable/custom_text_view_circle"
-        android:gravity="center"/>
 
     <EditText
         android:id="@+id/et_new_recipe_step_detail"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:hint="Trộn bột và nước đến khi đặc lại"
-        android:padding="10dp"
+        android:layout_weight="97"
         android:background="@drawable/custom_edit_text_new_recipe"
-        android:layout_marginStart="15dp"
-        android:layout_marginBottom="20dp"/>
+        android:hint="Trộn bột và nước đến khi đặc lại"
+        android:padding="10dp" />
+
+    <ImageView
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:src="@drawable/ic_close_black"
+        android:layout_gravity="center"
+        android:layout_marginLeft="15dp"/>
+
 </LinearLayout>

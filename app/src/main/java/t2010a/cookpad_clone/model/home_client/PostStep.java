@@ -4,6 +4,9 @@ public class PostStep {
     private int id;
     private String detail;
 
+    public PostStep() {
+    }
+
     public PostStep(int id, String detail) {
         this.id = id;
         this.detail = detail;

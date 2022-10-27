@@ -186,4 +186,25 @@ public class User implements Serializable
         this.status = status;
     }
 
+    @Override
+    public String toString() {
+        return "User{" +
+                "createdAt='" + createdAt + '\'' +
+                ", updatedAt='" + updatedAt + '\'' +
+                ", id=" + id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", rePassword='" + rePassword + '\'' +
+                ", fullName='" + fullName + '\'' +
+                ", address='" + address + '\'' +
+                ", phone='" + phone + '\'' +
+                ", isVip=" + isVip +
+                ", isFamous=" + isFamous +
+                ", followNumber=" + followNumber +
+                ", email='" + email + '\'' +
+                ", detail='" + detail + '\'' +
+                ", role=" + role +
+                ", status='" + status + '\'' +
+                '}';
+    }
 }

@@ -19,16 +19,15 @@ import t2010a.cookpad_clone.R;
 import t2010a.cookpad_clone.local_data.LocalDataManager;
 import t2010a.cookpad_clone.model.LoginResponse;
 import t2010a.cookpad_clone.model.user.User;
-import t2010a.cookpad_clone.network.ApiService;
 import t2010a.cookpad_clone.repository.Repository;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
-    EditText etUsername, etPassword;
-    Button btnLogin;
-    TextView tvToResetPassword, tv_to_register;
-    User user = new User();
-    Repository repository;
-    ScrollView mScrollView;
+    private EditText etUsername, etPassword;
+    private Button btnLogin;
+    private TextView tvToResetPassword, tvToRegister;
+    private User user = new User();
+    private Repository repository;
+    private ScrollView mScrollView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,16 +40,16 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         mScrollView.setHorizontalScrollBarEnabled(false);
 
         btnLogin.setOnClickListener(this);
-        tv_to_register.setOnClickListener(this);
+        tvToRegister.setOnClickListener(this);
     }
 
     private void initView() {
-        etUsername = findViewById(R.id.et_username);
-        etPassword = findViewById(R.id.et_password);
+        etUsername = findViewById(R.id.etUsername);
+        etPassword = findViewById(R.id.etPassword);
         btnLogin = findViewById(R.id.btnLogin);
-        tvToResetPassword = findViewById(R.id.tv_to_reset_password);
+        tvToResetPassword = findViewById(R.id.tvToResetPass);
         mScrollView = findViewById(R.id.mScrollView);
-        tv_to_register = findViewById(R.id.tv_to_register);
+        tvToRegister = findViewById(R.id.tvToRegister);
     }
 
     private void getUserDetail() {
@@ -115,7 +114,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             case R.id.btnLogin:
                 setBtnLogin();
                 break;
-            case R.id.tv_to_register:
+            case R.id.tvToRegister:
                 setTv_to_register();
                 break;
         }

@@ -13,7 +13,7 @@
         android:layout_marginBottom="10dp"/>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_post_step"
+        android:id="@+id/rvPostStep"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 

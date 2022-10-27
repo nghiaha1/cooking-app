@@ -2,9 +2,7 @@ package t2010a.cookpad_clone.activity;
 
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,25 +21,24 @@ import io.bloco.faker.Faker;
 import t2010a.cookpad_clone.R;
 import t2010a.cookpad_clone.adapter.PostGradientAdapter;
 import t2010a.cookpad_clone.adapter.PostStepAdapter;
-import t2010a.cookpad_clone.adapter.SectionAdapter;
 import t2010a.cookpad_clone.model.home_client.Post;
 import t2010a.cookpad_clone.model.home_client.PostGradient;
 import t2010a.cookpad_clone.model.home_client.PostStep;
 import t2010a.cookpad_clone.repository.Repository;
 
 public class PostDetailActivity extends AppCompatActivity {
-    TextView tv_user_name, tv_user_username, tv_user_address, tv_post_timer, tv_post_title;
-    RecyclerView rv_post_gradient, rv_post_step;
+    private TextView tvUserFullName, tvUserUsername, tvUserAddress, tvPostTimer, tvPostTitle;
+    private RecyclerView rvPostGradient, rvPostStep;
 
-    List<PostGradient> postGradientList = new ArrayList<>();
-    List<PostStep> postStepList = new ArrayList<>();
-    Faker faker = new Faker();
+    private List<PostGradient> postGradientList = new ArrayList<>();
+    private List<PostStep> postStepList = new ArrayList<>();
+    private Faker faker = new Faker();
 
-    CarouselView carouselView;
+    private CarouselView carouselView;
     int[] sampleImages = {R.drawable.banner1,
             R.drawable.banner2,
             R.drawable.banner3};
-    ShapeableImageView iv_user_avatar;
+    private ShapeableImageView ivUserAvatar;
 
     Repository postRepository;
 
@@ -53,7 +50,7 @@ public class PostDetailActivity extends AppCompatActivity {
         initView();
 
         Post post = (Post) getIntent().getSerializableExtra("POST");
-        tv_post_title.setText(post.getTitle());
+        tvPostTitle.setText(post.getTitle());
     }
 
     private void initBanner() {
@@ -74,15 +71,15 @@ public class PostDetailActivity extends AppCompatActivity {
     }
 
     private void initView() {
-        iv_user_avatar = findViewById(R.id.iv_user_avatar);
-        tv_user_name = findViewById(R.id.tv_user_name);
-        tv_user_username = findViewById(R.id.tv_user_username);
-        tv_user_address = findViewById(R.id.tv_user_address);
-        tv_post_timer = findViewById(R.id.tv_post_timer);
-        tv_post_title = findViewById(R.id.tv_post_title);
+        ivUserAvatar = findViewById(R.id.ivUserAvatar);
+        tvUserFullName = findViewById(R.id.tvUserFullName);
+        tvUserUsername = findViewById(R.id.tvUserUsername);
+        tvUserAddress = findViewById(R.id.tvUserAddress);
+        tvPostTimer = findViewById(R.id.tvPostTimer);
+        tvPostTitle = findViewById(R.id.tvPostTitle);
 
-        rv_post_gradient = findViewById(R.id.rv_post_gradient);
-        rv_post_step = findViewById(R.id.rv_post_step);
+        rvPostGradient = findViewById(R.id.rvPostGradient);
+        rvPostStep = findViewById(R.id.rvPostStep);
 
         initData();
 
@@ -92,11 +89,11 @@ public class PostDetailActivity extends AppCompatActivity {
         PostGradientAdapter adapter1 = new PostGradientAdapter(this, postGradientList);
         PostStepAdapter adapter2 = new PostStepAdapter(this, postStepList);
 
-        rv_post_gradient.setLayoutManager(layoutManager1);
-        rv_post_gradient.setAdapter(adapter1);
+        rvPostGradient.setLayoutManager(layoutManager1);
+        rvPostGradient.setAdapter(adapter1);
 
-        rv_post_step.setLayoutManager(layoutManager2);
-        rv_post_step.setAdapter(adapter2);
+        rvPostStep.setLayoutManager(layoutManager2);
+        rvPostStep.setAdapter(adapter2);
     }
 
     private void initData() {

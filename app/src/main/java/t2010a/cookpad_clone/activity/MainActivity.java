@@ -20,12 +20,12 @@ import t2010a.cookpad_clone.fragment.SearchFragment;
 import t2010a.cookpad_clone.fragment.ShoppingFragment;
 
 public class MainActivity extends AppCompatActivity{
-    BottomNavigationView navigationView;
-    HomeFragment homeFragment;
-    SearchFragment searchFragment;
-    NewPostFragment newPostFragment;
-    ShoppingFragment shoppingFragment;
-    ProfileFragment profileFragment;
+    private BottomNavigationView navigationView;
+    private HomeFragment homeFragment;
+    private SearchFragment searchFragment;
+    private NewPostFragment newPostFragment;
+    private ShoppingFragment shoppingFragment;
+    private ProfileFragment profileFragment;
 
 
     @Override

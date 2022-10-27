@@ -2,15 +2,24 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:weightSum="100"
+    android:orientation="horizontal"
+    android:layout_marginBottom="20dp">
 
     <EditText
         android:id="@+id/et_new_recipe_gradient_detail"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_weight="97"
         android:hint="250g bột"
         android:padding="10dp"
-        android:background="@drawable/custom_edit_text_new_recipe"
-        android:layout_marginBottom="20dp"/>
+        android:background="@drawable/custom_edit_text_new_recipe" />
+
+    <ImageView
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:src="@drawable/ic_close_black"
+        android:layout_gravity="center"
+        android:layout_marginLeft="15dp"/>
 
 </LinearLayout>

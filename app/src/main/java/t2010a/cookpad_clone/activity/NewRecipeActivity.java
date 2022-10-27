@@ -5,8 +5,6 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.LinearLayout;
-import android.widget.Toast;
-import android.widget.Toolbar;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -23,12 +21,14 @@ import t2010a.cookpad_clone.model.home_client.PostGradient;
 import t2010a.cookpad_clone.model.home_client.PostStep;
 
 public class NewRecipeActivity extends AppCompatActivity implements View.OnClickListener {
-    LinearLayout addGradient, addStep;
-    RecyclerView rv_new_recipe_gradient, rv_new_recipe_step;
-    NewRecipeGradientAdapter adapter;
+    private LinearLayout addGradient, addStep;
+    private RecyclerView rvNewRecipeGradient, rvNewRecipeStep;
 
-    List<PostGradient> postGradientList = new ArrayList<>();
-    List<PostStep> postStepList = new ArrayList<>();
+    private List<PostGradient> postGradientList = new ArrayList<>();
+    private NewRecipeGradientAdapter adapter;
+    private List<PostStep> postStepList = new ArrayList<>();
+    private NewRecipeStepAdapter adapter1;
+
 
     Faker faker = new Faker();
 
@@ -39,43 +39,37 @@ public class NewRecipeActivity extends AppCompatActivity implements View.OnClick
         initView();
 
         addGradient.setOnClickListener(this);
+        addStep.setOnClickListener(this);
     }
 
     private void initView() {
         addGradient = findViewById(R.id.addGradient);
         addStep = findViewById(R.id.addStep);
-        rv_new_recipe_gradient = findViewById(R.id.rv_new_recipe_gradient);
-        rv_new_recipe_step = findViewById(R.id.rv_new_recipe_step);
+        rvNewRecipeGradient = findViewById(R.id.rvNewRecipeGradient);
+        rvNewRecipeStep = findViewById(R.id.rvNewRecipeStep);
 
         initData();
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this, RecyclerView.VERTICAL, false);
         RecyclerView.LayoutManager layoutManager1 = new LinearLayoutManager(this, RecyclerView.VERTICAL, false);
 
-        NewRecipeGradientAdapter adapter = new NewRecipeGradientAdapter(this, postGradientList);
-        NewRecipeStepAdapter adapter1 = new NewRecipeStepAdapter(this, postStepList);
+        adapter = new NewRecipeGradientAdapter(this, postGradientList);
+        adapter1 = new NewRecipeStepAdapter(this, postStepList);
 
-        rv_new_recipe_gradient.setLayoutManager(layoutManager);
-        rv_new_recipe_gradient.setAdapter(adapter);
+        rvNewRecipeGradient.setLayoutManager(layoutManager);
+        rvNewRecipeGradient.setAdapter(adapter);
 
-        rv_new_recipe_step.setLayoutManager(layoutManager1);
-        rv_new_recipe_step.setAdapter(adapter1);
+        rvNewRecipeStep.setLayoutManager(layoutManager1);
+        rvNewRecipeStep.setAdapter(adapter1);
+
     }
 
     private void initData() {
-        postGradientList.add(new PostGradient(1, ""));
-        postGradientList.add(new PostGradient(2, ""));
-        postGradientList.add(new PostGradient(3, ""));
-
         for (int i = 4; i < postGradientList.size(); i++) {
-            postGradientList.add(new PostGradient(i + 1,
-                    ""));
+            postGradientList.add(new PostGradient(i + 1, ""));
         }
         for (int i = 0; i < postStepList.size(); i++) {
-            postStepList.add(new PostStep(i + 1,
-                    ""));
+            postStepList.add(new PostStep(i + 1, ""));
         }
-        postStepList.size();
-        postGradientList.size();
     }
 
     @Override
@@ -84,17 +78,35 @@ public class NewRecipeActivity extends AppCompatActivity implements View.OnClick
         return true;
     }
 
+    private void setAddGradient(PostGradient postGradient) {
+        postGradientList.add(postGradient);
+        adapter.notifyItemInserted(postGradientList.size() + 1);
+        for (int i = 0; i < postGradientList.size(); i++) {
+            Log.d("TAG", "Id " + i + " " + postGradientList.get(i).getId());
+        }
+    }
+
+    private void setAddStep(PostStep postStep) {
+        postStepList.add(postStep);
+        adapter1.notifyItemInserted(postStepList.size() + 1);
+        for (int i = 0; i < postStepList.size(); i++) {
+            Log.d("TAG", "Id " + i + " " + postStepList.get(i).getId());
+        }
+    }
 
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.addGradient:
-                postGradientList.add(new PostGradient());
-                Toast.makeText(this, "aaaaaa", Toast.LENGTH_SHORT).show();
-                Log.d("TAG", "onClick: " + postGradientList.size());
-                adapter.notifyDataSetChanged();
+                setAddGradient(new PostGradient());
+                adapter.reloadData(postGradientList);
                 break;
+
             case R.id.addStep:
+                setAddStep(new PostStep());
+                adapter1.reloadData(postStepList);
+                break;
+            default:
                 break;
         }
     }

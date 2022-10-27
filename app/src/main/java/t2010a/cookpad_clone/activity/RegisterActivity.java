@@ -1,5 +1,6 @@
 package t2010a.cookpad_clone.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -13,6 +14,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import t2010a.cookpad_clone.R;
+import t2010a.cookpad_clone.model.LoginResponse;
 import t2010a.cookpad_clone.model.user.User;
 import t2010a.cookpad_clone.repository.Repository;
 import t2010a.cookpad_clone.util.EditTextValidation;
@@ -43,7 +45,6 @@ public class RegisterActivity extends AppCompatActivity{
         mScrollView = findViewById(R.id.mScrollView);
     }
 
-
     private void setBtnRegister() {
         repository = Repository.getInstance();
         btnRegister.setOnClickListener(new View.OnClickListener() {
@@ -57,7 +58,7 @@ public class RegisterActivity extends AppCompatActivity{
                     Toast.makeText(RegisterActivity.this, "Fill all the information above!", Toast.LENGTH_SHORT).show();
                 } else {
                     if (EditTextValidation.isValidUsername(username)) {
-                        if (password.length() < 8) {
+                        if (password.length() > 8) {
                             if (password.equals(rePassword)) {
                                 user.setUsername(username);
                                 user.setPassword(password);
@@ -68,8 +69,11 @@ public class RegisterActivity extends AppCompatActivity{
                                     public void onResponse(Call<User> call, Response<User> response) {
                                         if (response.code() == 200) {
                                             Toast.makeText(RegisterActivity.this, "Register success. Http code " + response.code(), Toast.LENGTH_SHORT).show();
+                                            Intent intent = new Intent(RegisterActivity.this, LoginResponse.class);
+                                            startActivity(intent);
+
                                         } else {
-                                            Toast.makeText(RegisterActivity.this, "Register failed. Http code" + response.code(), Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(RegisterActivity.this, "Register failed. Http code " + response.code(), Toast.LENGTH_SHORT).show();
                                         }
                                     }
 

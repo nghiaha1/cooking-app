@@ -42,7 +42,7 @@ public class NewRecipeStepAdapter extends RecyclerView.Adapter {
         NewRecipeStepViewHolder viewHolder = (NewRecipeStepViewHolder) holder;
         PostStep model = postStepList.get(position);
         viewHolder.tv_new_recipe_step_id.setText(Integer.toString(model.getId()));
-        viewHolder.et_new_recipe_step_detail.setText(model.getDetail());
+        viewHolder.et_new_recipe_step_detail.setHint("Step " + position);
     }
 
     @Override

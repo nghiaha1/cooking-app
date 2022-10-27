@@ -2,12 +2,12 @@ package t2010a.cookpad_clone;
 
 import android.app.Application;
 
-import t2010a.cookpad_clone.shared_preference.DataLocalManager;
+import t2010a.cookpad_clone.local_data.LocalDataManager;
 
 public class MyApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        DataLocalManager.init(getApplicationContext());
+        LocalDataManager.init(getApplicationContext());
     }
 }

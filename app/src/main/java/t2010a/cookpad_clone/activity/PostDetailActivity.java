@@ -109,6 +109,8 @@ public class PostDetailActivity extends AppCompatActivity {
             postStepList.add(new PostStep(i + 1,
                     faker.lorem.paragraph(3)));
         }
+
+
     }
 
 }

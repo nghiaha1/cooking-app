@@ -3,23 +3,30 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:weightSum="100"
-    android:orientation="horizontal"
-    android:layout_marginBottom="20dp">
+    android:layout_marginBottom="20dp"
+    android:orientation="horizontal">
 
-    <EditText
-        android:id="@+id/et_new_recipe_gradient_detail"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight="97"
-        android:hint="250g bột"
-        android:padding="10dp"
-        android:background="@drawable/custom_edit_text_new_recipe" />
+        android:layout_weight="90">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etGradientDetail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="10dp"
+            android:paddingVertical="20dp" />
+
+    </com.google.android.material.textfield.TextInputLayout>
 
     <ImageView
-        android:layout_width="15dp"
-        android:layout_height="15dp"
-        android:src="@drawable/ic_close_black"
+        android:id="@+id/ivRemoveItem"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
         android:layout_gravity="center"
-        android:layout_marginLeft="15dp"/>
+        android:layout_weight="10"
+        android:src="@drawable/ic_close_black" />
 
 </LinearLayout>

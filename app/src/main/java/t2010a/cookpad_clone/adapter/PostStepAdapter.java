@@ -47,7 +47,7 @@ public class PostStepAdapter extends RecyclerView.Adapter {
         TextView tv_post_step_id, tv_post_step_detail;
         public PostStepViewHolder(@NonNull View itemView) {
             super(itemView);
-            tv_post_step_id = itemView.findViewById(R.id.tv_post_step_id);
+            tv_post_step_id = itemView.findViewById(R.id.tvPostStepId);
             tv_post_step_detail = itemView.findViewById(R.id.tv_post_step_detail);
         }
     }

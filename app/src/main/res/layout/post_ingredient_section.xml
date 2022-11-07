@@ -23,7 +23,7 @@
             android:src="@drawable/ic_human_light_gray"/>
 
         <TextView
-            android:id="@+id/tv_post_eater_number"
+            android:id="@+id/tvEaterNumber"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="1 "

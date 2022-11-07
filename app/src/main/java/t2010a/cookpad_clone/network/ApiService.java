@@ -1,5 +1,8 @@
 package t2010a.cookpad_clone.network;
 
+import java.util.List;
+import java.util.Optional;
+
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
@@ -7,6 +10,7 @@ import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.Headers;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Path;
 import t2010a.cookpad_clone.model.LoginResponse;
 import t2010a.cookpad_clone.model.home_client.Post;
@@ -30,4 +34,11 @@ public interface ApiService {
 
     @DELETE("api/v1/post/{id}")
     Call<Post> deletePost(@Path("id") int id);
+
+    @PUT("/api/v1/user/{id}")
+    Call<Optional<User>> updateUser(@Body User user,
+                                         @Path(value = "id") Long id);
+
+    @GET("/api/v1/post")
+    Call<List<Post>> getPostList();
 }

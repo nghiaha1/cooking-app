@@ -3,68 +3,30 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragment.ProfileFragment"
-    android:orientation="vertical"
     android:padding="16dp"
-    android:background="@drawable/gradient_background">
+    android:orientation="vertical">
 
-    <EditText
-        android:id="@+id/et_profile_username"
+    <TextView
+        android:id="@+id/tvEditProfile"
         android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:hint="Username"
-        android:textSize="20sp"
-        android:background="@drawable/custom_edit_text_login_logout"
-        android:layout_marginVertical="10dp"
-        android:paddingHorizontal="16dp"/>
+        android:layout_height="wrap_content"
+        android:text="Cập nhật thông tin cá nhân"
+        android:textSize="25sp"
+        android:textColor="@color/black"
+        android:clickable="true"
+        android:focusable="true" />
 
-    <EditText
-        android:id="@+id/et_profile_fullName"
+    <TextView
+        android:id="@+id/tvResetPass"
         android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:hint="Full name"
-        android:textSize="20sp"
-        android:background="@drawable/custom_edit_text_login_logout"
-        android:layout_marginVertical="10dp"
-        android:paddingHorizontal="16dp"/>
+        android:layout_height="wrap_content"
+        android:text="Đặt lại mật khẩu"
+        android:textSize="25sp"
+        android:layout_marginTop="20dp"
+        android:textColor="@color/black"
+        android:clickable="true"
+        android:focusable="true" />
 
-    <EditText
-        android:id="@+id/et_profile_address"
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:hint="Address"
-        android:textSize="20sp"
-        android:background="@drawable/custom_edit_text_login_logout"
-        android:layout_marginVertical="10dp"
-        android:paddingHorizontal="16dp"/>
-
-    <EditText
-        android:id="@+id/et_profile_phone"
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:hint="Phone"
-        android:textSize="20sp"
-        android:background="@drawable/custom_edit_text_login_logout"
-        android:layout_marginVertical="10dp"
-        android:paddingHorizontal="16dp"/>
-
-    <EditText
-        android:id="@+id/et_profile_email"
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:hint="Email"
-        android:textSize="20sp"
-        android:background="@drawable/custom_edit_text_login_logout"
-        android:layout_marginVertical="10dp"
-        android:paddingHorizontal="16dp"/>
-
-    <EditText
-        android:id="@+id/et_profile_detail"
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:hint="Detail"
-        android:textSize="20sp"
-        android:background="@drawable/custom_edit_text_login_logout"
-        android:layout_marginVertical="10dp"
-        android:paddingHorizontal="16dp"/>
 </LinearLayout>

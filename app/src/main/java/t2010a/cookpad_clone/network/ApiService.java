@@ -2,11 +2,14 @@ package t2010a.cookpad_clone.network;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.Headers;
 import retrofit2.http.POST;
+import retrofit2.http.Path;
 import t2010a.cookpad_clone.model.LoginResponse;
+import t2010a.cookpad_clone.model.home_client.Post;
 import t2010a.cookpad_clone.model.user.User;
 
 public interface ApiService {
@@ -22,6 +25,9 @@ public interface ApiService {
     @GET("/api/v1/user/profile")
     Call<User> getUser(@Header("Authorization") String token);
 
-//    @GET("/api/v1/post")
-//    Call<Post>
+    @POST("/api/v1/post")
+    Call<Post> createPost(@Body Post post);
+
+    @DELETE("api/v1/post/{id}")
+    Call<Post> deletePost(@Path("id") int id);
 }

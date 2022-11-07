@@ -64,28 +64,6 @@ public class HomeFragment extends Fragment {
     }
 
     private void initData() {
-        for (int i = 0; i < 10; i++) {
-            postList.add(new Post("Title " + (i + 1),
-                    "http://t3.gstatic.com/licensed-image?q=tbn:ANd9GcRvC27D9KlxeEham1w-Wpd_pu3hd4A-OywxRbdnx9JFLpcTD7dfL0bD_WI6Ro8QkzrPLkBMzA9osrMpi4JSP5Y",
-                    "Detail"  + (i + 1) ));
-        }
-        initSection("Bạn đang thèm món gì?",
-                "Không chắc? Tiếp tục tạo bất ngờ",
-                postList);
-        initSection("Du lịch vòng quanh thế giới từ bếp",
-                "Ẩm thực Ý không chỉ có mì Ý! Xem ngay các đầu bếp tại gia trên thế giới đang nấu món gì hôm nay nhé!",
-                postList);
-        initSection("Tré trộn lộn xộn mà ngon",
-                "Món ăn xế mới nổi gần đây! Nào trứng cút, nem, chả, xoài hoặc cóc thập cẩm đủ thứ, quan trọng là cái nước trộn nè, công thức đây nha",
-                postList);
-        initSection("Khám phá xem thứ gì đang trong mùa nào!",
-                "Không chắc? Tiếp tục tạo bất ngờ",
-                postList);
-
-        iv_post_thumbnail_1 = itemView.findViewById(R.id.iv_post_thumbnail1);
-        iv_post_thumbnail_2 = itemView.findViewById(R.id.iv_post_thumbnail2);
-        iv_post_thumbnail_3 = itemView.findViewById(R.id.iv_post_thumbnail3);
-        iv_post_thumbnail_4 = itemView.findViewById(R.id.iv_post_thumbnail4);
 
         Glide.with(getActivity())
                 .load("http://t3.gstatic.com/licensed-image?q=tbn:ANd9GcRvC27D9KlxeEham1w-Wpd_pu3hd4A-OywxRbdnx9JFLpcTD7dfL0bD_WI6Ro8QkzrPLkBMzA9osrMpi4JSP5Y")

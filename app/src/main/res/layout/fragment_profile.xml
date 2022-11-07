@@ -1,70 +1,115 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragment.ProfileFragment"
-    android:orientation="vertical"
     android:padding="16dp"
     android:background="@drawable/gradient_background">
 
-    <EditText
-        android:id="@+id/et_profile_username"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:hint="Username"
-        android:textSize="20sp"
-        android:background="@drawable/custom_edit_text_login_logout"
-        android:layout_marginVertical="10dp"
-        android:paddingHorizontal="16dp"/>
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-    <EditText
-        android:id="@+id/et_profile_fullName"
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:hint="Full name"
-        android:textSize="20sp"
-        android:background="@drawable/custom_edit_text_login_logout"
-        android:layout_marginVertical="10dp"
-        android:paddingHorizontal="16dp"/>
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:startIconDrawable="@drawable/ic_person"
+            android:hint="Full name"
+            app:counterEnabled="true"
+            app:counterMaxLength="64">
 
-    <EditText
-        android:id="@+id/et_profile_address"
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:hint="Address"
-        android:textSize="20sp"
-        android:background="@drawable/custom_edit_text_login_logout"
-        android:layout_marginVertical="10dp"
-        android:paddingHorizontal="16dp"/>
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etProfileFullName"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:textSize="20sp"
+                android:background="@drawable/custom_edit_text_login_logout"
+                android:maxLength="65"/>
+        </com.google.android.material.textfield.TextInputLayout>
 
-    <EditText
-        android:id="@+id/et_profile_phone"
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:hint="Phone"
-        android:textSize="20sp"
-        android:background="@drawable/custom_edit_text_login_logout"
-        android:layout_marginVertical="10dp"
-        android:paddingHorizontal="16dp"/>
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:startIconDrawable="@drawable/ic_address"
+            android:hint="Address">
 
-    <EditText
-        android:id="@+id/et_profile_email"
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:hint="Email"
-        android:textSize="20sp"
-        android:background="@drawable/custom_edit_text_login_logout"
-        android:layout_marginVertical="10dp"
-        android:paddingHorizontal="16dp"/>
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etProfileAddress"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:textSize="20sp"
+                android:background="@drawable/custom_edit_text_login_logout"
+                android:layout_marginVertical="10dp"
+                android:paddingHorizontal="16dp"/>
+        </com.google.android.material.textfield.TextInputLayout>
 
-    <EditText
-        android:id="@+id/et_profile_detail"
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:hint="Detail"
-        android:textSize="20sp"
-        android:background="@drawable/custom_edit_text_login_logout"
-        android:layout_marginVertical="10dp"
-        android:paddingHorizontal="16dp"/>
-</LinearLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:startIconDrawable="@drawable/ic_phone"
+            android:hint="Phone"
+            app:prefixText="+84">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etProfilePhone"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:textSize="20sp"
+                android:background="@drawable/custom_edit_text_login_logout"
+                android:layout_marginVertical="10dp"
+                android:inputType="number"
+                android:paddingHorizontal="16dp"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:startIconDrawable="@drawable/ic_email"
+            android:hint="Email">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etProfileEmail"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:textSize="20sp"
+                android:background="@drawable/custom_edit_text_login_logout"
+                android:layout_marginVertical="10dp"
+                android:paddingHorizontal="16dp"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:startIconDrawable="@drawable/ic_more"
+            app:counterMaxLength="100"
+            android:nestedScrollingEnabled="true"
+            android:hint="Detail">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etProfileDetail"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:textSize="20sp"
+                android:maxLength="101"
+                android:background="@drawable/custom_edit_text_login_logout"
+                android:layout_marginVertical="10dp"
+                android:paddingHorizontal="16dp" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:id="@+id/btnUpdateUser"
+            android:layout_width="140dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/custom_button_login_logout"
+            android:fontFamily="@font/ubuntu_medium"
+            android:text="Update"
+            android:textColor="@color/white"
+            android:textSize="25sp" />
+    </LinearLayout>
+</ScrollView>

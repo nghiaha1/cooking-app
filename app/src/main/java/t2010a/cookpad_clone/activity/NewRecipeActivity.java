@@ -4,7 +4,9 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -23,6 +25,7 @@ import t2010a.cookpad_clone.model.home_client.PostStep;
 public class NewRecipeActivity extends AppCompatActivity implements View.OnClickListener {
     private LinearLayout addGradient, addStep;
     private RecyclerView rvNewRecipeGradient, rvNewRecipeStep;
+    private TextView tv_post_step_id;
 
     private List<PostGradient> postGradientList = new ArrayList<>();
     private NewRecipeGradientAdapter adapter;

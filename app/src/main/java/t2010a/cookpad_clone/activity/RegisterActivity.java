@@ -19,7 +19,7 @@ import t2010a.cookpad_clone.model.user.User;
 import t2010a.cookpad_clone.repository.Repository;
 import t2010a.cookpad_clone.util.EditTextValidation;
 
-public class RegisterActivity extends AppCompatActivity{
+public class RegisterActivity extends AppCompatActivity {
     EditText etUsername, etPassword, etRePass;
     Button btnRegister;
     Repository repository;
@@ -53,7 +53,7 @@ public class RegisterActivity extends AppCompatActivity{
                 String username = etUsername.getText().toString().trim();
                 String password = etPassword.getText().toString();
                 String rePassword = etRePass.getText().toString();
-                
+
                 if (username.isEmpty() || password.isEmpty() || rePassword.isEmpty()) {
                     Toast.makeText(RegisterActivity.this, "Fill all the information above!", Toast.LENGTH_SHORT).show();
                 } else {
@@ -87,8 +87,8 @@ public class RegisterActivity extends AppCompatActivity{
                                     "Password is NOT match.", Toast.LENGTH_SHORT).show();
                         } else
                             Toast.makeText(RegisterActivity.this, "Password required at least 8 characters.", Toast.LENGTH_SHORT).show();
-                        
-                        
+
+
                     } else Toast.makeText(RegisterActivity.this,
                             "Username invalid.", Toast.LENGTH_SHORT).show();
                 }

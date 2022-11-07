@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.textfield.TextInputEditText;
 
 import java.util.List;
+import java.util.Locale;
 
 import t2010a.cookpad_clone.R;
 import t2010a.cookpad_clone.model.home_client.PostStep;
@@ -42,11 +43,17 @@ public class NewRecipeStepAdapter extends RecyclerView.Adapter {
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         NewRecipeStepViewHolder viewHolder = (NewRecipeStepViewHolder) holder;
         PostStep model = postStepList.get(position);
-        viewHolder.etNewRecipeStepDetail.setHint("Bước " + (position + 1));
+        viewHolder.etStepDetail.setHint("Bước " + (position + 1));
         viewHolder.tvPostStepId.setText("" + (position + 1));
+//        String stepDetail = viewHolder.etStepDetail.getText().toString().toLowerCase(Locale.ROOT).trim();
+//        model.setDetail(stepDetail);
+//        postStepList.add(model);
+
+//        postStepList.add(model);
         viewHolder.ivRemoveItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 postStepList.remove(holder.getAbsoluteAdapterPosition());
                 reloadData(postStepList);
             }
@@ -59,12 +66,12 @@ public class NewRecipeStepAdapter extends RecyclerView.Adapter {
     }
 
     public class NewRecipeStepViewHolder extends RecyclerView.ViewHolder {
-        TextInputEditText etNewRecipeStepDetail;
+        TextInputEditText etStepDetail;
         TextView tvPostStepId;
         ImageView ivRemoveItem;
         public NewRecipeStepViewHolder(@NonNull View itemView) {
             super(itemView);
-            etNewRecipeStepDetail = itemView.findViewById(R.id.etNewRecipeStepDetail);
+            etStepDetail = itemView.findViewById(R.id.etStepDetail);
             tvPostStepId = itemView.findViewById(R.id.tvPostStepId);
             ivRemoveItem = itemView.findViewById(R.id.ivRemoveItem);
         }

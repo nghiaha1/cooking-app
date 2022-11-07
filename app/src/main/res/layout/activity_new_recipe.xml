@@ -60,17 +60,17 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Tên món: Bánh bột mì"
+                android:hint="Tên món"
                 app:counterEnabled="true"
                 app:counterMaxLength="64">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingHorizontal="15dp"
                     android:paddingVertical="20dp"
                     android:layout_marginBottom="10dp"
-                    android:background="@drawable/custom_edit_text_new_recipe"
                     android:maxLength="65"/>
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -82,12 +82,12 @@
                 app:counterMaxLength="200">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etOrigin"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingHorizontal="15dp"
                     android:paddingVertical="20dp"
                     android:layout_marginBottom="10dp"
-                    android:background="@drawable/custom_edit_text_new_recipe"
                     android:maxLength="201"/>
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -111,12 +111,13 @@
                     android:hint="X người">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etEaterNumber"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:paddingHorizontal="15dp"
+                        android:inputType="number"
                         android:paddingVertical="20dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/custom_edit_text_new_recipe"/>
+                        android:layout_weight="1"/>
                 </com.google.android.material.textfield.TextInputLayout>
             </LinearLayout>
 
@@ -140,12 +141,12 @@
                     android:layout_weight="1">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etCookingTime"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:paddingHorizontal="10dp"
-                        android:paddingVertical="20dp"
-                        android:background="@drawable/custom_edit_text_new_recipe"/>
+                        android:paddingVertical="20dp" />
                 </com.google.android.material.textfield.TextInputLayout>
             </LinearLayout>
         </LinearLayout>
@@ -265,6 +266,7 @@
             android:layout_marginVertical="30dp">
 
             <Button
+                android:id="@+id/uploadPost"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Lên sóng"
@@ -272,6 +274,7 @@
                 android:background="@drawable/custom_button_upload_post"/>
 
             <Button
+                android:id="@+id/savePost"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Lưu"

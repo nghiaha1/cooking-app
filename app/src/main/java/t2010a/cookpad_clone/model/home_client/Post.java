@@ -43,6 +43,41 @@ public class Post implements Serializable {
     @SerializedName("status")
     @Expose
     private int status;
+    @SerializedName("origin")
+    @Expose
+    private String origin;
+    @SerializedName("eaterNumber")
+    @Expose
+    private int eaterNumber;
+    @SerializedName("cookingTime")
+    @Expose
+    private int cookingTime;
+
+    public Post() {
+    }
+
+    public Post(int id, Set<PostCategory> categories, User user, List<PostGradient> gradients, List<PostStep> steps, String name, String description, String thumbnails, String detail, int likes, int status, String origin, int eaterNumber, int cookingTime) {
+        this.id = id;
+        this.categories = categories;
+        this.user = user;
+        this.gradients = gradients;
+        this.steps = steps;
+        this.name = name;
+        this.description = description;
+        this.thumbnails = thumbnails;
+        this.detail = detail;
+        this.likes = likes;
+        this.status = status;
+        this.origin = origin;
+        this.eaterNumber = eaterNumber;
+        this.cookingTime = cookingTime;
+    }
+
+    public Post(String name, String thumbnails, String detail) {
+        this.name = name;
+        this.thumbnails = thumbnails;
+        this.detail = detail;
+    }
 
     public int getId() {
         return id;
@@ -132,6 +167,30 @@ public class Post implements Serializable {
         this.status = status;
     }
 
+    public String getOrigin() {
+        return origin;
+    }
+
+    public void setOrigin(String origin) {
+        this.origin = origin;
+    }
+
+    public int getEaterNumber() {
+        return eaterNumber;
+    }
+
+    public void setEaterNumber(int eaterNumber) {
+        this.eaterNumber = eaterNumber;
+    }
+
+    public int getCookingTime() {
+        return cookingTime;
+    }
+
+    public void setCookingTime(int cookingTime) {
+        this.cookingTime = cookingTime;
+    }
+
     @Override
     public String toString() {
         return "Post{" +
@@ -146,6 +205,9 @@ public class Post implements Serializable {
                 ", detail='" + detail + '\'' +
                 ", likes=" + likes +
                 ", status=" + status +
+                ", origin='" + origin + '\'' +
+                ", eaterNumber=" + eaterNumber +
+                ", cookingTime=" + cookingTime +
                 '}';
     }
 }

@@ -1,115 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragment.ProfileFragment"
     android:padding="16dp"
-    android:background="@drawable/gradient_background">
+    android:orientation="vertical">
 
-    <LinearLayout
+    <TextView
+        android:id="@+id/tvEditProfile"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:text="Cập nhật thông tin cá nhân"
+        android:textSize="25sp"
+        android:textColor="@color/black"
+        android:clickable="true"
+        android:focusable="true" />
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textInputLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:startIconDrawable="@drawable/ic_person"
-            android:hint="Full name"
-            app:counterEnabled="true"
-            app:counterMaxLength="64">
+    <TextView
+        android:id="@+id/tvResetPass"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Đặt lại mật khẩu"
+        android:textSize="25sp"
+        android:layout_marginTop="20dp"
+        android:textColor="@color/black"
+        android:clickable="true"
+        android:focusable="true" />
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etProfileFullName"
-                android:layout_width="match_parent"
-                android:layout_height="70dp"
-                android:textSize="20sp"
-                android:background="@drawable/custom_edit_text_login_logout"
-                android:maxLength="65"/>
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:startIconDrawable="@drawable/ic_address"
-            android:hint="Address">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etProfileAddress"
-                android:layout_width="match_parent"
-                android:layout_height="70dp"
-                android:textSize="20sp"
-                android:background="@drawable/custom_edit_text_login_logout"
-                android:layout_marginVertical="10dp"
-                android:paddingHorizontal="16dp"/>
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:startIconDrawable="@drawable/ic_phone"
-            android:hint="Phone"
-            app:prefixText="+84">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etProfilePhone"
-                android:layout_width="match_parent"
-                android:layout_height="70dp"
-                android:textSize="20sp"
-                android:background="@drawable/custom_edit_text_login_logout"
-                android:layout_marginVertical="10dp"
-                android:inputType="number"
-                android:paddingHorizontal="16dp"/>
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:startIconDrawable="@drawable/ic_email"
-            android:hint="Email">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etProfileEmail"
-                android:layout_width="match_parent"
-                android:layout_height="70dp"
-                android:textSize="20sp"
-                android:background="@drawable/custom_edit_text_login_logout"
-                android:layout_marginVertical="10dp"
-                android:paddingHorizontal="16dp"/>
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:startIconDrawable="@drawable/ic_more"
-            app:counterMaxLength="100"
-            android:nestedScrollingEnabled="true"
-            android:hint="Detail">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etProfileDetail"
-                android:layout_width="match_parent"
-                android:layout_height="70dp"
-                android:textSize="20sp"
-                android:maxLength="101"
-                android:background="@drawable/custom_edit_text_login_logout"
-                android:layout_marginVertical="10dp"
-                android:paddingHorizontal="16dp" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <Button
-            android:id="@+id/btnUpdateUser"
-            android:layout_width="140dp"
-            android:layout_height="50dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="30dp"
-            android:background="@drawable/custom_button_login_logout"
-            android:fontFamily="@font/ubuntu_medium"
-            android:text="Update"
-            android:textColor="@color/white"
-            android:textSize="25sp" />
-    </LinearLayout>
-</ScrollView>
+</LinearLayout>

@@ -1,7 +1,16 @@
 package t2010a.cookpad_clone.model.home_client;
 
-public class PostGradient {
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
+import java.io.Serializable;
+
+public class PostGradient implements Serializable {
+    @SerializedName("id")
+    @Expose
     private int id;
+    @SerializedName("detail")
+    @Expose
     private String detail;
 
     public PostGradient() {
@@ -26,5 +35,13 @@ public class PostGradient {
 
     public void setDetail(String detail) {
         this.detail = detail;
+    }
+
+    @Override
+    public String toString() {
+        return "PostGradient{" +
+                "id=" + id +
+                ", detail='" + detail + '\'' +
+                '}';
     }
 }

@@ -11,13 +11,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 import t2010a.cookpad_clone.R;
+import t2010a.cookpad_clone.activity.PostDetailActivity;
 import t2010a.cookpad_clone.model.home_client.PostGradient;
 
 public class PostGradientAdapter extends RecyclerView.Adapter {
     private Activity activity;
     private List<PostGradient> postGradientList;
 
-    public PostGradientAdapter(Activity activity, List<PostGradient> postGradientList) {
+    public PostGradientAdapter(PostDetailActivity activity, List<PostGradient> postGradientList) {
         this.activity = activity;
         this.postGradientList = postGradientList;
     }

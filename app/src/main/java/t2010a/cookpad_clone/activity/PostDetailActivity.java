@@ -50,7 +50,7 @@ public class PostDetailActivity extends AppCompatActivity {
         initView();
 
         Post post = (Post) getIntent().getSerializableExtra("POST");
-        tvPostTitle.setText(post.getTitle());
+        tvPostTitle.setText(post.getName());
     }
 
     private void initBanner() {

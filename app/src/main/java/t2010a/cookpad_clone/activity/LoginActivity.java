@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -105,7 +104,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         }
     }
 
-    private void setTv_to_register() {
+    private void setTvToRegister() {
         Intent intent = new Intent(this, RegisterActivity.class);
         startActivity(intent);
     }
@@ -117,7 +116,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 setBtnLogin();
                 break;
             case R.id.tvToRegister:
-                setTv_to_register();
+                setTvToRegister();
                 break;
         }
     }

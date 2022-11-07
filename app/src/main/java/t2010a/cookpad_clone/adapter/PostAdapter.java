@@ -45,7 +45,7 @@ public class PostAdapter extends RecyclerView.Adapter {
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         PostViewHolder viewHolder = (PostViewHolder) holder;
         Post model = postList.get(position);
-        Glide.with(activity).load(model.getThumbnail()).into(viewHolder.iv_post_thumbnail_1);
+        Glide.with(activity).load(model.getThumbnails()).into(viewHolder.iv_post_thumbnail_1);
     }
 
     @Override

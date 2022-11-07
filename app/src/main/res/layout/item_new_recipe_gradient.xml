@@ -13,12 +13,11 @@
         android:layout_weight="90">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/etNewRecipeGradientDetail"
+            android:id="@+id/etGradientDetail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingHorizontal="10dp"
-            android:paddingVertical="20dp"
-            android:background="@drawable/custom_edit_text_new_recipe" />
+            android:paddingVertical="20dp" />
 
     </com.google.android.material.textfield.TextInputLayout>
 

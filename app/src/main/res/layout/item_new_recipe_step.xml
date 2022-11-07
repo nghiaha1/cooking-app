@@ -23,10 +23,9 @@
         android:layout_weight="95">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/etNewRecipeStepDetail"
+            android:id="@+id/etStepDetail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/custom_edit_text_new_recipe"
             android:paddingHorizontal="10dp"
             android:paddingVertical="20dp"/>
     </com.google.android.material.textfield.TextInputLayout>

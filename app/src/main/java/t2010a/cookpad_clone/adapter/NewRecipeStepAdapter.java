@@ -1,15 +1,15 @@
 package t2010a.cookpad_clone.adapter;
 
 import android.app.Activity;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.android.material.textfield.TextInputEditText;
 
 import java.util.List;
 
@@ -42,7 +42,15 @@ public class NewRecipeStepAdapter extends RecyclerView.Adapter {
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         NewRecipeStepViewHolder viewHolder = (NewRecipeStepViewHolder) holder;
         PostStep model = postStepList.get(position);
-        viewHolder.et_new_recipe_step_detail.setHint("Step " + position);
+        viewHolder.etNewRecipeStepDetail.setHint("Bước " + (position + 1));
+        viewHolder.tvPostStepId.setText("" + (position + 1));
+        viewHolder.ivRemoveItem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                postStepList.remove(holder.getAbsoluteAdapterPosition());
+                reloadData(postStepList);
+            }
+        });
     }
 
     @Override
@@ -51,10 +59,14 @@ public class NewRecipeStepAdapter extends RecyclerView.Adapter {
     }
 
     public class NewRecipeStepViewHolder extends RecyclerView.ViewHolder {
-        EditText et_new_recipe_step_detail;
+        TextInputEditText etNewRecipeStepDetail;
+        TextView tvPostStepId;
+        ImageView ivRemoveItem;
         public NewRecipeStepViewHolder(@NonNull View itemView) {
             super(itemView);
-            et_new_recipe_step_detail = itemView.findViewById(R.id.et_new_recipe_step_detail);
+            etNewRecipeStepDetail = itemView.findViewById(R.id.etNewRecipeStepDetail);
+            tvPostStepId = itemView.findViewById(R.id.tvPostStepId);
+            ivRemoveItem = itemView.findViewById(R.id.ivRemoveItem);
         }
     }
 }

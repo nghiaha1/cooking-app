@@ -1,16 +1,14 @@
 package t2010a.cookpad_clone.adapter;
 
 import android.app.Activity;
-import android.content.Context;
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.android.material.textfield.TextInputEditText;
 
 import java.util.List;
 
@@ -43,7 +41,14 @@ public class NewRecipeGradientAdapter extends RecyclerView.Adapter {
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         NewRecipeGradientViewHolder viewHolder = (NewRecipeGradientViewHolder) holder;
         PostGradient model = postGradientList.get(position);
-        viewHolder.et_new_recipe_gradient.setText(model.getDetail());
+        viewHolder.et_new_recipe_gradient.setHint("Nguyên liệu " + (position + 1));
+        viewHolder.ivRemoveItem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                postGradientList.remove(holder.getAbsoluteAdapterPosition());
+                reloadData(postGradientList);
+            }
+        });
     }
 
     @Override
@@ -52,10 +57,12 @@ public class NewRecipeGradientAdapter extends RecyclerView.Adapter {
     }
 
     public class NewRecipeGradientViewHolder extends RecyclerView.ViewHolder {
-        EditText et_new_recipe_gradient;
+        TextInputEditText et_new_recipe_gradient;
+        ImageView ivRemoveItem;
         public NewRecipeGradientViewHolder(@NonNull View itemView) {
             super(itemView);
-            et_new_recipe_gradient = itemView.findViewById(R.id.et_new_recipe_gradient_detail);
+            et_new_recipe_gradient = itemView.findViewById(R.id.etNewRecipeGradientDetail);
+            ivRemoveItem = itemView.findViewById(R.id.ivRemoveItem);
         }
     }
 }

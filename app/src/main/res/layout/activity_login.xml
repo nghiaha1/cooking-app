@@ -32,25 +32,45 @@
             android:layout_marginBottom="120dp"
             android:paddingHorizontal="16dp"/>
 
-        <EditText
-            android:id="@+id/etUsername"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputLayout1"
             android:layout_width="match_parent"
-            android:layout_height="70dp"
+            android:layout_height="wrap_content"
             android:hint="Username"
-            android:textSize="20sp"
-            android:background="@drawable/custom_edit_text_login_logout"
-            android:layout_marginVertical="10dp"
-            android:paddingHorizontal="16dp"/>
+            app:startIconDrawable="@drawable/ic_person"
+            app:endIconMode="clear_text"
+            app:counterEnabled="true"
+            app:counterMaxLength="20">
 
-        <EditText
-            android:id="@+id/etPassword"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etUsername"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:textSize="20sp"
+                android:background="@drawable/custom_edit_text_login_logout"
+                android:layout_marginVertical="10dp"
+                android:paddingHorizontal="16dp"
+                android:maxLength="21"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputLayout2"
             android:layout_width="match_parent"
-            android:layout_height="70dp"
+            android:layout_height="wrap_content"
             android:hint="Password"
-            android:inputType="textPassword"
-            android:textSize="20sp"
-            android:background="@drawable/custom_edit_text_login_logout"
-            android:paddingHorizontal="16dp" />
+            app:startIconDrawable="@drawable/ic_password"
+            app:endIconMode="password_toggle">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etPassword"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:inputType="textPassword"
+                android:textSize="20sp"
+                android:background="@drawable/custom_edit_text_login_logout"
+                android:paddingHorizontal="16dp"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
 
         <Button
             android:id="@+id/btnLogin"

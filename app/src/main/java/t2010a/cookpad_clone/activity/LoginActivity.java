@@ -12,6 +12,8 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.textfield.TextInputEditText;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -22,7 +24,7 @@ import t2010a.cookpad_clone.model.user.User;
 import t2010a.cookpad_clone.repository.Repository;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
-    private EditText etUsername, etPassword;
+    private TextInputEditText etUsername, etPassword;
     private Button btnLogin;
     private TextView tvToResetPassword, tvToRegister;
     private User user = new User();
@@ -70,7 +72,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private void setBtnLogin() {
         repository = Repository.getInstance();
         String username = etUsername.getText().toString().toLowerCase().trim();
-        String password = etPassword.getText().toString().trim();
+        String password = etPassword.getText().toString();
 
         if (username.isEmpty() || password.isEmpty()) {
             Toast.makeText(LoginActivity.this, "Username or password is empty.", Toast.LENGTH_SHORT).show();

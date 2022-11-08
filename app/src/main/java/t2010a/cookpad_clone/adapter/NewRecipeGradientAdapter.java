@@ -1,6 +1,8 @@
 package t2010a.cookpad_clone.adapter;
 
 import android.app.Activity;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -10,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.textfield.TextInputEditText;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
@@ -44,9 +47,6 @@ public class NewRecipeGradientAdapter extends RecyclerView.Adapter {
         NewRecipeGradientViewHolder viewHolder = (NewRecipeGradientViewHolder) holder;
         PostGradient model = postGradientList.get(position);
         viewHolder.etGradientDetail.setHint("Nguyên liệu " + (position + 1));
-        String gradientDetail = viewHolder.etGradientDetail.getText().toString().toLowerCase(Locale.ROOT).trim();
-        model.setDetail(gradientDetail);
-        postGradientList.add(model);
 
         viewHolder.ivRemoveItem.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,10 +65,28 @@ public class NewRecipeGradientAdapter extends RecyclerView.Adapter {
     public class NewRecipeGradientViewHolder extends RecyclerView.ViewHolder {
         TextInputEditText etGradientDetail;
         ImageView ivRemoveItem;
+
         public NewRecipeGradientViewHolder(@NonNull View itemView) {
             super(itemView);
             etGradientDetail = itemView.findViewById(R.id.etGradientDetail);
             ivRemoveItem = itemView.findViewById(R.id.ivRemoveItem);
+
+            etGradientDetail.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                }
+
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+                    postGradientList.get(getAdapterPosition()).setDetail(etGradientDetail.getText().toString());
+                }
+
+                @Override
+                public void afterTextChanged(Editable s) {
+
+                }
+            });
         }
     }
 }

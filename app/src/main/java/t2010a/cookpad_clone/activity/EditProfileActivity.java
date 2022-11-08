@@ -27,6 +27,8 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
     private Button btnUpdateUser;
     private Repository repository;
     private User user;
+    private String accessToken = "Bearer " + LocalDataManager.getAccessToken();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,9 +72,9 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
         btnUpdateUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                repository.getService().updateUser(user, user.getId()).enqueue(new Callback<Optional<User>>() {
+                repository.getService().updateUser(user, user.getId(), accessToken).enqueue(new Callback<User>() {
                     @Override
-                    public void onResponse(Call<Optional<User>> call, Response<Optional<User>> response) {
+                    public void onResponse(Call<User> call, Response<User> response) {
                         if (response.code() == 200) {
                             Log.d("TAG", "onResponse: change success");
                             Log.d("USER", "User: " + user);
@@ -86,14 +88,13 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
                     }
 
                     @Override
-                    public void onFailure(Call<Optional<User>> call, Throwable t) {
+                    public void onFailure(Call<User> call, Throwable t) {
 
                     }
                 });
             }
         });
     }
-
 
 
     @Override

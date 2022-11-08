@@ -9,7 +9,7 @@ public class PostGradient implements Serializable {
     @SerializedName("id")
     @Expose
     private int id;
-    @SerializedName("detail")
+    @SerializedName("name")
     @Expose
     private String detail;
 

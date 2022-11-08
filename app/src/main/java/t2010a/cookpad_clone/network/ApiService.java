@@ -14,6 +14,7 @@ import retrofit2.http.PUT;
 import retrofit2.http.Path;
 import t2010a.cookpad_clone.model.LoginResponse;
 import t2010a.cookpad_clone.model.home_client.BaseResponse;
+import t2010a.cookpad_clone.model.home_client.HomeModel;
 import t2010a.cookpad_clone.model.home_client.Post;
 import t2010a.cookpad_clone.model.user.User;
 
@@ -43,7 +44,10 @@ public interface ApiService {
                           @Header("Authorization") String token);
 
     @GET("/api/v1/post")
-    Call<BaseResponse<List<Post>>> getPostList();
+    Call<HomeModel> getPostList();
+
+    @GET("/api/v1/post")
+    Call<List<Post>> getPostLists();
 
     @GET("/api/v1/userss")
     Call<List<User>> getUserList();

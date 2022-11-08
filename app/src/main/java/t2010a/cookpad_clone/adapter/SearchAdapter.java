@@ -4,8 +4,6 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Filter;
-import android.widget.Filterable;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -14,9 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.google.android.material.imageview.ShapeableImageView;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 import t2010a.cookpad_clone.R;
 import t2010a.cookpad_clone.model.user.User;
@@ -36,7 +32,7 @@ public class SearchAdapter extends RecyclerView.Adapter {
     }
 
     public void setFilteredList(List<User> filteredList) {
-        this.userList = filteredList;
+        userList = filteredList;
         notifyDataSetChanged();
     }
 
@@ -65,7 +61,6 @@ public class SearchAdapter extends RecyclerView.Adapter {
         return 0;
     }
 
-
     public class SearchViewHolder extends RecyclerView.ViewHolder {
         ShapeableImageView ivAvatar;
         TextView tvFullName, tvEmail;
@@ -75,7 +70,6 @@ public class SearchAdapter extends RecyclerView.Adapter {
             ivAvatar = itemView.findViewById(R.id.ivAvatar);
             tvFullName = itemView.findViewById(R.id.tvFullName);
             tvEmail = itemView.findViewById(R.id.tvEmail);
-
         }
     }
 }

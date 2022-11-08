@@ -19,14 +19,13 @@ import t2010a.cookpad_clone.fragment.ProfileFragment;
 import t2010a.cookpad_clone.fragment.SearchFragment;
 import t2010a.cookpad_clone.fragment.ShoppingFragment;
 
-public class MainActivity extends AppCompatActivity{
+public class MainActivity extends AppCompatActivity {
     private BottomNavigationView navigationView;
     private HomeFragment homeFragment;
     private SearchFragment searchFragment;
     private NewPostFragment newPostFragment;
     private ShoppingFragment shoppingFragment;
     private ProfileFragment profileFragment;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,7 +54,7 @@ public class MainActivity extends AppCompatActivity{
         transaction.commit();
     }
 
-    private void replaceFragment(Fragment fragment){
+    private void replaceFragment(Fragment fragment) {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.container, fragment);
         transaction.commit();

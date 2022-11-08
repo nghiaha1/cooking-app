@@ -35,6 +35,7 @@ public class RegisterActivity extends AppCompatActivity {
 
         mScrollView.setVerticalScrollBarEnabled(false);
         mScrollView.setHorizontalScrollBarEnabled(false);
+
     }
 
     private void initView() {

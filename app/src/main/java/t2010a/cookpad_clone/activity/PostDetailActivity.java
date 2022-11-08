@@ -2,13 +2,18 @@ package t2010a.cookpad_clone.activity;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.imageview.ShapeableImageView;
 import com.synnapps.carouselview.CarouselView;
 import com.synnapps.carouselview.ImageClickListener;
@@ -29,6 +34,8 @@ import t2010a.cookpad_clone.repository.Repository;
 public class PostDetailActivity extends AppCompatActivity {
     private TextView tvUserFullName, tvUserUsername, tvUserAddress, tvPostTimer, tvPostTitle;
     private RecyclerView rvPostGradient, rvPostStep;
+    private Toolbar toolbar;
+    private AppBarLayout appBar;
 
     private List<PostGradient> postGradientList = new ArrayList<>();
     private List<PostStep> postStepList = new ArrayList<>();
@@ -77,6 +84,8 @@ public class PostDetailActivity extends AppCompatActivity {
         tvUserAddress = findViewById(R.id.tvUserAddress);
         tvPostTimer = findViewById(R.id.tvPostTimer);
         tvPostTitle = findViewById(R.id.tvPostTitle);
+        toolbar = findViewById(R.id.toolbar);
+        appBar = findViewById(R.id.appBar);
 
         rvPostGradient = findViewById(R.id.rvPostGradient);
         rvPostStep = findViewById(R.id.rvPostStep);
@@ -88,6 +97,11 @@ public class PostDetailActivity extends AppCompatActivity {
 
         PostGradientAdapter adapter1 = new PostGradientAdapter(this, postGradientList);
         PostStepAdapter adapter2 = new PostStepAdapter(this, postStepList);
+
+        RecyclerView.ItemDecoration itemDecoration = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
+        rvPostGradient.addItemDecoration(itemDecoration);
+        rvPostStep.addItemDecoration(itemDecoration);
+
 
         rvPostGradient.setLayoutManager(layoutManager1);
         rvPostGradient.setAdapter(adapter1);
@@ -107,7 +121,18 @@ public class PostDetailActivity extends AppCompatActivity {
                     faker.lorem.paragraph(3)));
         }
 
+        setSupportActionBar(toolbar);
+        appBar.setOutlineProvider(null);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle("");
+    }
 
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            finish();
+        }
+        return super.onOptionsItemSelected(item);
     }
 
 }

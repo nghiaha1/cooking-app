@@ -2,14 +2,11 @@ package t2010a.cookpad_clone.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -31,10 +28,10 @@ import t2010a.cookpad_clone.model.home_client.Post;
 import t2010a.cookpad_clone.model.home_client.Section;
 
 public class HomeFragment extends Fragment {
-    View itemView;
-    List<Post> postList = new ArrayList<>();
-    List<Section> sectionList = new ArrayList<>();
-    ImageView iv_post_thumbnail_1, iv_post_thumbnail_2, iv_post_thumbnail_3, iv_post_thumbnail_4;
+    private View itemView;
+    private List<Post> postList = new ArrayList<>();
+    private List<Section> sectionList = new ArrayList<>();
+    private ImageView iv_post_thumbnail_1, iv_post_thumbnail_2, iv_post_thumbnail_3, iv_post_thumbnail_4;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -46,19 +43,15 @@ public class HomeFragment extends Fragment {
     }
 
     private void initView(View itemView) {
-        Toolbar toolbar = itemView.findViewById(R.id.toolbar_home_fragment);
-        AppCompatActivity activity = (AppCompatActivity) getActivity();
-        activity.setSupportActionBar(toolbar);
-
         initData();
 
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         SectionAdapter adapter = new SectionAdapter(getActivity(), sectionList);
 
-        RecyclerView rv_home_tab1 = itemView.findViewById(R.id.rv_home);
+        RecyclerView rvHomeTab1 = itemView.findViewById(R.id.rvHome);
 
-        rv_home_tab1.setLayoutManager(layoutManager);
-        rv_home_tab1.setAdapter(adapter);
+        rvHomeTab1.setLayoutManager(layoutManager);
+        rvHomeTab1.setAdapter(adapter);
 
 
     }

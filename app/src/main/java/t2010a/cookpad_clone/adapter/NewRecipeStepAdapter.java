@@ -56,7 +56,7 @@ public class NewRecipeStepAdapter extends RecyclerView.Adapter {
             @Override
             public void onClick(View v) {
 
-                postStepList.remove(holder.getAbsoluteAdapterPosition());
+                postStepList.remove(holder.getAdapterPosition());
                 reloadData(postStepList);
             }
         });
@@ -64,7 +64,10 @@ public class NewRecipeStepAdapter extends RecyclerView.Adapter {
 
     @Override
     public int getItemCount() {
-        return postStepList.size();
+        if (postStepList != null) {
+            return postStepList.size();
+        }
+        return 0;
     }
 
     public class NewRecipeStepViewHolder extends RecyclerView.ViewHolder {

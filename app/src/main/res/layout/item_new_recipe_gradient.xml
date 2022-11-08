@@ -16,6 +16,7 @@
             android:id="@+id/etGradientDetail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/custom_edit_text_login_logout"
             android:paddingHorizontal="10dp"
             android:paddingVertical="20dp" />
 

@@ -35,12 +35,6 @@ public class User implements Serializable
     @SerializedName("phone")
     @Expose
     private String phone;
-    @SerializedName("isVip")
-    @Expose
-    private Boolean isVip;
-    @SerializedName("isFamous")
-    @Expose
-    private Boolean isFamous;
     @SerializedName("followNumber")
     @Expose
     private Integer followNumber;
@@ -53,6 +47,9 @@ public class User implements Serializable
     @SerializedName("role")
     @Expose
     private Role role;
+    @SerializedName("avatar")
+    @Expose
+    private String avatar;
     @SerializedName("status")
     @Expose
     private String status;
@@ -130,22 +127,6 @@ public class User implements Serializable
         this.phone = phone;
     }
 
-    public Boolean getIsVip() {
-        return isVip;
-    }
-
-    public void setIsVip(Boolean isVip) {
-        this.isVip = isVip;
-    }
-
-    public Boolean getIsFamous() {
-        return isFamous;
-    }
-
-    public void setIsFamous(Boolean isFamous) {
-        this.isFamous = isFamous;
-    }
-
     public Integer getFollowNumber() {
         return followNumber;
     }
@@ -186,6 +167,14 @@ public class User implements Serializable
         this.status = status;
     }
 
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -198,12 +187,11 @@ public class User implements Serializable
                 ", fullName='" + fullName + '\'' +
                 ", address='" + address + '\'' +
                 ", phone='" + phone + '\'' +
-                ", isVip=" + isVip +
-                ", isFamous=" + isFamous +
                 ", followNumber=" + followNumber +
                 ", email='" + email + '\'' +
                 ", detail='" + detail + '\'' +
                 ", role=" + role +
+                ", avatar='" + avatar + '\'' +
                 ", status='" + status + '\'' +
                 '}';
     }

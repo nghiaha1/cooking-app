@@ -5,28 +5,144 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragment.ProfileFragment"
-    android:padding="16dp"
     android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/tvEditProfile"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Cập nhật thông tin cá nhân"
-        android:textSize="25sp"
-        android:textColor="@color/black"
-        android:clickable="true"
-        android:focusable="true" />
+        android:padding="40dp">
+        
+        <TextView
+            android:id="@+id/tvFullName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Full name"
+            android:textSize="25sp"
+            android:textColor="@color/black"/>
 
-    <TextView
-        android:id="@+id/tvResetPass"
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/ivAvatar"
+            android:layout_width="102dp"
+            android:layout_height="102dp"
+            android:layout_below="@+id/tvFullName"
+            android:src="@drawable/ic_profile_black"
+            app:shapeAppearanceOverlay="@style/roundedImageViewRounded"
+            android:cropToPadding="true"
+            android:scaleType="centerCrop"
+            app:strokeColor="@color/black"
+            app:strokeWidth="1dp"
+            android:layout_marginTop="30dp"
+            android:padding="2dp"/>
+
+        <TextView
+            android:id="@+id/tvUsername"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvFullName"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="58dp"
+            android:layout_toEndOf="@+id/ivAvatar"
+            android:gravity="center"
+            android:text="Name"
+            android:textColor="#5d5d5d"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/tvEmail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="email@gmail.com"
+            android:textColor="@color/post_user_detail"
+            android:layout_toEndOf="@+id/ivAvatar"
+            android:layout_below="@+id/tvUsername"
+            android:layout_marginStart="10dp"/>
+    </RelativeLayout>
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Đặt lại mật khẩu"
-        android:textSize="25sp"
-        android:layout_marginTop="20dp"
-        android:textColor="@color/black"
-        android:clickable="true"
-        android:focusable="true" />
+        android:background="@drawable/line_section_separate"
+        android:layout_marginVertical="30dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingHorizontal="40dp">
+
+        <LinearLayout
+            android:id="@+id/layoutEditProfile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:clickable="true"
+            android:focusable="true" >
+            
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_edit_profile_black"
+                android:layout_marginRight="20dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Cập nhật thông tin cá nhân"
+                android:textSize="22sp"
+                android:textColor="@color/black" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layoutResetPass"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginVertical="20dp"
+            android:clickable="true"
+            android:focusable="true" >
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_reload_black"
+                android:layout_marginRight="20dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Đặt lại mật khẩu"
+                android:textSize="22sp"
+                android:textColor="@color/black" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/btnLogout"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:background="@drawable/custom_button_log"
+            android:padding="10dp"
+            android:layout_marginTop="30dp"
+            android:gravity="center"
+            android:clickable="true"
+            android:focusable="true">
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="27dp"
+                android:src="@drawable/ic_logout_white"
+                android:layout_marginRight="20dp"
+                android:layout_gravity="center"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="LOG OUT"
+                android:textSize="18sp"
+                android:fontFamily="@font/ubuntu_medium"
+                android:textColor="@color/white"
+                android:layout_gravity="center"/>
+        </LinearLayout>
+    </LinearLayout>
 
 </LinearLayout>

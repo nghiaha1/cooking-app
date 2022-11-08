@@ -8,22 +8,15 @@
 
     <application
         android:name=".MyApplication"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/ic_logo_2nd"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/ic_logo_2nd"
         android:supportsRtl="true"
         android:theme="@style/Theme.CookpadClone"
         android:usesCleartextTraffic="true"
         tools:targetApi="32">
         <activity
             android:name=".EditProfileActivity"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
-            android:name=".activity.NewTipActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -44,7 +37,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".activity.MainActivity"
+            android:name=".activity.LoginActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -65,7 +58,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".activity.LoginActivity"
+            android:name=".activity.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

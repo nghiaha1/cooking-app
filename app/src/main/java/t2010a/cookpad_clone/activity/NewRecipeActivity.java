@@ -58,7 +58,7 @@ public class NewRecipeActivity extends AppCompatActivity implements View.OnClick
     private LinearLayout addGradient, addStep;
     private RelativeLayout layoutUploadImg;
     private RecyclerView rvNewRecipeGradient, rvNewRecipeStep;
-    private TextInputEditText etName, etOrigin, etEaterNumber, etCookingTime;
+    private TextInputEditText etName, etOrigin, etEaterNumber, etCookingTime, etDescription;
     private Toolbar toolbar;
     private AppBarLayout appBar;
     private ImageView imageView;
@@ -105,6 +105,7 @@ public class NewRecipeActivity extends AppCompatActivity implements View.OnClick
         etOrigin = findViewById(R.id.etOrigin);
         etEaterNumber = findViewById(R.id.etEaterNumber);
         etCookingTime = findViewById(R.id.etCookingTime);
+        etDescription = findViewById(R.id.etDescription);
         toolbar = findViewById(R.id.toolbar);
         appBar = findViewById(R.id.appBar);
         imageView = findViewById(R.id.imageView);
@@ -147,65 +148,147 @@ public class NewRecipeActivity extends AppCompatActivity implements View.OnClick
 
     private void setUploadPost() {
         Post post = new Post();
+        String name = etName.getText().toString().toLowerCase(Locale.ROOT).trim();
+        String origin = etOrigin.getText().toString().toLowerCase(Locale.ROOT).trim();
+        String eaterNumber = etEaterNumber.getText().toString().toLowerCase(Locale.ROOT).trim();
+        String cookingTime = etCookingTime.getText().toString().toLowerCase(Locale.ROOT).trim();
+        String description = etDescription.getText().toString().toLowerCase(Locale.ROOT).trim();
+//        String thumbnail = imageView.toString();
+
+        if (name.isEmpty() || origin.isEmpty() || eaterNumber.isEmpty() || cookingTime.isEmpty() || description.isEmpty()) {
+            Toast.makeText(this, "Something is wrong", Toast.LENGTH_SHORT).show();
+        } else {
+            post.setName(name);
+            post.setOrigin(origin);
+            post.setEaterNumber(Integer.parseInt(eaterNumber));
+            post.setGradients(postGradientList);
+            post.setSteps(postStepList);
+            post.setCookingTime(Integer.parseInt(cookingTime));
+            post.setUser(user);
+            post.setDescription(description);
+            post.setStatus(1);
+
+            repository.getService().createPost(post).enqueue(new Callback<Post>() {
+                @Override
+                public void onResponse(Call<Post> call, Response<Post> response) {
+                    if (response.code() == 200) {
+                        Toast.makeText(NewRecipeActivity.this, "Success to upload new post", Toast.LENGTH_LONG).show();
+                    } else {
+                        Toast.makeText(NewRecipeActivity.this, "Fail to upload new post", Toast.LENGTH_LONG).show();
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<Post> call, Throwable t) {
+
+                }
+            });
+
+            if (imagePath != null) {
+                MediaManager.get().upload(imagePath).callback(new UploadCallback() {
+                    @Override
+                    public void onStart(String requestId) {
+                        Log.d(TAG, "onStart: " + "started");
+                    }
+
+                    @Override
+                    public void onProgress(String requestId, long bytes, long totalBytes) {
+                        Log.d(TAG, "onStart: " + "uploading");
+                    }
+
+                    @Override
+                    public void onSuccess(String requestId, Map resultData) {
+                        Log.d(TAG, "onStart: " + "usuccess");
+                    }
+
+                    @Override
+                    public void onError(String requestId, ErrorInfo error) {
+                        Log.d(TAG, "onStart: " + error);
+                    }
+
+                    @Override
+                    public void onReschedule(String requestId, ErrorInfo error) {
+                        Log.d(TAG, "onStart: " + error);
+                    }
+                }).dispatch();
+            } else {
+                Toast.makeText(this, "Thumbnail is empty", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
+    private void setSavePost() {
+        Post post = new Post();
 
         String name = etName.getText().toString().toLowerCase(Locale.ROOT).trim();
         String origin = etOrigin.getText().toString().toLowerCase(Locale.ROOT).trim();
         String eaterNumber = etEaterNumber.getText().toString().toLowerCase(Locale.ROOT).trim();
         String cookingTime = etCookingTime.getText().toString().toLowerCase(Locale.ROOT).trim();
-        String thumbnail = imageView.toString();
+        String description = etDescription.getText().toString().toLowerCase(Locale.ROOT).trim();
 
-        post.setName(name);
-        post.setOrigin(origin);
-        post.setEaterNumber(Integer.parseInt(eaterNumber));
-        post.setGradients(postGradientList);
-        post.setSteps(postStepList);
-        post.setCookingTime(Integer.parseInt(cookingTime));
-        post.setUser(user);
+//        String thumbnail = imageView.toString();
 
-        repository.getService().createPost(post).enqueue(new Callback<Post>() {
-            @Override
-            public void onResponse(Call<Post> call, Response<Post> response) {
-                if (response.code() == 200) {
-                    Toast.makeText(NewRecipeActivity.this, "Success to upload new post", Toast.LENGTH_LONG).show();
-                } else {
-                    Toast.makeText(NewRecipeActivity.this, "Fail to upload new post", Toast.LENGTH_LONG).show();
+        if (name.isEmpty() || origin.isEmpty() || eaterNumber.isEmpty() || cookingTime.isEmpty() || description.isEmpty()) {
+            Toast.makeText(this, "Something is wrong", Toast.LENGTH_SHORT).show();
+        } else {
+            post.setName(name);
+            post.setOrigin(origin);
+            post.setEaterNumber(Integer.parseInt(eaterNumber));
+            post.setGradients(postGradientList);
+            post.setSteps(postStepList);
+            post.setCookingTime(Integer.parseInt(cookingTime));
+            post.setUser(user);
+            post.setDescription(description);
+            post.setStatus(0);
+
+            repository.getService().createPost(post).enqueue(new Callback<Post>() {
+                @Override
+                public void onResponse(Call<Post> call, Response<Post> response) {
+                    if (response.code() == 200) {
+                        Toast.makeText(NewRecipeActivity.this, "Success to upload new post", Toast.LENGTH_LONG).show();
+                    } else {
+                        Toast.makeText(NewRecipeActivity.this, "Fail to upload new post", Toast.LENGTH_LONG).show();
+                    }
                 }
-            }
 
-            @Override
-            public void onFailure(Call<Post> call, Throwable t) {
+                @Override
+                public void onFailure(Call<Post> call, Throwable t) {
 
-            }
-        });
+                }
+            });
 
-        MediaManager.get().upload(imagePath).callback(new UploadCallback() {
-            @Override
-            public void onStart(String requestId) {
-                Log.d(TAG, "onStart: " + "started");
-            }
+            if (imagePath != null) {
+                MediaManager.get().upload(imagePath).callback(new UploadCallback() {
+                    @Override
+                    public void onStart(String requestId) {
+                        Log.d(TAG, "onStart: " + "started");
+                    }
 
-            @Override
-            public void onProgress(String requestId, long bytes, long totalBytes) {
-                Log.d(TAG, "onStart: " + "uploading");
-            }
+                    @Override
+                    public void onProgress(String requestId, long bytes, long totalBytes) {
+                        Log.d(TAG, "onStart: " + "uploading");
+                    }
 
-            @Override
-            public void onSuccess(String requestId, Map resultData) {
-                Log.d(TAG, "onStart: " + "usuccess");
-            }
+                    @Override
+                    public void onSuccess(String requestId, Map resultData) {
+                        Log.d(TAG, "onStart: " + "usuccess");
+                    }
 
-            @Override
-            public void onError(String requestId, ErrorInfo error) {
-                Log.d(TAG, "onStart: " + error);
-            }
+                    @Override
+                    public void onError(String requestId, ErrorInfo error) {
+                        Log.d(TAG, "onStart: " + error);
+                    }
 
-            @Override
-            public void onReschedule(String requestId, ErrorInfo error) {
-                Log.d(TAG, "onStart: " + error);
+                    @Override
+                    public void onReschedule(String requestId, ErrorInfo error) {
+                        Log.d(TAG, "onStart: " + error);
+                    }
+                }).dispatch();
+            } else {
+                Toast.makeText(this, "Thumbnail is empty", Toast.LENGTH_SHORT).show();
             }
-        }).dispatch();
+        }
     }
-
 
     private List<PostGradient> populateGradientsList() {
         List<PostGradient> list = new ArrayList<>();
@@ -241,7 +324,7 @@ public class NewRecipeActivity extends AppCompatActivity implements View.OnClick
                 setUploadPost();
                 break;
             case R.id.miSave:
-
+                setSavePost();
                 break;
             case android.R.id.home:
                 finish();

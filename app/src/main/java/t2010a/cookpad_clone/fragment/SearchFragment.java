@@ -101,6 +101,8 @@ public class SearchFragment extends Fragment {
         for (User user : userList) {
             if (user.getFullName().toLowerCase().contains(text.toLowerCase())) {
                 filteredList.add(user);
+            }else if (user.getEmail().toLowerCase(Locale.ROOT).contains(text.toLowerCase(Locale.ROOT))) {
+                filteredList.add(user);
             }
         }
         Log.d("TAG", "filterList: " + filteredList.size());

@@ -1,6 +1,8 @@
 package t2010a.cookpad_clone.adapter;
 
 import android.app.Activity;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -74,6 +76,23 @@ public class NewRecipeStepAdapter extends RecyclerView.Adapter {
             etStepDetail = itemView.findViewById(R.id.etStepDetail);
             tvPostStepId = itemView.findViewById(R.id.tvPostStepId);
             ivRemoveItem = itemView.findViewById(R.id.ivRemoveItem);
+
+            etStepDetail.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                }
+
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+                    postStepList.get(getAdapterPosition()).setDetail(etStepDetail.getText().toString());
+                }
+
+                @Override
+                public void afterTextChanged(Editable s) {
+
+                }
+            });
         }
     }
 }

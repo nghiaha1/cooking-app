@@ -19,10 +19,10 @@ public class Post implements Serializable {
     @SerializedName("user")
     @Expose
     private User user;
-    @SerializedName("gradients")
+    @SerializedName("ingredient")
     @Expose
     private List<PostGradient> gradients;
-    @SerializedName("steps")
+    @SerializedName("making")
     @Expose
     private List<PostStep> steps;
     @SerializedName("name")

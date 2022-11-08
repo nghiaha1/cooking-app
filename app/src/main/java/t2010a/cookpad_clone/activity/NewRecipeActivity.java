@@ -80,6 +80,9 @@ public class NewRecipeActivity extends AppCompatActivity implements View.OnClick
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this, RecyclerView.VERTICAL, false);
         RecyclerView.LayoutManager layoutManager1 = new LinearLayoutManager(this, RecyclerView.VERTICAL, false);
 
+        postGradientList = populateGradientsList();
+        postStepList = populateStepList();
+
         adapter = new NewRecipeGradientAdapter(this, postGradientList);
         adapter1 = new NewRecipeStepAdapter(this, postStepList);
 
@@ -117,28 +120,18 @@ public class NewRecipeActivity extends AppCompatActivity implements View.OnClick
     private void setAddStep(PostStep postStep) {
         postStepList.add(postStep);
         adapter1.notifyItemInserted(postStepList.size() + 1);
-        for (int i = 0; i < postStepList.size(); i++) {
+            for (int i = 0; i < postStepList.size(); i++) {
             Log.d("TAG", "Id " + i + " " + postStepList.get(i).getId());
         }
     }
 
     private void setUploadPost() {
         Post post = new Post();
-        PostGradient postGradient = new PostGradient();
-        PostStep postStep = new PostStep();
 
         String name = etName.getText().toString().toLowerCase(Locale.ROOT).trim();
         String origin = etOrigin.getText().toString().toLowerCase(Locale.ROOT).trim();
         String eaterNumber = etEaterNumber.getText().toString().toLowerCase(Locale.ROOT).trim();
-        String gradientDetail = etGradientDetail.getText().toString().toLowerCase(Locale.ROOT).trim();
-        String stepDetail = etStepDetail.getText().toString().toLowerCase(Locale.ROOT).trim();
         String cookingTime = etCookingTime.getText().toString().toLowerCase(Locale.ROOT).trim();
-
-        postGradient.setDetail(gradientDetail);
-        postStep.setDetail(stepDetail);
-
-        postGradientList.add(postGradient);
-        postStepList.add(postStep);
 
         post.setName(name);
         post.setOrigin(origin);
@@ -163,6 +156,26 @@ public class NewRecipeActivity extends AppCompatActivity implements View.OnClick
 
             }
         });
+    }
+
+    private List<PostGradient> populateGradientsList() {
+        List<PostGradient> list = new ArrayList<>();
+        for (int i = 0; i < postGradientList.size(); i++) {
+            PostGradient postGradient = new PostGradient();
+            postGradient.setDetail(String.valueOf(i));
+            list.add(postGradient);
+        }
+        return list;
+    }
+
+    private List<PostStep> populateStepList() {
+        List<PostStep> list = new ArrayList<>();
+        for (int i = 0; i < postGradientList.size(); i++) {
+            PostStep postStep = new PostStep();
+            postStep.setDetail(String.valueOf(i));
+            list.add(postStep);
+        }
+        return list;
     }
 
 

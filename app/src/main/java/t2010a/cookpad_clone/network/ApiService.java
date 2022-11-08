@@ -35,9 +35,11 @@ public interface ApiService {
     @DELETE("api/v1/post/{id}")
     Call<Post> deletePost(@Path("id") int id);
 
+    @Headers({ "Content-Type: application/json;charset=UTF-8"})
     @PUT("/api/v1/user/{id}")
-    Call<Optional<User>> updateUser(@Body User user,
-                                         @Path(value = "id") Long id);
+    Call<User> updateUser(@Body User user,
+                          @Path(value = "id") Long id,
+                          @Header("Authorization") String token);
 
     @GET("/api/v1/post")
     Call<List<Post>> getPostList();

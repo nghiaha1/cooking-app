@@ -43,4 +43,7 @@ public interface ApiService {
 
     @GET("/api/v1/post")
     Call<List<Post>> getPostList();
+
+    @GET("/api/v1/userss")
+    Call<List<User>> getUserList();
 }

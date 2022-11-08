@@ -51,7 +51,7 @@ public class NewRecipeGradientAdapter extends RecyclerView.Adapter {
         viewHolder.ivRemoveItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                postGradientList.remove(holder.getAbsoluteAdapterPosition());
+                postGradientList.remove(holder.getAdapterPosition());
                 reloadData(postGradientList);
             }
         });
@@ -59,7 +59,10 @@ public class NewRecipeGradientAdapter extends RecyclerView.Adapter {
 
     @Override
     public int getItemCount() {
-        return postGradientList.size();
+        if (postGradientList != null) {
+            return postGradientList.size();
+        }
+        return 0;
     }
 
     public class NewRecipeGradientViewHolder extends RecyclerView.ViewHolder {

@@ -1,17 +1,22 @@
 package t2010a.cookpad_clone.activity;
 
-import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+
+import com.google.android.material.appbar.AppBarLayout;
 
 import java.util.Locale;
-import java.util.Optional;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -25,6 +30,8 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
     private EditText etProfileFullName, etProfileAddress,
             etProfilePhone, etProfileEmail, etProfileDetail;
     private Button btnUpdateUser;
+    private Toolbar toolbar;
+    private AppBarLayout appBar;
     private Repository repository;
     private User user;
     private String accessToken = "Bearer " + LocalDataManager.getAccessToken();
@@ -36,7 +43,6 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
         setContentView(R.layout.activity_edit_profile);
         initView();
         initData();
-        btnUpdateUser.setOnClickListener(this);
     }
 
     private void initView() {
@@ -46,6 +52,10 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
         etProfileEmail = findViewById(R.id.etProfileEmail);
         etProfileDetail = findViewById(R.id.etProfileDetail);
         btnUpdateUser = findViewById(R.id.btnUpdateUser);
+        toolbar = findViewById(R.id.toolbar);
+        appBar = findViewById(R.id.appBar);
+
+        btnUpdateUser.setOnClickListener(this);
     }
 
     private void initData() {
@@ -55,6 +65,11 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
         etProfilePhone.setText(user.getPhone());
         etProfileEmail.setText(user.getEmail());
         etProfileDetail.setText(user.getDetail());
+
+        setSupportActionBar(toolbar);
+        appBar.setOutlineProvider(null);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle("");
     }
 
     private void setBtnUpdateUser() {
@@ -96,6 +111,13 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
         });
     }
 
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            finish();
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
     @Override
     public void onClick(View v) {

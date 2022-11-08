@@ -40,7 +40,10 @@ public class PostGradientAdapter extends RecyclerView.Adapter {
 
     @Override
     public int getItemCount() {
-        return postGradientList.size();
+        if (postGradientList != null) {
+            return postGradientList.size();
+        }
+        return 0;
     }
 
     public class PostGradientViewHolder extends RecyclerView.ViewHolder {

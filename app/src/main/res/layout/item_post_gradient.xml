@@ -4,17 +4,13 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/dash_item_separate"
-        android:layout_marginVertical="5dp"/>
 
     <TextView
         android:id="@+id/tv_post_ingredient"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Ingredient"
-        android:textSize="16sp"/>
+        android:textSize="16sp"
+        android:layout_marginVertical="10dp"/>
 
 </LinearLayout>

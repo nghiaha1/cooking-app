@@ -6,8 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activity.LoginActivity"
-    android:paddingHorizontal="16dp"
-    android:background="@drawable/gradient_background">
+    android:paddingHorizontal="40dp"
+    android:background="#F1F1F1">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -21,16 +21,14 @@
             android:textStyle="bold"
             android:layout_marginTop="100dp"
             android:textSize="40sp"
-            android:textColor="@color/black"
-            android:paddingHorizontal="16dp"/>
+            android:textColor="@color/black" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Enter Your Username &amp; Password"
             android:textColor="#565656"
-            android:layout_marginBottom="120dp"
-            android:paddingHorizontal="16dp"/>
+            android:layout_marginBottom="80dp" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textInputLayout1"
@@ -38,6 +36,7 @@
             android:layout_height="wrap_content"
             android:hint="Username"
             app:startIconDrawable="@drawable/ic_person"
+            app:startIconTint="@color/main_color"
             app:endIconMode="clear_text"
             app:counterEnabled="true"
             app:counterMaxLength="20">
@@ -59,6 +58,7 @@
             android:layout_height="wrap_content"
             android:hint="Password"
             app:startIconDrawable="@drawable/ic_password"
+            app:startIconTint="@color/main_color"
             app:endIconMode="password_toggle">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -68,21 +68,20 @@
                 android:inputType="textPassword"
                 android:textSize="20sp"
                 android:background="@drawable/custom_edit_text_login_logout"
-                android:paddingHorizontal="16dp"
-                />
+                android:paddingHorizontal="16dp" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button
             android:id="@+id/btnLogin"
-            android:layout_width="140dp"
+            android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_gravity="center"
             android:layout_marginTop="30dp"
-            android:background="@drawable/custom_button_login_logout"
+            android:background="@drawable/custom_button_log"
             android:fontFamily="@font/ubuntu_medium"
             android:text="Login"
             android:textColor="@color/white"
-            android:textSize="25sp" />
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/tvToResetPass"

@@ -51,7 +51,10 @@ public class SectionAdapter extends RecyclerView.Adapter {
 
     @Override
     public int getItemCount() {
-        return sectionList.size();
+        if (sectionList != null) {
+            return sectionList.size();
+        }
+        return 0;
     }
 
     public class SectionViewHolder extends RecyclerView.ViewHolder {

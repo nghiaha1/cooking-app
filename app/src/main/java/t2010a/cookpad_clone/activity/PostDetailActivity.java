@@ -23,6 +23,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import io.bloco.faker.Faker;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 import t2010a.cookpad_clone.R;
 import t2010a.cookpad_clone.adapter.PostGradientAdapter;
 import t2010a.cookpad_clone.adapter.PostStepAdapter;
@@ -47,7 +50,8 @@ public class PostDetailActivity extends AppCompatActivity {
             R.drawable.banner3};
     private ShapeableImageView ivUserAvatar;
 
-    Repository postRepository;
+    private Repository repository;
+    private List<Post> postList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -125,6 +129,22 @@ public class PostDetailActivity extends AppCompatActivity {
         appBar.setOutlineProvider(null);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("");
+
+//        repository = Repository.getInstance();
+//        repository.getService().getPostList().enqueue(new Callback<List<Post>>() {
+//            @Override
+//            public void onResponse(Call<List<Post>> call, Response<List<Post>> response) {
+//                if (response.code() == 200) {
+//                    Log.d("Post list", "list: " + response.body());
+//                    postList = response.body();
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<List<Post>> call, Throwable t) {
+//
+//            }
+//        });
     }
 
     @Override

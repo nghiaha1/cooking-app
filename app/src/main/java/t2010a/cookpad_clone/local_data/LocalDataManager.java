@@ -52,6 +52,10 @@ public class LocalDataManager {
         return user;
     }
 
+    public static void clearData() {
+        LocalDataManager.getInstance().mySharedPreferences.delStringValue();
+    }
+
     public static void setAccessToken(String accessToken) {
         LocalDataManager.getInstance().mySharedPreferences.putStringValue(TOKEN, accessToken);
     }

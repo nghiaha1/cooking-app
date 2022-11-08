@@ -2,6 +2,7 @@ package t2010a.cookpad_clone.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.synnapps.carouselview.CarouselView;
+import com.synnapps.carouselview.ImageClickListener;
+import com.synnapps.carouselview.ImageListener;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -20,18 +24,29 @@ import org.greenrobot.eventbus.ThreadMode;
 import java.util.ArrayList;
 import java.util.List;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 import t2010a.cookpad_clone.R;
 import t2010a.cookpad_clone.activity.PostDetailActivity;
 import t2010a.cookpad_clone.adapter.SectionAdapter;
 import t2010a.cookpad_clone.event.MessageEvent;
+import t2010a.cookpad_clone.model.home_client.BaseResponse;
+import t2010a.cookpad_clone.model.home_client.HomeModel;
 import t2010a.cookpad_clone.model.home_client.Post;
 import t2010a.cookpad_clone.model.home_client.Section;
+import t2010a.cookpad_clone.repository.Repository;
 
 public class HomeFragment extends Fragment {
     private View itemView;
     private List<Post> postList = new ArrayList<>();
     private List<Section> sectionList = new ArrayList<>();
-    private ImageView iv_post_thumbnail_1, iv_post_thumbnail_2, iv_post_thumbnail_3, iv_post_thumbnail_4;
+
+    private Repository repository = Repository.getInstance();
+    private CarouselView carouselView;
+    int[] sampleImages = {R.drawable.banner1,
+            R.drawable.banner2,
+            R.drawable.banner3};
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -43,6 +58,21 @@ public class HomeFragment extends Fragment {
     }
 
     private void initView(View itemView) {
+        carouselView = itemView.findViewById(R.id.homeCarouselView);
+        carouselView.setPageCount(sampleImages.length);
+        carouselView.setImageListener(new ImageListener() {
+            @Override
+            public void setImageForPosition(int position, ImageView imageView) {
+                imageView.setImageResource(sampleImages[position]);
+            }
+        });
+        carouselView.setImageClickListener(new ImageClickListener() {
+            @Override
+            public void onClick(int position) {
+                Log.d("TAG", "onClick: "+position);
+            }
+        });
+
         initData();
 
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
@@ -52,16 +82,9 @@ public class HomeFragment extends Fragment {
 
         rvHomeTab1.setLayoutManager(layoutManager);
         rvHomeTab1.setAdapter(adapter);
-
-
     }
 
     private void initData() {
-        for (int i = 0; i < 10; i++) {
-            postList.add(new Post("Title " + (i + 1),
-                    "http://t3.gstatic.com/licensed-image?q=tbn:ANd9GcRvC27D9KlxeEham1w-Wpd_pu3hd4A-OywxRbdnx9JFLpcTD7dfL0bD_WI6Ro8QkzrPLkBMzA9osrMpi4JSP5Y",
-                    "Detail"  + (i + 1) ));
-        }
         initSection("Bạn đang thèm món gì?",
                 "Không chắc? Tiếp tục tạo bất ngờ",
                 postList);
@@ -75,25 +98,27 @@ public class HomeFragment extends Fragment {
                 "Không chắc? Tiếp tục tạo bất ngờ",
                 postList);
 
-        iv_post_thumbnail_1 = itemView.findViewById(R.id.iv_post_thumbnail1);
-        iv_post_thumbnail_2 = itemView.findViewById(R.id.iv_post_thumbnail2);
-        iv_post_thumbnail_3 = itemView.findViewById(R.id.iv_post_thumbnail3);
-        iv_post_thumbnail_4 = itemView.findViewById(R.id.iv_post_thumbnail4);
+        repository.getService().getPostList().enqueue(new Callback<BaseResponse<List<Post>>>() {
+            @Override
+            public void onResponse(Call<BaseResponse<List<Post>>>call, Response<BaseResponse<List<Post>>> response) {
+                if (response.code() == 200) {
+                    postList = (List<Post>) response.body().getContent();
+                    Log.d("TAG", "onResponse: " + postList);
+                } else {
+                    Log.d("TAG", "onResponse: " + response.code());
+                }
+            }
 
-        Glide.with(getActivity())
-                .load("http://t3.gstatic.com/licensed-image?q=tbn:ANd9GcRvC27D9KlxeEham1w-Wpd_pu3hd4A-OywxRbdnx9JFLpcTD7dfL0bD_WI6Ro8QkzrPLkBMzA9osrMpi4JSP5Y")
-                .into(iv_post_thumbnail_1);
-        Glide.with(getActivity())
-                .load("http://t3.gstatic.com/licensed-image?q=tbn:ANd9GcRvC27D9KlxeEham1w-Wpd_pu3hd4A-OywxRbdnx9JFLpcTD7dfL0bD_WI6Ro8QkzrPLkBMzA9osrMpi4JSP5Y")
-                .into(iv_post_thumbnail_2);
-        Glide.with(getActivity())
-                .load("http://t3.gstatic.com/licensed-image?q=tbn:ANd9GcRvC27D9KlxeEham1w-Wpd_pu3hd4A-OywxRbdnx9JFLpcTD7dfL0bD_WI6Ro8QkzrPLkBMzA9osrMpi4JSP5Y")
-                .into(iv_post_thumbnail_3);
-        Glide.with(getActivity())
-                .load("http://t3.gstatic.com/licensed-image?q=tbn:ANd9GcRvC27D9KlxeEham1w-Wpd_pu3hd4A-OywxRbdnx9JFLpcTD7dfL0bD_WI6Ro8QkzrPLkBMzA9osrMpi4JSP5Y")
-                .into(iv_post_thumbnail_4);
+            @Override
+            public void onFailure(Call<BaseResponse<List<Post>>> call, Throwable t) {
 
+            }
+        });
 
+        for (int i = 0; i < postList.size(); i++) {
+            Post post = new Post();
+            post = postList.get(i);
+        }
     }
 
     private void initSection(String title,String note, List<Post> posts) {

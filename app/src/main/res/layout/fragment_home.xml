@@ -1,100 +1,113 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout
+<androidx.core.widget.NestedScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <androidx.core.widget.NestedScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:paddingHorizontal="8dp">
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:orientation="vertical">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+       <com.synnapps.carouselview.CarouselView
+           android:id="@+id/homeCarouselView"
+           android:layout_width="match_parent"
+           android:layout_height="300dp"
+           app:fillColor="#FFFFFFFF"
+           app:pageColor="#00000000"
+           app:radius="5dp"
+           app:slideInterval="3000"
+           app:strokeColor="#FF777777"
+           app:strokeWidth="1dp"
+           android:layout_marginBottom="20dp"/>
 
-            <TextView
-                android:id="@+id/tv_section_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Bạn đang thèm món gì?"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                android:layout_marginTop="20dp"/>
+       <LinearLayout
+           android:layout_width="match_parent"
+           android:layout_height="match_parent"
+           android:orientation="vertical"
+           android:paddingHorizontal="15dp">
 
-            <TextView
-                android:id="@+id/tv_section_note"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Không chắc? Tiếp tục tạo bất ngờ"
-                android:textSize="11sp"
-                android:layout_marginTop="10dp" />
+           <TextView
+               android:id="@+id/tv_section_title"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:text="Bạn đang thèm món gì?"
+               android:textSize="18sp"
+               android:textStyle="bold"
+               android:layout_marginTop="20dp"/>
 
-            <LinearLayout
-                android:id="@+id/ll1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_below="@id/tv_section_note"
-                android:weightSum="2">
+           <TextView
+               android:id="@+id/tv_section_note"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:text="Không chắc? Tiếp tục tạo bất ngờ"
+               android:textSize="11sp"
+               android:layout_marginTop="10dp" />
 
-                <ImageView
-                    android:id="@+id/iv_post_thumbnail1"
-                    android:layout_width="190dp"
-                    android:layout_height="120dp"
-                    android:scaleType="centerCrop"
-                    android:src="@mipmap/ic_launcher"
-                    android:layout_marginVertical="5dp"
-                    android:layout_weight="1"/>
+           <LinearLayout
+               android:id="@+id/ll1"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:orientation="horizontal"
+               android:layout_below="@id/tv_section_note"
+               android:weightSum="2">
 
-                <ImageView
-                    android:id="@+id/iv_post_thumbnail2"
-                    android:layout_width="190dp"
-                    android:layout_height="120dp"
-                    android:scaleType="centerCrop"
-                    android:src="@mipmap/ic_launcher"
-                    android:layout_marginVertical="5dp"
-                    android:layout_marginHorizontal="5dp"
-                    android:layout_weight="1"/>
-            </LinearLayout>
+               <ImageView
+                   android:id="@+id/iv_post_thumbnail1"
+                   android:layout_width="190dp"
+                   android:layout_height="120dp"
+                   android:scaleType="centerCrop"
+                   android:src="@mipmap/ic_launcher"
+                   android:layout_marginVertical="5dp"
+                   android:layout_weight="1"/>
 
-            <LinearLayout
-                android:id="@+id/ll2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_below="@+id/ll1"
-                android:weightSum="2">
+               <ImageView
+                   android:id="@+id/iv_post_thumbnail2"
+                   android:layout_width="190dp"
+                   android:layout_height="120dp"
+                   android:scaleType="centerCrop"
+                   android:src="@mipmap/ic_launcher"
+                   android:layout_marginVertical="5dp"
+                   android:layout_marginHorizontal="5dp"
+                   android:layout_weight="1"/>
+           </LinearLayout>
 
-                <ImageView
-                    android:id="@+id/iv_post_thumbnail3"
-                    android:layout_width="190dp"
-                    android:layout_height="120dp"
-                    android:scaleType="centerCrop"
-                    android:src="@mipmap/ic_launcher"
-                    android:layout_marginVertical="5dp"
-                    android:layout_weight="1"/>
+           <LinearLayout
+               android:id="@+id/ll2"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:orientation="horizontal"
+               android:layout_below="@+id/ll1"
+               android:weightSum="2">
 
-                <ImageView
-                    android:id="@+id/iv_post_thumbnail4"
-                    android:layout_width="190dp"
-                    android:layout_height="120dp"
-                    android:scaleType="centerCrop"
-                    android:src="@mipmap/ic_launcher"
-                    android:layout_marginVertical="5dp"
-                    android:layout_marginHorizontal="5dp"
-                    android:layout_weight="1"/>
-            </LinearLayout>
+               <ImageView
+                   android:id="@+id/iv_post_thumbnail3"
+                   android:layout_width="190dp"
+                   android:layout_height="120dp"
+                   android:scaleType="centerCrop"
+                   android:src="@mipmap/ic_launcher"
+                   android:layout_marginVertical="5dp"
+                   android:layout_weight="1"/>
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:layout_marginTop="20dp"
-                android:id="@+id/rvHome"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/ll2"/>
-        </LinearLayout>
-    </androidx.core.widget.NestedScrollView>
+               <ImageView
+                   android:id="@+id/iv_post_thumbnail4"
+                   android:layout_width="190dp"
+                   android:layout_height="120dp"
+                   android:scaleType="centerCrop"
+                   android:src="@mipmap/ic_launcher"
+                   android:layout_marginVertical="5dp"
+                   android:layout_marginHorizontal="5dp"
+                   android:layout_weight="1"/>
+           </LinearLayout>
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+           <androidx.recyclerview.widget.RecyclerView
+               android:layout_marginTop="20dp"
+               android:id="@+id/rvHome"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:layout_below="@id/ll2"/>
+       </LinearLayout>
+   </LinearLayout>
+
+</androidx.core.widget.NestedScrollView>

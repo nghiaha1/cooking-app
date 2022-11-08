@@ -23,6 +23,11 @@ public class SectionAdapter extends RecyclerView.Adapter {
         this.sectionList = sectionList;
     }
 
+    public void reloadData(List<Section> listSection) {
+        this.sectionList = listSection;
+        notifyDataSetChanged();
+    }
+
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {

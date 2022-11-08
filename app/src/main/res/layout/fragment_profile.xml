@@ -5,7 +5,8 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragment.ProfileFragment"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="#F1F1F1">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -115,12 +116,33 @@
                 android:textColor="@color/black" />
         </LinearLayout>
 
+        <LinearLayout
+            android:id="@+id/layoutManagePost"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:clickable="true"
+            android:focusable="true" >
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_post"
+                android:layout_marginRight="20dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Quản lý bài đăng"
+                android:textSize="22sp"
+                android:textColor="@color/black" />
+        </LinearLayout>
 
         <LinearLayout
             android:id="@+id/btnLogout"
             android:layout_width="match_parent"
             android:layout_height="52dp"
-            android:background="@drawable/custom_button_log"
+            android:background="@drawable/custom_button_signout"
             android:padding="10dp"
             android:layout_marginTop="30dp"
             android:gravity="center"

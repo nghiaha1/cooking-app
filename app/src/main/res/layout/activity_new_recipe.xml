@@ -111,10 +111,28 @@
                     android:layout_height="wrap_content"
                     android:hint="Xuất xứ"
                     app:counterEnabled="true"
-                    app:counterMaxLength="200">
+                    app:counterMaxLength="20">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/etOrigin"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:background="@drawable/custom_edit_text_login_logout"
+                        android:maxLength="201"
+                        android:paddingHorizontal="15dp"
+                        android:paddingVertical="20dp" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Mô tả"
+                    app:counterEnabled="true"
+                    app:counterMaxLength="64">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etDescription"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="10dp"

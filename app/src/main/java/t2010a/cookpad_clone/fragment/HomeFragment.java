@@ -2,6 +2,7 @@ package t2010a.cookpad_clone.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,8 +14,8 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
-import com.bumptech.glide.Glide;
 import com.synnapps.carouselview.CarouselView;
 import com.synnapps.carouselview.ImageClickListener;
 import com.synnapps.carouselview.ImageListener;
@@ -32,16 +33,12 @@ import retrofit2.Response;
 import t2010a.cookpad_clone.R;
 import t2010a.cookpad_clone.activity.PostDetailActivity;
 import t2010a.cookpad_clone.adapter.HomeAdapter;
-import t2010a.cookpad_clone.adapter.SearchAdapter;
-import t2010a.cookpad_clone.adapter.SectionAdapter;
 import t2010a.cookpad_clone.event.MessageEvent;
-import t2010a.cookpad_clone.model.home_client.BaseResponse;
 import t2010a.cookpad_clone.model.home_client.HomeModel;
 import t2010a.cookpad_clone.model.home_client.Post;
-import t2010a.cookpad_clone.model.home_client.Section;
 import t2010a.cookpad_clone.repository.Repository;
 
-public class HomeFragment extends Fragment {
+public class HomeFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
     private View itemView;
     private List<Post> postList = new ArrayList<>();
     private Repository repository = Repository.getInstance();
@@ -51,6 +48,7 @@ public class HomeFragment extends Fragment {
             R.drawable.banner3};
     private HomeAdapter adapter;
     private RecyclerView rvHome;
+    private SwipeRefreshLayout swipeRefreshLayout;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -64,11 +62,15 @@ public class HomeFragment extends Fragment {
     private void initView(View itemView) {
         carouselView = itemView.findViewById(R.id.homeCarouselView);
         rvHome = itemView.findViewById(R.id.rvHome);
+        swipeRefreshLayout = itemView.findViewById(R.id.swipeRefreshLayout);
+
+        swipeRefreshLayout.setOnRefreshListener(this);
+        swipeRefreshLayout.setColorSchemeColors(getResources().getColor(R.color.main_color));
 
         initBanner();
         initData();
 
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity(), RecyclerView.VERTICAL, false);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity(), RecyclerView.VERTICAL, true);
         adapter = new HomeAdapter(getActivity(), postList);
 
         RecyclerView.ItemDecoration itemDecoration = new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL);
@@ -94,7 +96,7 @@ public class HomeFragment extends Fragment {
         });
     }
 
-    private void initData() {
+    private List<Post> initData() {
         repository.getService().getPostList().enqueue(new Callback<HomeModel>() {
             @Override
             public void onResponse(Call<HomeModel> call, Response<HomeModel> response) {
@@ -110,17 +112,19 @@ public class HomeFragment extends Fragment {
 
             }
         });
+        return postList;
     }
 
     private void toPostDetail(Post post) {
         Intent intent = new Intent(getActivity(), PostDetailActivity.class);
         intent.putExtra("POST", post);
+        Log.d("TAG", "toPostDetail search: ");
         startActivity(intent);
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
-    public void onMessageEvent(MessageEvent.MovieEvent movieEvent) {
-        Post post = movieEvent.getMovie();
+    public void onMessageEvent(MessageEvent.PostEvent movieEvent) {
+        Post post = movieEvent.getPost();
         toPostDetail(post);
     }
 
@@ -136,4 +140,15 @@ public class HomeFragment extends Fragment {
         EventBus.getDefault().unregister(this);
     }
 
+    @Override
+    public void onRefresh() {
+        adapter.reloadData(initData());
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                swipeRefreshLayout.setRefreshing(false);
+            }
+        }, 1000);
+    }
 }

@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.imageview.ShapeableImageView;
 import com.synnapps.carouselview.CarouselView;
@@ -39,46 +40,30 @@ public class PostDetailActivity extends AppCompatActivity {
     private RecyclerView rvPostGradient, rvPostStep;
     private Toolbar toolbar;
     private AppBarLayout appBar;
-
-    private List<PostGradient> postGradientList = new ArrayList<>();
-    private List<PostStep> postStepList = new ArrayList<>();
-    private Faker faker = new Faker();
-
-    private CarouselView carouselView;
-    int[] sampleImages = {R.drawable.banner1,
-            R.drawable.banner2,
-            R.drawable.banner3};
+    private ImageView ivThumbnail;
     private ShapeableImageView ivUserAvatar;
 
-    private Repository repository;
-    private List<Post> postList = new ArrayList<>();
+    private Post post;
+    private List<PostGradient> postGradientList = new ArrayList<>();
+    private List<PostStep> postStepList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_post_detail);
-        initBanner();
+
         initView();
 
-        Post post = (Post) getIntent().getSerializableExtra("POST");
+        post = (Post) getIntent().getSerializableExtra("POST");
         tvPostTitle.setText(post.getName());
-    }
+        tvUserFullName.setText(post.getUser().getFullName());
+        tvUserUsername.setText(post.getUser().getUsername());
+        tvUserAddress.setText(post.getUser().getAddress());
+//        tvPostTimer.setText(post.getCookingTime());
+        Glide.with(this).load(post.getThumbnails()).into(ivThumbnail);
+        Glide.with(this).load(post.getUser().getAvatar()).into(ivUserAvatar);
 
-    private void initBanner() {
-        carouselView = findViewById(R.id.carouselView);
-        carouselView.setPageCount(sampleImages.length);
-        carouselView.setImageListener(new ImageListener() {
-            @Override
-            public void setImageForPosition(int position, ImageView imageView) {
-                imageView.setImageResource(sampleImages[position]);
-            }
-        });
-        carouselView.setImageClickListener(new ImageClickListener() {
-            @Override
-            public void onClick(int position) {
-                Log.d("TAG", "onClick: "+position);
-            }
-        });
+        setRecycleView();
     }
 
     private void initView() {
@@ -90,10 +75,13 @@ public class PostDetailActivity extends AppCompatActivity {
         tvPostTitle = findViewById(R.id.tvPostTitle);
         toolbar = findViewById(R.id.toolbar);
         appBar = findViewById(R.id.appBar);
+        ivThumbnail = findViewById(R.id.ivThumbnail);
 
         rvPostGradient = findViewById(R.id.rvPostGradient);
         rvPostStep = findViewById(R.id.rvPostStep);
+    }
 
+    private void setRecycleView() {
         initData();
 
         RecyclerView.LayoutManager layoutManager1 = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
@@ -115,36 +103,13 @@ public class PostDetailActivity extends AppCompatActivity {
     }
 
     private void initData() {
-        for (int i = 0; i < 10; i++) {
-            postGradientList.add(new PostGradient(i + 1,
-                    faker.food.spice()));
-        }
-
-        for (int i = 0; i < 10; i++) {
-            postStepList.add(new PostStep(i + 1,
-                    faker.lorem.paragraph(3)));
-        }
+        postGradientList = post.getGradients();
+        postStepList = post.getSteps();
 
         setSupportActionBar(toolbar);
         appBar.setOutlineProvider(null);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("");
-
-//        repository = Repository.getInstance();
-//        repository.getService().getPostList().enqueue(new Callback<List<Post>>() {
-//            @Override
-//            public void onResponse(Call<List<Post>> call, Response<List<Post>> response) {
-//                if (response.code() == 200) {
-//                    Log.d("Post list", "list: " + response.body());
-//                    postList = response.body();
-//                }
-//            }
-//
-//            @Override
-//            public void onFailure(Call<List<Post>> call, Throwable t) {
-//
-//            }
-//        });
     }
 
     @Override

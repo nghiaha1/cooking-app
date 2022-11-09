@@ -34,7 +34,7 @@ public class PostStepAdapter extends RecyclerView.Adapter {
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         PostStepViewHolder viewHolder = (PostStepViewHolder) holder;
         PostStep model = postStepList.get(position);
-        viewHolder.tvPostStepId.setText(Integer.toString(model.getId()));
+        viewHolder.tvPostStepId.setText(Integer.toString((position + 1)));
         viewHolder.tvPostStepDetail.setText(model.getDetail());
     }
 

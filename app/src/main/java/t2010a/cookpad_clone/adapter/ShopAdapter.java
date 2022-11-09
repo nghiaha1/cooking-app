@@ -91,12 +91,6 @@ public class ShopAdapter extends RecyclerView.Adapter {
                     ivFavourite.setColorFilter(ContextCompat.getColor(activity, R.color.red));
                 }
             });
-            ivFavourite.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    ivFavourite.setColorFilter(ContextCompat.getColor(activity, R.color.black));
-                }
-            });
 
         }
     }

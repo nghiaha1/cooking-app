@@ -46,9 +46,6 @@ public interface ApiService {
     @GET("/api/v1/post")
     Call<HomeModel> getPostList();
 
-    @GET("/api/v1/post")
-    Call<List<Post>> getPostLists();
-
     @GET("/api/v1/userss")
     Call<List<User>> getUserList();
 //

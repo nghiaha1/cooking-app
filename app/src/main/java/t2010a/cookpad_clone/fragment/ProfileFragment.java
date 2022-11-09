@@ -19,7 +19,6 @@ import t2010a.cookpad_clone.activity.EditProfileActivity;
 import t2010a.cookpad_clone.activity.MainActivity;
 import t2010a.cookpad_clone.local_data.LocalDataManager;
 import t2010a.cookpad_clone.model.user.User;
-import t2010a.cookpad_clone.repository.Repository;
 
 
 public class ProfileFragment extends Fragment implements View.OnClickListener {
@@ -42,9 +41,9 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
     }
 
     private void initView(View itemView) {
-        tvFullName = itemView.findViewById(R.id.tvFullName);
+        tvFullName = itemView.findViewById(R.id.tvPostTitle);
         tvUsername = itemView.findViewById(R.id.tvUsername);
-        tvEmail = itemView.findViewById(R.id.tvEmail);
+        tvEmail = itemView.findViewById(R.id.tvPostDescription);
         ivAvatar = itemView.findViewById(R.id.ivAvatar);
         layoutEditProfile = itemView.findViewById(R.id.layoutEditProfile);
         layoutResetPass = itemView.findViewById(R.id.layoutResetPass);

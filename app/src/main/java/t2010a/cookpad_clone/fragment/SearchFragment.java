@@ -1,5 +1,6 @@
 package t2010a.cookpad_clone.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.widget.SearchView;
@@ -14,6 +15,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -22,14 +27,18 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import t2010a.cookpad_clone.R;
+import t2010a.cookpad_clone.activity.PostDetailActivity;
 import t2010a.cookpad_clone.adapter.SearchAdapter;
+import t2010a.cookpad_clone.event.MessageEvent;
+import t2010a.cookpad_clone.model.home_client.HomeModel;
+import t2010a.cookpad_clone.model.home_client.Post;
 import t2010a.cookpad_clone.model.user.User;
 import t2010a.cookpad_clone.repository.Repository;
 
 public class SearchFragment extends Fragment {
     private View itemView;
     private RecyclerView rvSearch;
-    private List<User> userList = new ArrayList<>();
+    private List<Post> postList = new ArrayList<>();
     private Repository repository = Repository.getInstance();
     private SearchAdapter adapter;
     private SearchView searchView;
@@ -51,7 +60,7 @@ public class SearchFragment extends Fragment {
         initData();
 
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity(), RecyclerView.VERTICAL, false);
-        adapter = new SearchAdapter(getActivity(), userList);
+        adapter = new SearchAdapter(getActivity(), postList);
 
         RecyclerView.ItemDecoration itemDecoration = new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL);
         rvSearch.addItemDecoration(itemDecoration);
@@ -61,18 +70,18 @@ public class SearchFragment extends Fragment {
     }
 
     private void initData() {
-        repository.getService().getUserList().enqueue(new Callback<List<User>>() {
+        repository.getService().getPostList().enqueue(new Callback<HomeModel>() {
             @Override
-            public void onResponse(Call<List<User>> call, Response<List<User>> response) {
+            public void onResponse(Call<HomeModel> call, Response<HomeModel> response) {
                 if (response.code() == 200) {
-                    userList = response.body();
-                    adapter.reloadData(userList);
+                    postList = response.body().getContent();
+                    adapter.reloadData(postList);
                     Toast.makeText(getActivity(), "Success", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
-            public void onFailure(Call<List<User>> call, Throwable t) {
+            public void onFailure(Call<HomeModel> call, Throwable t) {
 
             }
         });
@@ -95,12 +104,12 @@ public class SearchFragment extends Fragment {
     }
 
     private void filterList(String text) {
-        List<User> filteredList = new ArrayList<>();
-        for (User user : userList) {
-            if (user.getFullName().toLowerCase().contains(text.toLowerCase())) {
-                filteredList.add(user);
-            } else if (user.getEmail().toLowerCase(Locale.ROOT).contains(text.toLowerCase(Locale.ROOT))) {
-                filteredList.add(user);
+        List<Post> filteredList = new ArrayList<>();
+        for (Post item : postList) {
+            if (item.getName().toLowerCase().contains(text.toLowerCase())) {
+                filteredList.add(item);
+            } else if (item.getUser().getFullName().toLowerCase(Locale.ROOT).contains(text.toLowerCase(Locale.ROOT))) {
+                filteredList.add(item);
             }
         }
         Log.d("TAG", "filterList: " + filteredList.size());
@@ -110,5 +119,30 @@ public class SearchFragment extends Fragment {
         } else {
             adapter.setFilteredList(filteredList);
         }
+    }
+
+    private void toPostDetail(Post post) {
+        Intent intent = new Intent(getActivity(), PostDetailActivity.class);
+        Log.d("TAG", "toPostDetail: ");
+        intent.putExtra("POST", post);
+        startActivity(intent);
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onMessageEvent(MessageEvent.PostEvent movieEvent) {
+        Post post = movieEvent.getPost();
+        toPostDetail(post);
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        EventBus.getDefault().register(this);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        EventBus.getDefault().unregister(this);
     }
 }

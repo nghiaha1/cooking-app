@@ -77,8 +77,7 @@
 
         <meta-data
             android:name="CLOUDINARY_URL"
-            android:value="cloudinary://167715828929422:Myvc7WBz-mToLmAJNBjyr9DS7as@dab9sgwgk"/>
-
+            android:value="cloudinary://167715828929422:Myvc7WBz-mToLmAJNBjyr9DS7as@dab9sgwgk" />
 
         <meta-data
             android:name="android.app.lib_name"

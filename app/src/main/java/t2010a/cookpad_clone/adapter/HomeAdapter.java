@@ -1,6 +1,7 @@
 package t2010a.cookpad_clone.adapter;
 
 import android.app.Activity;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -12,9 +13,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.google.android.material.imageview.ShapeableImageView;
 
+import org.greenrobot.eventbus.EventBus;
+
 import java.util.List;
 
 import t2010a.cookpad_clone.R;
+import t2010a.cookpad_clone.event.MessageEvent;
 import t2010a.cookpad_clone.model.home_client.Post;
 
 public class HomeAdapter extends RecyclerView.Adapter {
@@ -47,6 +51,7 @@ public class HomeAdapter extends RecyclerView.Adapter {
         viewHolder.tvFullName.setText(model.getUser().getFullName());
         viewHolder.tvEmail.setText(model.getUser().getEmail());
         Glide.with(activity).load(model.getThumbnails()).into(viewHolder.ivThumbnail);
+        viewHolder.tvDescription.setText(model.getDescription());
     }
 
     @Override
@@ -59,15 +64,25 @@ public class HomeAdapter extends RecyclerView.Adapter {
 
     public class HomeViewHolder extends RecyclerView.ViewHolder {
         ShapeableImageView ivAvatar;
-        TextView tvFullName, tvEmail;
+        TextView tvFullName, tvEmail, tvDescription;
         ImageView ivThumbnail;
 
         public HomeViewHolder(@NonNull View itemView) {
             super(itemView);
             ivAvatar = itemView.findViewById(R.id.ivAvatar);
-            tvFullName = itemView.findViewById(R.id.tvFullName);
-            tvEmail = itemView.findViewById(R.id.tvEmail);
+            tvFullName = itemView.findViewById(R.id.tvPostTitle);
+            tvEmail = itemView.findViewById(R.id.tvPostDescription);
             ivThumbnail = itemView.findViewById(R.id.ivThumbnail);
+            tvDescription = itemView.findViewById(R.id.tvDescription);
+
+            ivThumbnail.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Log.d("TAG", "onClick: "+ getAdapterPosition());
+                    Post post = postList.get(getAdapterPosition());
+                    EventBus.getDefault().post(new MessageEvent.PostEvent(post));
+                }
+            });
         }
     }
 }

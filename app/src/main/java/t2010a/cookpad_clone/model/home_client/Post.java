@@ -13,9 +13,6 @@ public class Post implements Serializable {
     @SerializedName("id")
     @Expose
     private int id;
-    @SerializedName("categories")
-    @Expose
-    private Set<PostCategory> categories;
     @SerializedName("user")
     @Expose
     private User user;
@@ -56,9 +53,8 @@ public class Post implements Serializable {
     public Post() {
     }
 
-    public Post(int id, Set<PostCategory> categories, User user, List<PostGradient> gradients, List<PostStep> steps, String name, String description, String thumbnails, String detail, int likes, int status, String origin, int eaterNumber, int cookingTime) {
+    public Post(int id, User user, List<PostGradient> gradients, List<PostStep> steps, String name, String description, String thumbnails, String detail, int likes, int status, String origin, int eaterNumber, int cookingTime) {
         this.id = id;
-        this.categories = categories;
         this.user = user;
         this.gradients = gradients;
         this.steps = steps;
@@ -85,14 +81,6 @@ public class Post implements Serializable {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public Set<PostCategory> getCategories() {
-        return categories;
-    }
-
-    public void setCategories(Set<PostCategory> categories) {
-        this.categories = categories;
     }
 
     public User getUser() {
@@ -195,7 +183,6 @@ public class Post implements Serializable {
     public String toString() {
         return "Post{" +
                 "id=" + id +
-                ", categories=" + categories +
                 ", user=" + user +
                 ", gradients=" + gradients +
                 ", steps=" + steps +

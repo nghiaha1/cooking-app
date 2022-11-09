@@ -93,7 +93,6 @@ public class NewRecipeActivity extends AppCompatActivity implements View.OnClick
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("");
 
-        initConfig();
     }
 
     private void initView() {
@@ -153,36 +152,10 @@ public class NewRecipeActivity extends AppCompatActivity implements View.OnClick
         String eaterNumber = etEaterNumber.getText().toString().toLowerCase(Locale.ROOT).trim();
         String cookingTime = etCookingTime.getText().toString().toLowerCase(Locale.ROOT).trim();
         String description = etDescription.getText().toString().toLowerCase(Locale.ROOT).trim();
-//        String thumbnail = imageView.toString();
 
         if (name.isEmpty() || origin.isEmpty() || eaterNumber.isEmpty() || cookingTime.isEmpty() || description.isEmpty()) {
             Toast.makeText(this, "Something is wrong", Toast.LENGTH_SHORT).show();
         } else {
-            post.setName(name);
-            post.setOrigin(origin);
-            post.setEaterNumber(Integer.parseInt(eaterNumber));
-            post.setGradients(postGradientList);
-            post.setSteps(postStepList);
-            post.setCookingTime(Integer.parseInt(cookingTime));
-            post.setUser(user);
-            post.setDescription(description);
-            post.setStatus(1);
-
-            repository.getService().createPost(post).enqueue(new Callback<Post>() {
-                @Override
-                public void onResponse(Call<Post> call, Response<Post> response) {
-                    if (response.code() == 200) {
-                        Toast.makeText(NewRecipeActivity.this, "Success to upload new post", Toast.LENGTH_LONG).show();
-                    } else {
-                        Toast.makeText(NewRecipeActivity.this, "Fail to upload new post", Toast.LENGTH_LONG).show();
-                    }
-                }
-
-                @Override
-                public void onFailure(Call<Post> call, Throwable t) {
-
-                }
-            });
 
             if (imagePath != null) {
                 MediaManager.get().upload(imagePath).callback(new UploadCallback() {
@@ -198,7 +171,35 @@ public class NewRecipeActivity extends AppCompatActivity implements View.OnClick
 
                     @Override
                     public void onSuccess(String requestId, Map resultData) {
+                        String strImage = (String) resultData.get("url");
                         Log.d(TAG, "onStart: " + "usuccess");
+
+                        post.setName(name);
+                        post.setOrigin(origin);
+                        post.setEaterNumber(Integer.parseInt(eaterNumber));
+                        post.setGradients(postGradientList);
+                        post.setSteps(postStepList);
+                        post.setCookingTime(Integer.parseInt(cookingTime));
+                        post.setUser(user);
+                        post.setDescription(description);
+                        post.setThumbnails(strImage);
+                        post.setStatus(1);
+
+                        repository.getService().createPost(post).enqueue(new Callback<Post>() {
+                            @Override
+                            public void onResponse(Call<Post> call, Response<Post> response) {
+                                if (response.code() == 200) {
+                                    Toast.makeText(NewRecipeActivity.this, "Success to upload new post", Toast.LENGTH_LONG).show();
+                                } else {
+                                    Toast.makeText(NewRecipeActivity.this, "Fail to upload new post", Toast.LENGTH_LONG).show();
+                                }
+                            }
+
+                            @Override
+                            public void onFailure(Call<Post> call, Throwable t) {
+
+                            }
+                        });
                     }
 
                     @Override
@@ -389,11 +390,4 @@ public class NewRecipeActivity extends AppCompatActivity implements View.OnClick
                     }
                 }
             });
-    private void initConfig() {
-        config.put("cloud_name", "dab9sgwgk");
-        config.put("api_key", "167715828929422");
-        config.put("api_secret", "Myvc7WBz-mToLmAJNBjyr9DS7as");
-//        config.put("secure", true);
-        MediaManager.init(this, config);
-    }
 }

@@ -6,22 +6,6 @@ import t2010a.cookpad_clone.model.shop.Product;
 
 public class MessageEvent {
 
-    public static class MovieEvent {
-        private Post post;
-
-        public MovieEvent(Post post) {
-            this.post = post;
-        }
-
-        public Post getMovie() {
-            return post;
-        }
-
-        public void setMovie(Post post) {
-            this.post = post;
-        }
-    }
-
     public static class ProductEvent {
         private Product product;
 
@@ -35,6 +19,22 @@ public class MessageEvent {
 
         public void setProduct(Product product) {
             this.product = product;
+        }
+    }
+
+    public static class PostEvent {
+        private Post post;
+
+        public PostEvent(Post post) {
+            this.post = post;
+        }
+
+        public Post getPost() {
+            return post;
+        }
+
+        public void setPost(Post post) {
+            this.post = post;
         }
     }
 

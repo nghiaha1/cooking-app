@@ -1,7 +1,6 @@
 package t2010a.cookpad_clone.activity;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -16,24 +15,16 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.imageview.ShapeableImageView;
-import com.synnapps.carouselview.CarouselView;
-import com.synnapps.carouselview.ImageClickListener;
-import com.synnapps.carouselview.ImageListener;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import io.bloco.faker.Faker;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 import t2010a.cookpad_clone.R;
 import t2010a.cookpad_clone.adapter.PostGradientAdapter;
 import t2010a.cookpad_clone.adapter.PostStepAdapter;
-import t2010a.cookpad_clone.model.home_client.Post;
-import t2010a.cookpad_clone.model.home_client.PostGradient;
-import t2010a.cookpad_clone.model.home_client.PostStep;
-import t2010a.cookpad_clone.repository.Repository;
+import t2010a.cookpad_clone.model.client_model.Content;
+import t2010a.cookpad_clone.model.client_model.Ingredient;
+import t2010a.cookpad_clone.model.client_model.Making;
 
 public class PostDetailActivity extends AppCompatActivity {
     private TextView tvUserFullName, tvUserUsername, tvUserAddress, tvPostTimer, tvPostTitle;
@@ -43,9 +34,9 @@ public class PostDetailActivity extends AppCompatActivity {
     private ImageView ivThumbnail;
     private ShapeableImageView ivUserAvatar;
 
-    private Post post;
-    private List<PostGradient> postGradientList = new ArrayList<>();
-    private List<PostStep> postStepList = new ArrayList<>();
+    private Content post;
+    private List<Ingredient> ingredientList = new ArrayList<>();
+    private List<Making> makingList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +45,7 @@ public class PostDetailActivity extends AppCompatActivity {
 
         initView();
 
-        post = (Post) getIntent().getSerializableExtra("POST");
+        post = (Content) getIntent().getSerializableExtra("POST");
         tvPostTitle.setText(post.getName());
         tvUserFullName.setText(post.getUser().getFullName());
         tvUserUsername.setText(post.getUser().getUsername());
@@ -72,7 +63,7 @@ public class PostDetailActivity extends AppCompatActivity {
         tvUserUsername = findViewById(R.id.tvUserUsername);
         tvUserAddress = findViewById(R.id.tvUserAddress);
         tvPostTimer = findViewById(R.id.tvPostTimer);
-        tvPostTitle = findViewById(R.id.tvPostTitle);
+        tvPostTitle = findViewById(R.id.tvFullName);
         toolbar = findViewById(R.id.toolbar);
         appBar = findViewById(R.id.appBar);
         ivThumbnail = findViewById(R.id.ivThumbnail);
@@ -87,8 +78,8 @@ public class PostDetailActivity extends AppCompatActivity {
         RecyclerView.LayoutManager layoutManager1 = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         RecyclerView.LayoutManager layoutManager2 = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
 
-        PostGradientAdapter adapter1 = new PostGradientAdapter(this, postGradientList);
-        PostStepAdapter adapter2 = new PostStepAdapter(this, postStepList);
+        PostGradientAdapter adapter1 = new PostGradientAdapter(this, ingredientList);
+        PostStepAdapter adapter2 = new PostStepAdapter(this, makingList);
 
         RecyclerView.ItemDecoration itemDecoration = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
         rvPostGradient.addItemDecoration(itemDecoration);
@@ -103,8 +94,8 @@ public class PostDetailActivity extends AppCompatActivity {
     }
 
     private void initData() {
-        postGradientList = post.getGradients();
-        postStepList = post.getSteps();
+        ingredientList = post.getIngredient();
+        makingList = post.getMaking();
 
         setSupportActionBar(toolbar);
         appBar.setOutlineProvider(null);

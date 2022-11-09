@@ -106,23 +106,36 @@
                         android:paddingVertical="20dp" />
                 </com.google.android.material.textfield.TextInputLayout>
 
-                <com.google.android.material.textfield.TextInputLayout
+<!--                <com.google.android.material.textfield.TextInputLayout-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:hint="Xuất xứ"-->
+<!--                    app:counterEnabled="true"-->
+<!--                    app:counterMaxLength="20">-->
+
+<!--                    <com.google.android.material.textfield.TextInputEditText-->
+<!--                        android:id="@+id/etOrigin"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginBottom="10dp"-->
+<!--                        android:background="@drawable/custom_edit_text_login_logout"-->
+<!--                        android:maxLength="201"-->
+<!--                        android:paddingHorizontal="15dp"-->
+<!--                        android:paddingVertical="20dp" />-->
+<!--                </com.google.android.material.textfield.TextInputLayout>-->
+
+                <AutoCompleteTextView
+                    android:id="@+id/etAutoComplete"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Xuất xứ"
-                    app:counterEnabled="true"
-                    app:counterMaxLength="20">
+                    android:textColor="@color/black"
+                    android:background="@drawable/custom_edit_text_login_logout"
+                    android:completionThreshold="1"
+                    android:paddingVertical="20dp"
+                    android:paddingHorizontal="15dp"
+                    android:layout_marginBottom="20dp"/>
 
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/etOrigin"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="10dp"
-                        android:background="@drawable/custom_edit_text_login_logout"
-                        android:maxLength="201"
-                        android:paddingHorizontal="15dp"
-                        android:paddingVertical="20dp" />
-                </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"

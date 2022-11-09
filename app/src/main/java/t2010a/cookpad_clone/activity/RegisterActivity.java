@@ -15,12 +15,12 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import t2010a.cookpad_clone.R;
 import t2010a.cookpad_clone.model.LoginResponse;
-import t2010a.cookpad_clone.model.user.User;
+import t2010a.cookpad_clone.model.client_model.User;
 import t2010a.cookpad_clone.repository.Repository;
 import t2010a.cookpad_clone.util.EditTextValidation;
 
 public class RegisterActivity extends AppCompatActivity {
-    EditText etUsername, etPassword, etRePass;
+    EditText etUsername, etPassword, etRePass, etFullName;
     Button btnRegister;
     Repository repository;
     User user = new User();
@@ -42,6 +42,7 @@ public class RegisterActivity extends AppCompatActivity {
         etUsername = findViewById(R.id.etUsername);
         etPassword = findViewById(R.id.etPassword);
         etRePass = findViewById(R.id.etRePass);
+        etFullName = findViewById(R.id.etFullName);
         btnRegister = findViewById(R.id.btnRegister);
         mScrollView = findViewById(R.id.mScrollView);
     }
@@ -54,6 +55,7 @@ public class RegisterActivity extends AppCompatActivity {
                 String username = etUsername.getText().toString().trim();
                 String password = etPassword.getText().toString();
                 String rePassword = etRePass.getText().toString();
+                String fullName = etFullName.getText().toString();
 
                 if (username.isEmpty() || password.isEmpty() || rePassword.isEmpty()) {
                     Toast.makeText(RegisterActivity.this, "Fill all the information above!", Toast.LENGTH_SHORT).show();
@@ -63,14 +65,15 @@ public class RegisterActivity extends AppCompatActivity {
                             if (password.equals(rePassword)) {
                                 user.setUsername(username);
                                 user.setPassword(password);
-                                user.setRePassword(rePassword);
+                                user.setRePass(rePassword);
+                                user.setFullName(fullName);
 
                                 repository.getService().registerUser(user).enqueue(new Callback<User>() {
                                     @Override
                                     public void onResponse(Call<User> call, Response<User> response) {
                                         if (response.code() == 200) {
                                             Toast.makeText(RegisterActivity.this, "Register success. Http code " + response.code(), Toast.LENGTH_SHORT).show();
-                                            Intent intent = new Intent(RegisterActivity.this, LoginResponse.class);
+                                            Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
                                             startActivity(intent);
 
                                         } else {

@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -20,7 +21,6 @@ import java.util.List;
 import t2010a.cookpad_clone.R;
 import t2010a.cookpad_clone.event.MessageEvent;
 import t2010a.cookpad_clone.model.shop.Product;
-import t2010a.cookpad_clone.model.user.User;
 
 public class ShopAdapter extends RecyclerView.Adapter {
     private Activity activity;
@@ -55,7 +55,7 @@ public class ShopAdapter extends RecyclerView.Adapter {
         Product model = productList.get(position);
         Glide.with(activity).load(model.getThumbnails()).into(viewHolder.ivThumbnail);
         viewHolder.tvName.setText(model.getName());
-        viewHolder.tvPrice.setText(model.getPrice().toString());
+        viewHolder.tvPrice.setText(model.getPrice().toString() + " ₫");
 
     }
 
@@ -68,30 +68,19 @@ public class ShopAdapter extends RecyclerView.Adapter {
     }
 
     public class ShopViewHolder extends RecyclerView.ViewHolder {
-        ImageView ivThumbnail, ivFavourite;
+        ImageView ivThumbnail;
+        CheckBox cbFavourite;
         TextView tvName, tvPrice;
         public ShopViewHolder(@NonNull View itemView) {
             super(itemView);
             ivThumbnail = itemView.findViewById(R.id.ivThumbnail);
-            ivFavourite = itemView.findViewById(R.id.ivFavourite);
+            cbFavourite = itemView.findViewById(R.id.cbFavourite);
             tvName = itemView.findViewById(R.id.tvName);
             tvPrice = itemView.findViewById(R.id.tvPrice);
 
-            ivThumbnail.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Product product = productList.get(getAdapterPosition());
-                    EventBus.getDefault().post(new MessageEvent.ProductEvent(product));
-                }
-            });
+            if (cbFavourite.isChecked()) {
 
-            ivFavourite.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    ivFavourite.setColorFilter(ContextCompat.getColor(activity, R.color.red));
-                }
-            });
-
+            }
         }
     }
 }

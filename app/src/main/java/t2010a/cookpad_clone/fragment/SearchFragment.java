@@ -2,18 +2,17 @@ package t2010a.cookpad_clone.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Toast;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -30,15 +29,14 @@ import t2010a.cookpad_clone.R;
 import t2010a.cookpad_clone.activity.PostDetailActivity;
 import t2010a.cookpad_clone.adapter.SearchAdapter;
 import t2010a.cookpad_clone.event.MessageEvent;
-import t2010a.cookpad_clone.model.home_client.HomeModel;
-import t2010a.cookpad_clone.model.home_client.Post;
-import t2010a.cookpad_clone.model.user.User;
+import t2010a.cookpad_clone.model.client_model.Content;
+import t2010a.cookpad_clone.model.client_model.HomeModel;
 import t2010a.cookpad_clone.repository.Repository;
 
 public class SearchFragment extends Fragment {
     private View itemView;
     private RecyclerView rvSearch;
-    private List<Post> postList = new ArrayList<>();
+    private List<Content> contentList = new ArrayList<>();
     private Repository repository = Repository.getInstance();
     private SearchAdapter adapter;
     private SearchView searchView;
@@ -60,7 +58,7 @@ public class SearchFragment extends Fragment {
         initData();
 
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity(), RecyclerView.VERTICAL, false);
-        adapter = new SearchAdapter(getActivity(), postList);
+        adapter = new SearchAdapter(getActivity(), contentList);
 
         RecyclerView.ItemDecoration itemDecoration = new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL);
         rvSearch.addItemDecoration(itemDecoration);
@@ -74,8 +72,8 @@ public class SearchFragment extends Fragment {
             @Override
             public void onResponse(Call<HomeModel> call, Response<HomeModel> response) {
                 if (response.code() == 200) {
-                    postList = response.body().getContent();
-                    adapter.reloadData(postList);
+                    contentList = response.body().getContent();
+                    adapter.reloadData(contentList);
                     Toast.makeText(getActivity(), "Success", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -104,8 +102,8 @@ public class SearchFragment extends Fragment {
     }
 
     private void filterList(String text) {
-        List<Post> filteredList = new ArrayList<>();
-        for (Post item : postList) {
+        List<Content> filteredList = new ArrayList<>();
+        for (Content item : contentList) {
             if (item.getName().toLowerCase().contains(text.toLowerCase())) {
                 filteredList.add(item);
             } else if (item.getUser().getFullName().toLowerCase(Locale.ROOT).contains(text.toLowerCase(Locale.ROOT))) {
@@ -121,17 +119,17 @@ public class SearchFragment extends Fragment {
         }
     }
 
-    private void toPostDetail(Post post) {
+    private void toPostDetail(Content content) {
         Intent intent = new Intent(getActivity(), PostDetailActivity.class);
         Log.d("TAG", "toPostDetail: ");
-        intent.putExtra("POST", post);
+        intent.putExtra("POST", content);
         startActivity(intent);
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onMessageEvent(MessageEvent.PostEvent movieEvent) {
-        Post post = movieEvent.getPost();
-        toPostDetail(post);
+        Content content = movieEvent.getPost();
+        toPostDetail(content);
     }
 
     @Override

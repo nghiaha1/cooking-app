@@ -1,12 +1,11 @@
 package t2010a.cookpad_clone.local_data;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 
 import com.google.gson.Gson;
 
 import t2010a.cookpad_clone.model.LoginResponse;
-import t2010a.cookpad_clone.model.user.User;
+import t2010a.cookpad_clone.model.client_model.User;
 
 public class LocalDataManager {
     private static final String PREF_LOGIN_RES = "PREF_LOGIN_RES";
@@ -53,7 +52,8 @@ public class LocalDataManager {
     }
 
     public static void clearData() {
-        LocalDataManager.getInstance().mySharedPreferences.delStringValue();
+        LocalDataManager.getInstance().mySharedPreferences.delStringValue(PREF_LOGIN_RES);
+        LocalDataManager.getInstance().mySharedPreferences.delStringValue(TOKEN);
     }
 
     public static void setAccessToken(String accessToken) {

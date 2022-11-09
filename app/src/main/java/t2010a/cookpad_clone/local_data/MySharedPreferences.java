@@ -23,10 +23,10 @@ public class MySharedPreferences {
         return sharedPreferences.getString(key, "");
     }
 
-    public void delStringValue() {
+    public void delStringValue(String key) {
         SharedPreferences sharedPreferences = mContext.getSharedPreferences(MY_SHARE_PREF, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.clear();
+        editor.remove(key);
         editor.apply();
     }
 

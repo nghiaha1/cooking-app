@@ -10,6 +10,8 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -49,24 +51,26 @@ import t2010a.cookpad_clone.R;
 import t2010a.cookpad_clone.adapter.NewRecipeGradientAdapter;
 import t2010a.cookpad_clone.adapter.NewRecipeStepAdapter;
 import t2010a.cookpad_clone.local_data.LocalDataManager;
-import t2010a.cookpad_clone.model.home_client.Post;
-import t2010a.cookpad_clone.model.home_client.PostGradient;
-import t2010a.cookpad_clone.model.home_client.PostStep;
-import t2010a.cookpad_clone.model.user.User;
+import t2010a.cookpad_clone.model.client_model.Content;
+import t2010a.cookpad_clone.model.client_model.Ingredient;
+import t2010a.cookpad_clone.model.client_model.Making;
+import t2010a.cookpad_clone.model.client_model.User;
 import t2010a.cookpad_clone.repository.Repository;
+
 
 public class NewRecipeActivity extends AppCompatActivity implements View.OnClickListener {
     private LinearLayout addGradient, addStep;
     private RelativeLayout layoutUploadImg;
     private RecyclerView rvNewRecipeGradient, rvNewRecipeStep;
-    private TextInputEditText etName, etOrigin, etEaterNumber, etCookingTime, etDescription;
+    private TextInputEditText etName, etEaterNumber, etCookingTime, etDescription;
+    private AutoCompleteTextView etOrigin;
     private Toolbar toolbar;
     private AppBarLayout appBar;
     private ImageView imageView;
 
-    private List<PostGradient> postGradientList = new ArrayList<>();
+    private List<Ingredient> ingredientList = new ArrayList<>();
     private NewRecipeGradientAdapter adapter;
-    private List<PostStep> postStepList = new ArrayList<>();
+    private List<Making> makingList = new ArrayList<>();
     private NewRecipeStepAdapter adapter1;
     private User user;
 
@@ -77,6 +81,7 @@ public class NewRecipeActivity extends AppCompatActivity implements View.OnClick
     private static int IMAGE_REQ = 1;
     private Uri imagePath;
     Map config = new HashMap();
+    private String[] countries;
 
 
     @Override
@@ -102,7 +107,7 @@ public class NewRecipeActivity extends AppCompatActivity implements View.OnClick
         rvNewRecipeGradient = findViewById(R.id.rvNewRecipeGradient);
         rvNewRecipeStep = findViewById(R.id.rvNewRecipeStep);
         etName = findViewById(R.id.etName);
-        etOrigin = findViewById(R.id.etOrigin);
+        etOrigin = findViewById(R.id.etAutoComplete);
         etEaterNumber = findViewById(R.id.etEaterNumber);
         etCookingTime = findViewById(R.id.etCookingTime);
         etDescription = findViewById(R.id.etDescription);
@@ -111,16 +116,20 @@ public class NewRecipeActivity extends AppCompatActivity implements View.OnClick
         imageView = findViewById(R.id.imageView);
         layoutUploadImg = findViewById(R.id.layoutUploadImg);
 
+        countries = getResources().getStringArray(R.array.countries);
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, countries);
+        etOrigin.setAdapter(arrayAdapter);
+
         user = LocalDataManager.getUserDetail();
 
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this, RecyclerView.VERTICAL, false);
         RecyclerView.LayoutManager layoutManager1 = new LinearLayoutManager(this, RecyclerView.VERTICAL, false);
 
-        postGradientList = populateGradientsList();
-        postStepList = populateStepList();
+        ingredientList = populateGradientsList();
+        makingList = populateStepList();
 
-        adapter = new NewRecipeGradientAdapter(this, postGradientList);
-        adapter1 = new NewRecipeStepAdapter(this, postStepList);
+        adapter = new NewRecipeGradientAdapter(this, ingredientList);
+        adapter1 = new NewRecipeStepAdapter(this, makingList);
 
         rvNewRecipeGradient.setLayoutManager(layoutManager);
         rvNewRecipeGradient.setAdapter(adapter);
@@ -130,24 +139,24 @@ public class NewRecipeActivity extends AppCompatActivity implements View.OnClick
 
     }
 
-    private void setAddGradient(PostGradient postGradient) {
-        postGradientList.add(postGradient);
-        adapter.notifyItemInserted(postGradientList.size() + 1);
-        for (int i = 0; i < postGradientList.size(); i++) {
-            Log.d("TAG", "Id " + i + " " + postGradientList.get(i).getId());
+    private void setAddGradient(Ingredient postGradient) {
+        ingredientList.add(postGradient);
+        adapter.notifyItemInserted(ingredientList.size() + 1);
+        for (int i = 0; i < ingredientList.size(); i++) {
+            Log.d("TAG", "Id " + i + " " + ingredientList.get(i).getId());
         }
     }
 
-    private void setAddStep(PostStep postStep) {
-        postStepList.add(postStep);
-        adapter1.notifyItemInserted(postStepList.size() + 1);
-        for (int i = 0; i < postStepList.size(); i++) {
-            Log.d("TAG", "Id " + i + " " + postStepList.get(i).getId());
+    private void setAddStep(Making making) {
+        makingList.add(making);
+        adapter1.notifyItemInserted(makingList.size() + 1);
+        for (int i = 0; i < makingList.size(); i++) {
+            Log.d("TAG", "Id " + i + " " + makingList.get(i).getId());
         }
     }
 
     private void setUploadPost() {
-        Post post = new Post();
+        Content post = new Content();
         String name = etName.getText().toString().toLowerCase(Locale.ROOT).trim();
         String origin = etOrigin.getText().toString().toLowerCase(Locale.ROOT).trim();
         String eaterNumber = etEaterNumber.getText().toString().toLowerCase(Locale.ROOT).trim();
@@ -177,19 +186,18 @@ public class NewRecipeActivity extends AppCompatActivity implements View.OnClick
 
                         post.setName(name);
                         post.setOrigin(origin);
-                        post.setEaterNumber(Integer.parseInt(eaterNumber));
-                        post.setGradients(postGradientList);
-                        post.setSteps(postStepList);
+                        post.setEater(Integer.parseInt(eaterNumber));
+                        post.setIngredient(ingredientList);
+                        post.setMaking(makingList);
                         post.setCookingTime(Integer.parseInt(cookingTime));
                         post.setUser(user);
                         post.setDescription(description);
                         post.setThumbnails(strImage);
-
                         post.setStatus(1);
 
-                        repository.getService().createPost(post).enqueue(new Callback<Post>() {
+                        repository.getService().createPost(post).enqueue(new Callback<Content>() {
                             @Override
-                            public void onResponse(Call<Post> call, Response<Post> response) {
+                            public void onResponse(Call<Content> call, Response<Content> response) {
                                 if (response.code() == 200) {
                                     Toast.makeText(NewRecipeActivity.this, "Success to upload new post", Toast.LENGTH_LONG).show();
                                 } else {
@@ -198,7 +206,7 @@ public class NewRecipeActivity extends AppCompatActivity implements View.OnClick
                             }
 
                             @Override
-                            public void onFailure(Call<Post> call, Throwable t) {
+                            public void onFailure(Call<Content> call, Throwable t) {
 
                             }
                         });
@@ -221,7 +229,7 @@ public class NewRecipeActivity extends AppCompatActivity implements View.OnClick
     }
 
     private void setSavePost() {
-        Post post = new Post();
+        Content content = new Content();
 
         String name = etName.getText().toString().toLowerCase(Locale.ROOT).trim();
         String origin = etOrigin.getText().toString().toLowerCase(Locale.ROOT).trim();
@@ -234,29 +242,29 @@ public class NewRecipeActivity extends AppCompatActivity implements View.OnClick
         if (name.isEmpty() || origin.isEmpty() || eaterNumber.isEmpty() || cookingTime.isEmpty() || description.isEmpty()) {
             Toast.makeText(this, "Something is wrong", Toast.LENGTH_SHORT).show();
         } else {
-            post.setName(name);
-            post.setOrigin(origin);
-            post.setEaterNumber(Integer.parseInt(eaterNumber));
-            post.setGradients(postGradientList);
-            post.setSteps(postStepList);
-            post.setCookingTime(Integer.parseInt(cookingTime));
-            post.setUser(user);
-            post.setDescription(description);
-            post.setCreatedAt(LocalDateTime.now());
-            post.setStatus(0);
+            content.setName(name);
+            content.setOrigin(origin);
+            content.setEater(Integer.parseInt(eaterNumber));
+            content.setIngredient(ingredientList);
+            content.setMaking(makingList);
+            content.setCookingTime(Integer.parseInt(cookingTime));
+            content.setUser(user);
+            content.setDescription(description);
+            content.setCreatedAt(LocalDateTime.now());
+            content.setStatus(0);
 
-            repository.getService().createPost(post).enqueue(new Callback<Post>() {
+            repository.getService().createPost(content).enqueue(new Callback<Content>() {
                 @Override
-                public void onResponse(Call<Post> call, Response<Post> response) {
+                public void onResponse(Call<Content> call, Response<Content> response) {
                     if (response.code() == 200) {
-                        Toast.makeText(NewRecipeActivity.this, "Success to upload new post", Toast.LENGTH_LONG).show();
+                        Toast.makeText(NewRecipeActivity.this, "Success to upload new content", Toast.LENGTH_LONG).show();
                     } else {
-                        Toast.makeText(NewRecipeActivity.this, "Fail to upload new post", Toast.LENGTH_LONG).show();
+                        Toast.makeText(NewRecipeActivity.this, "Fail to upload new content", Toast.LENGTH_LONG).show();
                     }
                 }
 
                 @Override
-                public void onFailure(Call<Post> call, Throwable t) {
+                public void onFailure(Call<Content> call, Throwable t) {
 
                 }
             });
@@ -294,22 +302,22 @@ public class NewRecipeActivity extends AppCompatActivity implements View.OnClick
         }
     }
 
-    private List<PostGradient> populateGradientsList() {
-        List<PostGradient> list = new ArrayList<>();
-        for (int i = 0; i < postGradientList.size(); i++) {
-            PostGradient postGradient = new PostGradient();
-            postGradient.setDetail(String.valueOf(i));
-            list.add(postGradient);
+    private List<Ingredient> populateGradientsList() {
+        List<Ingredient> list = new ArrayList<>();
+        for (int i = 0; i < ingredientList.size(); i++) {
+            Ingredient ingredient = new Ingredient();
+            ingredient.setName(String.valueOf(i));
+            list.add(ingredient);
         }
         return list;
     }
 
-    private List<PostStep> populateStepList() {
-        List<PostStep> list = new ArrayList<>();
-        for (int i = 0; i < postGradientList.size(); i++) {
-            PostStep postStep = new PostStep();
-            postStep.setDetail(String.valueOf(i));
-            list.add(postStep);
+    private List<Making> populateStepList() {
+        List<Making> list = new ArrayList<>();
+        for (int i = 0; i < ingredientList.size(); i++) {
+            Making making = new Making();
+            making.setName(String.valueOf(i));
+            list.add(making);
         }
         return list;
     }
@@ -343,12 +351,12 @@ public class NewRecipeActivity extends AppCompatActivity implements View.OnClick
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.addGradient:
-                setAddGradient(new PostGradient());
-                adapter.reloadData(postGradientList);
+                setAddGradient(new Ingredient());
+                adapter.reloadData(ingredientList);
                 break;
             case R.id.addStep:
-                setAddStep(new PostStep());
-                adapter1.reloadData(postStepList);
+                setAddStep(new Making());
+                adapter1.reloadData(makingList);
                 break;
             case R.id.layoutUploadImg:
                 requestPermission();

@@ -1,7 +1,5 @@
 package t2010a.cookpad_clone.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,6 +9,8 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.android.material.textfield.TextInputEditText;
 
 import retrofit2.Call;
@@ -19,7 +19,7 @@ import retrofit2.Response;
 import t2010a.cookpad_clone.R;
 import t2010a.cookpad_clone.local_data.LocalDataManager;
 import t2010a.cookpad_clone.model.LoginResponse;
-import t2010a.cookpad_clone.model.user.User;
+import t2010a.cookpad_clone.model.client_model.User;
 import t2010a.cookpad_clone.repository.Repository;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {

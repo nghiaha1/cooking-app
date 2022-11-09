@@ -14,22 +14,21 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.textfield.TextInputEditText;
 
 import java.util.List;
-import java.util.Locale;
 
 import t2010a.cookpad_clone.R;
-import t2010a.cookpad_clone.model.home_client.PostStep;
+import t2010a.cookpad_clone.model.client_model.Making;
 
 public class NewRecipeStepAdapter extends RecyclerView.Adapter {
     private Activity activity;
-    private List<PostStep> postStepList;
+    private List<Making> makingList;
 
-    public NewRecipeStepAdapter(Activity activity, List<PostStep> postStepList) {
+    public NewRecipeStepAdapter(Activity activity, List<Making> makingList) {
         this.activity = activity;
-        this.postStepList = postStepList;
+        this.makingList = makingList;
     }
 
-    public void reloadData(List<PostStep> postStepList) {
-        this.postStepList = postStepList;
+    public void reloadData(List<Making> makingList) {
+        this.makingList = makingList;
         notifyDataSetChanged();
     }
 
@@ -44,7 +43,7 @@ public class NewRecipeStepAdapter extends RecyclerView.Adapter {
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         NewRecipeStepViewHolder viewHolder = (NewRecipeStepViewHolder) holder;
-        PostStep model = postStepList.get(position);
+        Making model = makingList.get(position);
         viewHolder.etStepDetail.setHint("Bước " + (position + 1));
         viewHolder.tvPostStepId.setText("" + (position + 1));
 //        String stepDetail = viewHolder.etStepDetail.getText().toString().toLowerCase(Locale.ROOT).trim();
@@ -56,16 +55,16 @@ public class NewRecipeStepAdapter extends RecyclerView.Adapter {
             @Override
             public void onClick(View v) {
 
-                postStepList.remove(holder.getAdapterPosition());
-                reloadData(postStepList);
+                makingList.remove(holder.getAdapterPosition());
+                reloadData(makingList);
             }
         });
     }
 
     @Override
     public int getItemCount() {
-        if (postStepList != null) {
-            return postStepList.size();
+        if (makingList != null) {
+            return makingList.size();
         }
         return 0;
     }
@@ -88,7 +87,7 @@ public class NewRecipeStepAdapter extends RecyclerView.Adapter {
 
                 @Override
                 public void onTextChanged(CharSequence s, int start, int before, int count) {
-                    postStepList.get(getAdapterPosition()).setDetail(etStepDetail.getText().toString());
+                    makingList.get(getAdapterPosition()).setName(etStepDetail.getText().toString());
                 }
 
                 @Override

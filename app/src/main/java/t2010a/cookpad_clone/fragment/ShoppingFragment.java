@@ -22,7 +22,6 @@ import java.util.Locale;
 import t2010a.cookpad_clone.R;
 import t2010a.cookpad_clone.adapter.ShopAdapter;
 import t2010a.cookpad_clone.model.shop.Product;
-import t2010a.cookpad_clone.model.user.User;
 
 public class ShoppingFragment extends Fragment {
     private View itemView;

@@ -19,18 +19,18 @@ import java.util.List;
 
 import t2010a.cookpad_clone.R;
 import t2010a.cookpad_clone.event.MessageEvent;
-import t2010a.cookpad_clone.model.home_client.Post;
+import t2010a.cookpad_clone.model.client_model.Content;
 
 public class HomeAdapter extends RecyclerView.Adapter {
     private Activity activity;
-    private List<Post> postList;
+    private List<Content> postList;
 
-    public HomeAdapter(Activity activity, List<Post> postList) {
+    public HomeAdapter(Activity activity, List<Content> contentList) {
         this.activity = activity;
-        this.postList = postList;
+        this.postList = contentList;
     }
 
-    public void reloadData(List<Post> list) {
+    public void reloadData(List<Content> list) {
         postList = list;
         notifyDataSetChanged();
     }
@@ -46,7 +46,7 @@ public class HomeAdapter extends RecyclerView.Adapter {
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         HomeViewHolder viewHolder = (HomeViewHolder) holder;
-        Post model = postList.get(position);
+        Content model = postList.get(position);
         Glide.with(activity).load(model.getUser().getAvatar()).into(viewHolder.ivAvatar);
         viewHolder.tvFullName.setText(model.getUser().getFullName());
         viewHolder.tvEmail.setText(model.getUser().getEmail());
@@ -70,7 +70,7 @@ public class HomeAdapter extends RecyclerView.Adapter {
         public HomeViewHolder(@NonNull View itemView) {
             super(itemView);
             ivAvatar = itemView.findViewById(R.id.ivAvatar);
-            tvFullName = itemView.findViewById(R.id.tvPostTitle);
+            tvFullName = itemView.findViewById(R.id.tvFullName);
             tvEmail = itemView.findViewById(R.id.tvPostDescription);
             ivThumbnail = itemView.findViewById(R.id.ivThumbnail);
             tvDescription = itemView.findViewById(R.id.tvDescription);
@@ -79,8 +79,8 @@ public class HomeAdapter extends RecyclerView.Adapter {
                 @Override
                 public void onClick(View v) {
                     Log.d("TAG", "onClick: "+ getAdapterPosition());
-                    Post post = postList.get(getAdapterPosition());
-                    EventBus.getDefault().post(new MessageEvent.PostEvent(post));
+                    Content content = postList.get(getAdapterPosition());
+                    EventBus.getDefault().post(new MessageEvent.PostEvent(content));
                 }
             });
         }

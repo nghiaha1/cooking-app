@@ -12,20 +12,20 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="40dp">
-        
+
         <TextView
-            android:id="@+id/tvPostTitle"
+            android:id="@+id/tvFullName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Full name"
-            android:textSize="25sp"
-            android:textColor="@color/black"/>
+            android:textColor="@color/black"
+            android:textSize="25sp" />
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/ivAvatar"
             android:layout_width="102dp"
             android:layout_height="102dp"
-            android:layout_below="@+id/tvPostTitle"
+            android:layout_below="@+id/tvFullName"
             android:src="@drawable/ic_profile_black"
             app:shapeAppearanceOverlay="@style/roundedImageViewRounded"
             android:cropToPadding="true"
@@ -39,7 +39,7 @@
             android:id="@+id/tvUsername"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/tvPostTitle"
+            android:layout_below="@+id/tvFullName"
             android:layout_marginStart="10dp"
             android:layout_marginTop="58dp"
             android:layout_toEndOf="@+id/ivAvatar"

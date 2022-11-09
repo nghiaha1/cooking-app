@@ -12,15 +12,15 @@ import java.util.List;
 
 import t2010a.cookpad_clone.R;
 import t2010a.cookpad_clone.activity.PostDetailActivity;
-import t2010a.cookpad_clone.model.home_client.PostGradient;
+import t2010a.cookpad_clone.model.client_model.Ingredient;
 
 public class PostGradientAdapter extends RecyclerView.Adapter {
     private Activity activity;
-    private List<PostGradient> postGradientList;
+    private List<Ingredient> ingredientList;
 
-    public PostGradientAdapter(PostDetailActivity activity, List<PostGradient> postGradientList) {
+    public PostGradientAdapter(PostDetailActivity activity, List<Ingredient> ingredientList) {
         this.activity = activity;
-        this.postGradientList = postGradientList;
+        this.ingredientList = ingredientList;
     }
 
     @NonNull
@@ -34,23 +34,23 @@ public class PostGradientAdapter extends RecyclerView.Adapter {
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         PostGradientViewHolder viewHolder = (PostGradientViewHolder) holder;
-        PostGradient model = postGradientList.get(position);
-        viewHolder.tv_post_ingredient.setText(model.getDetail());
+        Ingredient model = ingredientList.get(position);
+        viewHolder.tvPostIngredient.setText(model.getName());
     }
 
     @Override
     public int getItemCount() {
-        if (postGradientList != null) {
-            return postGradientList.size();
+        if (ingredientList != null) {
+            return ingredientList.size();
         }
         return 0;
     }
 
     public class PostGradientViewHolder extends RecyclerView.ViewHolder {
-        TextView tv_post_ingredient;
+        TextView tvPostIngredient;
         public PostGradientViewHolder(@NonNull View itemView) {
             super(itemView);
-            tv_post_ingredient = itemView.findViewById(R.id.tv_post_ingredient);
+            tvPostIngredient = itemView.findViewById(R.id.tvPostIngredient);
         }
     }
 }

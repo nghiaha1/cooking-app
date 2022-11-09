@@ -12,25 +12,23 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.textfield.TextInputEditText;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 import t2010a.cookpad_clone.R;
 import t2010a.cookpad_clone.activity.NewRecipeActivity;
-import t2010a.cookpad_clone.model.home_client.PostGradient;
+import t2010a.cookpad_clone.model.client_model.Ingredient;
 
 public class NewRecipeGradientAdapter extends RecyclerView.Adapter {
     private Activity activity;
-    private List<PostGradient> postGradientList;
+    private List<Ingredient> ingredientList;
 
-    public NewRecipeGradientAdapter(NewRecipeActivity activity, List<PostGradient> postGradientList) {
+    public NewRecipeGradientAdapter(NewRecipeActivity activity, List<Ingredient> ingredientList) {
         this.activity = activity;
-        this.postGradientList = postGradientList;
+        this.ingredientList = ingredientList;
     }
 
-    public void reloadData(List<PostGradient> postGradientList) {
-        this.postGradientList = postGradientList;
+    public void reloadData(List<Ingredient> ingredientList) {
+        this.ingredientList = ingredientList;
         notifyDataSetChanged();
     }
 
@@ -45,22 +43,22 @@ public class NewRecipeGradientAdapter extends RecyclerView.Adapter {
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         NewRecipeGradientViewHolder viewHolder = (NewRecipeGradientViewHolder) holder;
-        PostGradient model = postGradientList.get(position);
+        Ingredient model = ingredientList.get(position);
         viewHolder.etGradientDetail.setHint("Nguyên liệu " + (position + 1));
 
         viewHolder.ivRemoveItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                postGradientList.remove(holder.getAdapterPosition());
-                reloadData(postGradientList);
+                ingredientList.remove(holder.getAdapterPosition());
+                reloadData(ingredientList);
             }
         });
     }
 
     @Override
     public int getItemCount() {
-        if (postGradientList != null) {
-            return postGradientList.size();
+        if (ingredientList != null) {
+            return ingredientList.size();
         }
         return 0;
     }
@@ -82,7 +80,7 @@ public class NewRecipeGradientAdapter extends RecyclerView.Adapter {
 
                 @Override
                 public void onTextChanged(CharSequence s, int start, int before, int count) {
-                    postGradientList.get(getAdapterPosition()).setDetail(etGradientDetail.getText().toString());
+                    ingredientList.get(getAdapterPosition()).setName(etGradientDetail.getText().toString());
                 }
 
                 @Override

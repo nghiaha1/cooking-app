@@ -34,13 +34,13 @@ import t2010a.cookpad_clone.R;
 import t2010a.cookpad_clone.activity.PostDetailActivity;
 import t2010a.cookpad_clone.adapter.HomeAdapter;
 import t2010a.cookpad_clone.event.MessageEvent;
-import t2010a.cookpad_clone.model.home_client.HomeModel;
-import t2010a.cookpad_clone.model.home_client.Post;
+import t2010a.cookpad_clone.model.client_model.Content;
+import t2010a.cookpad_clone.model.client_model.HomeModel;
 import t2010a.cookpad_clone.repository.Repository;
 
 public class HomeFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
     private View itemView;
-    private List<Post> postList = new ArrayList<>();
+    private List<Content> contentList;
     private Repository repository = Repository.getInstance();
     private CarouselView carouselView;
     int[] sampleImages = {R.drawable.banner1,
@@ -71,7 +71,7 @@ public class HomeFragment extends Fragment implements SwipeRefreshLayout.OnRefre
         initData();
 
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity(), RecyclerView.VERTICAL, true);
-        adapter = new HomeAdapter(getActivity(), postList);
+        adapter = new HomeAdapter(getActivity(), contentList);
 
         RecyclerView.ItemDecoration itemDecoration = new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL);
         rvHome.addItemDecoration(itemDecoration);
@@ -96,13 +96,16 @@ public class HomeFragment extends Fragment implements SwipeRefreshLayout.OnRefre
         });
     }
 
-    private List<Post> initData() {
+    private List<Content> initData() {
+        contentList = new ArrayList<>();
         repository.getService().getPostList().enqueue(new Callback<HomeModel>() {
             @Override
             public void onResponse(Call<HomeModel> call, Response<HomeModel> response) {
-                if (response.code() == 200) {
-                    postList = response.body().getContent();
-                    adapter.reloadData(postList);
+                if (response.code() != 200) {
+                    Toast.makeText(getActivity(), "Fail", Toast.LENGTH_SHORT).show();
+                } else {
+                    contentList = response.body().getContent();
+                    adapter.reloadData(contentList);
                     Toast.makeText(getActivity(), "Success", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -112,10 +115,10 @@ public class HomeFragment extends Fragment implements SwipeRefreshLayout.OnRefre
 
             }
         });
-        return postList;
+        return contentList;
     }
 
-    private void toPostDetail(Post post) {
+    private void toPostDetail(Content post) {
         Intent intent = new Intent(getActivity(), PostDetailActivity.class);
         intent.putExtra("POST", post);
         Log.d("TAG", "toPostDetail search: ");
@@ -124,8 +127,8 @@ public class HomeFragment extends Fragment implements SwipeRefreshLayout.OnRefre
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onMessageEvent(MessageEvent.PostEvent movieEvent) {
-        Post post = movieEvent.getPost();
-        toPostDetail(post);
+        Content content = movieEvent.getPost();
+        toPostDetail(content);
     }
 
     @Override

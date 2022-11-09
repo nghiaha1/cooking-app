@@ -11,15 +11,15 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 import t2010a.cookpad_clone.R;
-import t2010a.cookpad_clone.model.home_client.PostStep;
+import t2010a.cookpad_clone.model.client_model.Making;
 
 public class PostStepAdapter extends RecyclerView.Adapter {
     private Activity activity;
-    private List<PostStep> postStepList;
+    private List<Making> makingList;
 
-    public PostStepAdapter(Activity activity, List<PostStep> postStepList) {
+    public PostStepAdapter(Activity activity, List<Making> makingList) {
         this.activity = activity;
-        this.postStepList = postStepList;
+        this.makingList = makingList;
     }
 
     @NonNull
@@ -33,15 +33,15 @@ public class PostStepAdapter extends RecyclerView.Adapter {
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         PostStepViewHolder viewHolder = (PostStepViewHolder) holder;
-        PostStep model = postStepList.get(position);
+        Making model = makingList.get(position);
         viewHolder.tvPostStepId.setText(Integer.toString((position + 1)));
-        viewHolder.tvPostStepDetail.setText(model.getDetail());
+        viewHolder.tvPostStepDetail.setText(model.getName());
     }
 
     @Override
     public int getItemCount() {
-        if (postStepList != null) {
-            return postStepList.size();
+        if (makingList != null) {
+            return makingList.size();
         }
         return 0;
     }

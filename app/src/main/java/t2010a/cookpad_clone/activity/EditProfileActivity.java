@@ -1,7 +1,5 @@
 package t2010a.cookpad_clone.activity;
 
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -23,7 +21,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import t2010a.cookpad_clone.R;
 import t2010a.cookpad_clone.local_data.LocalDataManager;
-import t2010a.cookpad_clone.model.user.User;
+import t2010a.cookpad_clone.model.client_model.User;
 import t2010a.cookpad_clone.repository.Repository;
 
 public class EditProfileActivity extends AppCompatActivity implements View.OnClickListener {
@@ -60,11 +58,19 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
 
     private void initData() {
         user = LocalDataManager.getUserDetail();
-        etProfileFullName.setText(user.getFullName());
-        etProfileAddress.setText(user.getAddress());
-        etProfilePhone.setText(user.getPhone());
-        etProfileEmail.setText(user.getEmail());
-        etProfileDetail.setText(user.getDetail());
+        if (user == null) {
+            etProfileFullName.setText("");
+            etProfileAddress.setText("");
+            etProfilePhone.setText("");
+            etProfileEmail.setText("");
+            etProfileDetail.setText("");
+        } else {
+            etProfileFullName.setText(user.getFullName());
+            etProfileAddress.setText(user.getAddress());
+            etProfilePhone.setText(user.getPhone());
+            etProfileEmail.setText(user.getEmail());
+            etProfileDetail.setText(user.getDetail());
+        }
 
         setSupportActionBar(toolbar);
         appBar.setOutlineProvider(null);

@@ -1,7 +1,7 @@
 package t2010a.cookpad_clone.event;
 
 
-import t2010a.cookpad_clone.model.home_client.Post;
+import t2010a.cookpad_clone.model.client_model.Content;
 import t2010a.cookpad_clone.model.shop.Product;
 
 public class MessageEvent {
@@ -23,17 +23,17 @@ public class MessageEvent {
     }
 
     public static class PostEvent {
-        private Post post;
+        private Content post;
 
-        public PostEvent(Post post) {
+        public PostEvent(Content post) {
             this.post = post;
         }
 
-        public Post getPost() {
+        public Content getPost() {
             return post;
         }
 
-        public void setPost(Post post) {
+        public void setPost(Content post) {
             this.post = post;
         }
     }

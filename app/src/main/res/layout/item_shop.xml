@@ -57,15 +57,12 @@
                         android:layout_marginBottom="15dp"/>
                 </LinearLayout>
 
-                <ImageView
-                    android:id="@+id/ivFavourite"
-                    android:layout_width="28dp"
-                    android:layout_height="28dp"
-                    android:layout_weight=".10"
-                    android:src="@drawable/ic_heart"
-                    app:tint="@color/custom_color_favourite"
-                    android:clickable="true"
-                    android:focusable="true" />
+                <CheckBox
+                    android:id="@+id/cbFavourite"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_weight="0.05"
+                    android:button="@drawable/custom_checkbox"/>
             </LinearLayout>
         </LinearLayout>
     </androidx.cardview.widget.CardView>

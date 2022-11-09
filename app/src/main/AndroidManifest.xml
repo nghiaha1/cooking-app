@@ -16,6 +16,13 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="32">
         <activity
+            android:name=".ProductDetailActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".EditProfileActivity"
             android:exported="false">
             <meta-data
@@ -74,11 +81,9 @@
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
-
         <meta-data
             android:name="CLOUDINARY_URL"
             android:value="cloudinary://167715828929422:Myvc7WBz-mToLmAJNBjyr9DS7as@dab9sgwgk" />
-
         <meta-data
             android:name="android.app.lib_name"
             android:value="" />

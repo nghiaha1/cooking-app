@@ -34,6 +34,7 @@ import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.textfield.TextInputEditText;
 import com.squareup.picasso.Picasso;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -183,6 +184,7 @@ public class NewRecipeActivity extends AppCompatActivity implements View.OnClick
                         post.setUser(user);
                         post.setDescription(description);
                         post.setThumbnails(strImage);
+
                         post.setStatus(1);
 
                         repository.getService().createPost(post).enqueue(new Callback<Post>() {
@@ -240,6 +242,7 @@ public class NewRecipeActivity extends AppCompatActivity implements View.OnClick
             post.setCookingTime(Integer.parseInt(cookingTime));
             post.setUser(user);
             post.setDescription(description);
+            post.setCreatedAt(LocalDateTime.now());
             post.setStatus(0);
 
             repository.getService().createPost(post).enqueue(new Callback<Post>() {

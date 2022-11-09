@@ -4,6 +4,7 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Set;
 
@@ -50,10 +51,14 @@ public class Post implements Serializable {
     @Expose
     private int cookingTime;
 
+    private LocalDateTime createdAt;
+    private LocalDateTime updatedAt;
+    private LocalDateTime deletedAt;
+
     public Post() {
     }
 
-    public Post(int id, User user, List<PostGradient> gradients, List<PostStep> steps, String name, String description, String thumbnails, String detail, int likes, int status, String origin, int eaterNumber, int cookingTime) {
+    public Post(int id, User user, List<PostGradient> gradients, List<PostStep> steps, String name, String description, String thumbnails, String detail, int likes, int status, String origin, int eaterNumber, int cookingTime, LocalDateTime createdAt, LocalDateTime updatedAt, LocalDateTime deletedAt) {
         this.id = id;
         this.user = user;
         this.gradients = gradients;
@@ -67,12 +72,9 @@ public class Post implements Serializable {
         this.origin = origin;
         this.eaterNumber = eaterNumber;
         this.cookingTime = cookingTime;
-    }
-
-    public Post(String name, String thumbnails, String detail) {
-        this.name = name;
-        this.thumbnails = thumbnails;
-        this.detail = detail;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
+        this.deletedAt = deletedAt;
     }
 
     public int getId() {
@@ -179,6 +181,30 @@ public class Post implements Serializable {
         this.cookingTime = cookingTime;
     }
 
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public LocalDateTime getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(LocalDateTime updatedAt) {
+        this.updatedAt = updatedAt;
+    }
+
+    public LocalDateTime getDeletedAt() {
+        return deletedAt;
+    }
+
+    public void setDeletedAt(LocalDateTime deletedAt) {
+        this.deletedAt = deletedAt;
+    }
+
     @Override
     public String toString() {
         return "Post{" +
@@ -195,6 +221,9 @@ public class Post implements Serializable {
                 ", origin='" + origin + '\'' +
                 ", eaterNumber=" + eaterNumber +
                 ", cookingTime=" + cookingTime +
+                ", createdAt=" + createdAt +
+                ", updatedAt=" + updatedAt +
+                ", deletedAt=" + deletedAt +
                 '}';
     }
 }

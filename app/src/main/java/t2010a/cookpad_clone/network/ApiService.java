@@ -51,4 +51,7 @@ public interface ApiService {
 
     @GET("/api/v1/userss")
     Call<List<User>> getUserList();
+//
+//    @GET("/api/v1/user/products")
+//    Call<List<>>
 }

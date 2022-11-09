@@ -34,7 +34,6 @@ public class SearchFragment extends Fragment {
     private SearchAdapter adapter;
     private SearchView searchView;
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -47,13 +46,12 @@ public class SearchFragment extends Fragment {
 
     private void initView(View itemView) {
         searchView = itemView.findViewById(R.id.searchView);
-
+        rvSearch = itemView.findViewById(R.id.rvSearch);
 
         initData();
+
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity(), RecyclerView.VERTICAL, false);
         adapter = new SearchAdapter(getActivity(), userList);
-
-        rvSearch = itemView.findViewById(R.id.rvSearch);
 
         RecyclerView.ItemDecoration itemDecoration = new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL);
         rvSearch.addItemDecoration(itemDecoration);
@@ -66,10 +64,10 @@ public class SearchFragment extends Fragment {
         repository.getService().getUserList().enqueue(new Callback<List<User>>() {
             @Override
             public void onResponse(Call<List<User>> call, Response<List<User>> response) {
-                if (response.code()==200){
-                    Toast.makeText(getActivity(), "Success", Toast.LENGTH_SHORT).show();
+                if (response.code() == 200) {
                     userList = response.body();
                     adapter.reloadData(userList);
+                    Toast.makeText(getActivity(), "Success", Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -101,13 +99,13 @@ public class SearchFragment extends Fragment {
         for (User user : userList) {
             if (user.getFullName().toLowerCase().contains(text.toLowerCase())) {
                 filteredList.add(user);
-            }else if (user.getEmail().toLowerCase(Locale.ROOT).contains(text.toLowerCase(Locale.ROOT))) {
+            } else if (user.getEmail().toLowerCase(Locale.ROOT).contains(text.toLowerCase(Locale.ROOT))) {
                 filteredList.add(user);
             }
         }
         Log.d("TAG", "filterList: " + filteredList.size());
 
-        if (filteredList.isEmpty()){
+        if (filteredList.isEmpty()) {
             Toast.makeText(getActivity(), "No data found", Toast.LENGTH_SHORT).show();
         } else {
             adapter.setFilteredList(filteredList);

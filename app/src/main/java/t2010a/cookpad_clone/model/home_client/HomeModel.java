@@ -4,40 +4,40 @@ import java.io.Serializable;
 import java.util.List;
 
 public class HomeModel implements Serializable {
-    private List<Post> section_1;
-    private List<Post> section_2;
-    private List<Post> section_3;
-    private List<Post> section_4;
+    private int totalItems;
+    private int totalPage;
+    private int currentPage;
+    private List<Post> content;
 
-    public List<Post> getSection_1() {
-        return section_1;
+    public int getTotalItems() {
+        return totalItems;
     }
 
-    public void setSection_1(List<Post> section_1) {
-        this.section_1 = section_1;
+    public void setTotalItems(int totalItems) {
+        this.totalItems = totalItems;
     }
 
-    public List<Post> getSection_2() {
-        return section_2;
+    public int getTotalPage() {
+        return totalPage;
     }
 
-    public void setSection_2(List<Post> section_2) {
-        this.section_2 = section_2;
+    public void setTotalPage(int totalPage) {
+        this.totalPage = totalPage;
     }
 
-    public List<Post> getSection_3() {
-        return section_3;
+    public int getCurrentPage() {
+        return currentPage;
     }
 
-    public void setSection_3(List<Post> section_3) {
-        this.section_3 = section_3;
+    public void setCurrentPage(int currentPage) {
+        this.currentPage = currentPage;
     }
 
-    public List<Post> getSection_4() {
-        return section_4;
+    public List<Post> getContent() {
+        return content;
     }
 
-    public void setSection_4(List<Post> section_4) {
-        this.section_4 = section_4;
+    public void setContent(List<Post> content) {
+        this.content = content;
     }
 }
